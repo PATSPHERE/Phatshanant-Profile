@@ -320,6 +320,328 @@
       </div>
     </div>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phatshanant Thanakitpunsakul | Executive Profile</title>
+  <style>
+    :root {
+      --navy: #173c68;
+      --deep: #0b1324;
+      --ink: #1f2937;
+      --muted: #64748b;
+      --soft: #f4f7fb;
+      --silver: #e7edf5;
+      --gold: #c8b88a;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--soft);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      background: linear-gradient(135deg, #ffffff 0%, #f2f6fb 55%, #dfe8f5 100%);
+    }
+
+    .hero-text {
+      padding: 70px 7vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      width: fit-content;
+      border: 1px solid var(--deep);
+      border-radius: 7px;
+      padding: 8px 14px;
+      font-size: 12px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      color: var(--deep);
+      background: rgba(255,255,255,0.7);
+    }
+
+    h1 {
+      font-size: clamp(44px, 6vw, 78px);
+      line-height: 1.02;
+      margin: 0;
+      color: var(--navy);
+      font-weight: 300;
+      letter-spacing: -2px;
+    }
+
+    .hero h2 {
+      font-size: clamp(25px, 3vw, 42px);
+      line-height: 1.18;
+      font-weight: 300;
+      color: var(--deep);
+      margin: 28px 0;
+      max-width: 820px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0 28px;
+    }
+
+    .tag {
+      background: #e7ebf2;
+      color: #334155;
+      padding: 8px 13px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+    }
+
+    .lead {
+      font-size: 18px;
+      max-width: 700px;
+      color: #475569;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 24px;
+      border-radius: 8px;
+      font-weight: 800;
+      border: 1px solid var(--deep);
+      transition: .2s ease;
+    }
+
+    .btn.primary {
+      background: var(--deep);
+      color: white;
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--deep);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .hero-image {
+      background: linear-gradient(180deg, #273850, #111827);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      color: white;
+      text-align: center;
+    }
+
+    .portrait-card {
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 30px;
+      padding: 45px 32px;
+      width: min(420px, 100%);
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+        radial-gradient(circle at top, rgba(255,255,255,.18), transparent 45%);
+      box-shadow: 0 30px 80px rgba(0,0,0,.25);
+    }
+
+    .portrait-card .initial {
+      font-size: 82px;
+      font-family: Georgia, serif;
+      color: var(--gold);
+      margin-bottom: auto;
+    }
+
+    .portrait-card p {
+      color: #dbeafe;
+      font-size: 15px;
+    }
+
+    section {
+      padding: 85px 7vw;
+    }
+
+    .section-title {
+      max-width: 1050px;
+      margin: 0 auto 45px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(34px, 4vw, 56px);
+      font-weight: 300;
+      color: var(--deep);
+      line-height: 1.1;
+      margin: 0 0 15px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 850px;
+    }
+
+    .grid {
+      max-width: 1050px;
+      margin: auto;
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid.two { grid-template-columns: 1fr 1fr; }
+    .grid.three { grid-template-columns: repeat(3, 1fr); }
+    .grid.four { grid-template-columns: repeat(4, 1fr); }
+
+    .card {
+      background: white;
+      border: 1px solid var(--silver);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, .06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--navy);
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .card p { color: #475569; }
+
+    .stat {
+      background: var(--deep);
+      color: white;
+      border-radius: 22px;
+      padding: 28px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    .timeline {
+      max-width: 1050px;
+      margin: auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .role {
+      background: white;
+      border-left: 6px solid var(--navy);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 12px 35px rgba(15,23,42,.06);
+    }
+
+    .role small {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .quote {
+      max-width: 1050px;
+      margin: auto;
+      background: white;
+      border-left: 5px solid var(--gold);
+      padding: 35px;
+      border-radius: 20px;
+      font-size: 22px;
+      color: var(--deep);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, .06);
+    }
+
+    .dark {
+      background: linear-gradient(135deg, #0b1324, #173c68);
+      color: white;
+    }
+
+    .dark .section-title h2,
+    .dark .section-title p { color: white; }
+
+    .dark .card {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.16);
+      color: white;
+    }
+
+    .dark .card h3 { color: var(--gold); }
+    .dark .card p { color: #dbeafe; }
+
+    footer {
+      padding: 35px 7vw;
+      text-align: center;
+      background: var(--deep);
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { min-height: 420px; }
+      .grid.two, .grid.three, .grid.four { grid-template-columns: 1fr; }
+      section { padding: 65px 6vw; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Healthcare · Wellness · Innovation</span>
+      <h1>Phatshanant<br>Thanakitpunsakul</h1>
+      <h2>Bridging Healthcare, Wellness & Human-Centered Innovation</h2>
+
+      <div class="tags">
+        <span class="tag">Healthcare Executive</span>
+        <span class="tag">Innovation Leader</span>
+        <span class="tag">Global Partnerships</span>
+        <span class="tag">Longevity Thinker</span>
+      </div>
+
+      <p class="lead">
+        A strategic healthcare and wellness executive with over 20 years of experience transforming healthcare systems,
+        wellness ecosystems, medical innovation, digital health, and strategic partnerships into meaningful human-centered growth.
+      </p>
+
+      <div class="buttons">
+        <a class="btn primary" href="#work">Explore My Work</a>
+        <a class="btn secondary" href="#connect">Let's Collaborate</a>
+      </div>
+    </div>
+
     <div class="hero-image">
       <div class="portrait-card">
         <div class="initial">K.P</div>
@@ -327,6 +649,57 @@
         <p>Clinical foundation. Strategic vision. Human-centered transformation.</p>
       </div>
     </div>
+  </header>
+
+  <section id="profile">
+    <div class="section-title">
+      <span class="eyebrow">Executive Profile</span>
+      <h2>20+ Years of Healthcare Leadership & Innovation</h2>
+      <p>
+        From the bedside to the boardroom — a career shaped by clinical discipline, strategic vision,
+        digital transformation, and a belief that healthcare must remain profoundly human.
+      </p>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h3>A Career Built at the Intersection of Care & Strategy</h3>
+        <p>
+          My journey began as a Registered Nurse — a foundation that gave me a deep, lived understanding
+          of what healthcare truly means to a human being. That clinical empathy has guided every strategic
+          decision I have made since.
+        </p>
+        <p>
+          Over two decades, I have led marketing, innovation, digital transformation, and business growth across
+          respected healthcare organizations, including BDMS, Phyathai–Paolo, Bangkok Hospital Pattaya,
+          and Paolo Hospital Phitsanulok.
+        </p>
+      </div>
+
+      <div class="grid two">
+        <div class="stat"><strong>20+</strong>Years of Healthcare Leadership</div>
+        <div class="stat"><strong>RN</strong>Clinical Foundation</div>
+        <div class="stat"><strong>COO</strong>Genesenn Group</div>
+        <div class="stat"><strong>ASEAN</strong>Cross-Border Partnerships</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="dark">
+    <div class="section-title">
+      <span class="eyebrow">Expertise</span>
+      <h2>Leadership & Core Expertise</h2>
+      <p>
+        Eight domains where deep experience meets strategic vision — built at the intersection of healthcare,
+        innovation, and human-centered growth.
+      </p>
+    </div>
+
+    <div class="grid four">
+      <div class="card"><h3>Executive Leadership & Healthcare Strategy</h3><p>Leading multi-site healthcare and wellness operations with strategic vision, P&L thinking, and organizational transformation.</p></div>
+      <div class="card"><h3>Digital Transformation & Telemedicine</h3><p>Designing digital health platforms, virtual care models, and technology-driven healthcare experiences.</p></div>
+      <div class="card"><h3>Healthcare Innovation & New Business</h3><p>Building new healthcare business lines from digital labs to wellness ecosystems and longevity programs.</p></div>
+      <div class="card"><h3>Strategic Partnership & Global Collaboration</h3><p>Creat
   </header>
 
   <section id="profile">
