@@ -1,265 +1,108 @@
-bash
-
-# Create a Python script to build the HTML properly
-python3 << 'PYEOF'
-import base64
-
-# Read image
-with open('/mnt/user-data/uploads/new.jpg', 'rb') as f:
-    img_data = base64.b64encode(f.read()).decode('utf-8')
-
-data_uri = f"data:image/jpeg;base64,{img_data}"
-
-html_content = f'''<!DOCTYPE html>
-<html lang="th">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phatshanant Thanakitpunsakul — Healthcare &amp; Wellness Executive</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*{{margin:0;padding:0;box-sizing:border-box}}
-:root{{
-  --navy:#0B1D3A;--navy-mid:#1A3A6B;--gold:#C9A96E;--gold-light:#E8D5B0;
-  --cream:#F8F5EF;--white:#FFFFFF;--text-dark:#0B1D3A;--text-mid:#3D5A80;--text-muted:#7A8FA8;
-}}
-html{{scroll-behavior:smooth}}
-body{{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden}}
-nav{{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(248,245,239,0.95);backdrop-filter:blur(12px);border-bottom:0.5px solid rgba(201,169,110,0.3)}}
-.nav-logo{{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:500;color:var(--navy);letter-spacing:0.02em}}
-.nav-links{{display:flex;gap:2rem;list-style:none}}
-.nav-links a{{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color 0.2s}}
-.nav-links a:hover{{color:var(--gold)}}
-.hero{{min-height:100vh;display:flex;align-items:center;padding:6rem 4rem 4rem;background:var(--navy);position:relative;overflow:hidden}}
-.hero::after{{content:"";position:absolute;bottom:0;left:0;right:0;height:0.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}}
-.hero-inner{{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center}}
-.hero-tag{{display:inline-block;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:0.5px solid rgba(201,169,110,0.5);padding:0.4rem 1rem;margin-bottom:1.8rem;border-radius:20px}}
-.hero h1{{font-family:"Cormorant Garamond",serif;font-size:clamp(3rem,4.5vw,4.5rem);font-weight:300;color:var(--white);line-height:1.08;margin-bottom:0.4rem}}
-.hero h1 em{{color:var(--gold);font-style:italic;display:block}}
-.hero-role{{font-size:0.9rem;color:rgba(255,255,255,0.5);letter-spacing:0.06em;margin-bottom:1.8rem}}
-.hero-desc{{font-size:0.92rem;color:rgba(255,255,255,0.6);line-height:1.9;max-width:500px;margin-bottom:2rem}}
-.hero-chips{{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem}}
-.chip{{font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6);padding:0.3rem 0.9rem;border:0.5px solid rgba(255,255,255,0.15);border-radius:20px}}
-.hero-btns{{display:flex;gap:1rem}}
-.btn-primary{{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:0.9rem 2.2rem;border:none;border-radius:30px;cursor:pointer;text-decoration:none;font-weight:500;transition:all 0.25s;display:inline-block}}
-.btn-primary:hover{{background:var(--gold-light);transform:translateY(-2px)}}
-.btn-outline{{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,0.8);padding:0.9rem 2.2rem;border:0.5px solid rgba(255,255,255,0.3);border-radius:30px;cursor:pointer;text-decoration:none;transition:all 0.25s;display:inline-block}}
-.btn-outline:hover{{border-color:var(--gold);color:var(--gold)}}
-.photo-frame{{width:380px;height:480px;border-radius:190px 190px 80px 80px;overflow:hidden;position:relative;border:0.5px solid rgba(201,169,110,0.35)}}
-.photo-frame img{{width:100%;height:100%;object-fit:cover;object-position:center top}}
-.photo-badge{{position:absolute;left:-20px;bottom:40px;background:rgba(11,29,58,0.88);backdrop-filter:blur(12px);border:0.5px solid rgba(201,169,110,0.3);border-radius:12px;padding:1rem 1.5rem}}
-.badge-num{{font-family:"Cormorant Garamond",serif;font-size:2.2rem;font-weight:300;color:var(--gold);line-height:1}}
-.badge-lbl{{font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:0.2rem}}
-.hero-photo-wrap{{position:relative;display:flex;justify-content:center}}
-section{{padding:5rem 4rem}}
-.section-inner{{max-width:1200px;margin:0 auto}}
-.section-label{{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem}}
-.section-title{{font-family:"Cormorant Garamond",serif;font-size:clamp(2rem,3vw,2.8rem);font-weight:300;color:var(--navy);line-height:1.2;margin-bottom:1.5rem}}
-.about{{background:var(--white)}}
-.about-grid{{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}}
-.about-text{{font-size:0.93rem;color:var(--text-mid);line-height:1.95;margin-bottom:1rem}}
-.about-metrics{{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}}
-.metric{{padding:1.3rem;background:var(--cream);border-radius:10px;border-left:2.5px solid var(--gold)}}
-.metric-num{{font-family:"Cormorant Garamond",serif;font-size:2.3rem;font-weight:300;color:var(--navy);line-height:1}}
-.metric-lbl{{font-size:0.68rem;letter-spacing:0.08em;color:var(--text-muted);text-transform:uppercase;margin-top:0.3rem}}
-.expertise{{background:var(--cream)}}
-.expertise-header{{text-align:center;margin-bottom:3.5rem}}
-.expertise-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}}
-.exp-card{{background:var(--white);border-radius:14px;padding:1.8rem 1.5rem;border:0.5px solid rgba(11,29,58,0.07);transition:all 0.3s;position:relative;overflow:hidden}}
-.exp-card::after{{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s}}
-.exp-card:hover{{transform:translateY(-5px);box-shadow:0 16px 36px rgba(11,29,58,0.07)}}
-.exp-card:hover::after{{transform:scaleX(1)}}
-.card-icon{{font-size:1.5rem;margin-bottom:1rem}}
-.card-title{{font-size:0.9rem;font-weight:500;color:var(--navy);margin-bottom:0.6rem}}
-.card-text{{font-size:0.76rem;color:var(--text-muted);line-height:1.75}}
-.experience{{background:var(--navy)}}
-.experience .section-label{{color:rgba(201,169,110,0.8)}}
-.experience .section-title{{color:var(--white)}}
-.exp-header{{text-align:center;margin-bottom:3.5rem}}
-.timeline{{position:relative;padding-left:2.5rem;max-width:800px;margin:0 auto}}
-.timeline::before{{content:"";position:absolute;left:0;top:0.4rem;bottom:0;width:0.5px;background:rgba(201,169,110,0.25)}}
-.tl-item{{position:relative;padding-bottom:2.8rem;padding-left:2rem}}
-.tl-dot{{position:absolute;left:-2.75rem;top:0.35rem;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--navy)}}
-.tl-year{{font-size:0.68rem;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem}}
-.tl-role{{font-size:1.05rem;font-weight:500;color:var(--white);margin-bottom:0.25rem}}
-.tl-org{{font-size:0.8rem;color:rgba(255,255,255,0.42);margin-bottom:0.8rem;font-style:italic}}
-.tl-desc{{font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.85}}
-.tl-tags{{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.9rem}}
-.tl-tag{{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.75rem;border:0.5px solid rgba(201,169,110,0.25);border-radius:20px;color:var(--gold)}}
-.thought{{background:var(--white)}}
-blockquote.hero-quote{{font-family:"Cormorant Garamond",serif;font-size:clamp(1.35rem,2.2vw,1.85rem);font-style:italic;font-weight:300;color:var(--navy);line-height:1.5;padding:2rem 2.5rem;margin-bottom:3rem;border-left:3px solid var(--gold);background:var(--cream);border-radius:0 12px 12px 0}}
-blockquote cite{{display:block;font-size:0.78rem;font-style:normal;letter-spacing:0.12em;color:var(--gold);margin-top:1rem}}
-.thought-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}}
-.t-card{{padding:1.5rem;border:0.5px solid rgba(11,29,58,0.08);border-radius:12px;background:var(--cream)}}
-.t-card.wide{{grid-column:span 3}}
-.t-title{{font-size:0.88rem;font-weight:500;color:var(--navy);margin-bottom:0.5rem}}
-.t-text{{font-size:0.76rem;color:var(--text-muted);line-height:1.75}}
-.connect{{background:var(--cream)}}
-.connect-inner{{max-width:680px;margin:0 auto;text-align:center}}
-.connect-email{{font-family:"Cormorant Garamond",serif;font-size:1.5rem;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;transition:color 0.2s}}
-.connect-email:hover{{color:var(--gold)}}
-.open-tags{{display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin:2.5rem 0}}
-.open-tag{{font-size:0.7rem;letter-spacing:0.08em;padding:0.5rem 1.1rem;background:var(--white);border:0.5px solid rgba(11,29,58,0.12);border-radius:20px;color:var(--text-mid)}}
-.connect-sub{{font-size:0.9rem;color:var(--text-mid);margin-bottom:2rem;line-height:1.9}}
-footer{{background:var(--navy);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between}}
-.footer-name{{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--gold);font-size:1.05rem}}
-.footer-copy{{font-size:0.7rem;color:rgba(255,255,255,0.3);letter-spacing:0.06em}}
-@keyframes fadeUp{{from{{opacity:0;transform:translateY(28px)}}to{{opacity:1;transform:translateY(0)}}}}
-.hero-content>*{{animation:fadeUp 0.75s both}}
-.hero-content>*:nth-child(1){{animation-delay:0.1s}}
-.hero-content>*:nth-child(2){{animation-delay:0.22s}}
-.hero-content>*:nth-child(3){{animation-delay:0.32s}}
-.hero-content>*:nth-child(4){{animation-delay:0.42s}}
-.hero-content>*:nth-child(5){{animation-delay:0.52s}}
-.hero-content>*:nth-child(6){{animation-delay:0.6s}}
-.hero-photo-wrap{{animation:fadeUp 0.9s 0.35s both}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phatshanant Profile</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f8fb;
+      color: #1f2937;
+    }
+    header {
+      background: #0f2742;
+      color: white;
+      padding: 70px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 42px;
+      margin: 0;
+    }
+    header p {
+      font-size: 18px;
+      margin-top: 12px;
+      color: #dbeafe;
+    }
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .card {
+      background: white;
+      padding: 28px;
+      margin-bottom: 24px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    h2 {
+      color: #0f2742;
+      margin-top: 0;
+    }
+    .tag {
+      display: inline-block;
+      background: #e0ecff;
+      color: #0f2742;
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin: 5px;
+      font-size: 14px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #6b7280;
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <div class="nav-logo">Phatshanant Thanakitpunsakul</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#expertise">Expertise</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#thought">Vision</a></li>
-    <li><a href="#connect">Connect</a></li>
-  </ul>
-</nav>
-<section class="hero" id="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-tag">Healthcare · Wellness · Innovation</div>
-      <h1>Phatshanant<em>Thanakitpunsakul</em></h1>
-      <p class="hero-role">COO, Genesenn Group &nbsp;·&nbsp; Healthcare &amp; Wellness Executive</p>
-      <p class="hero-desc">Bridging clinical excellence with strategic leadership — transforming healthcare systems, wellness ecosystems, and human-centered innovation across Thailand and ASEAN.</p>
-      <div class="hero-chips">
-        <span class="chip">Registered Nurse</span>
-        <span class="chip">MBA</span>
-        <span class="chip">Global Partnerships</span>
-        <span class="chip">Longevity Thinker</span>
-        <span class="chip">Digital Health</span>
-      </div>
-      <div class="hero-btns">
-        <a href="#experience" class="btn-primary">Explore My Work</a>
-        <a href="#connect" class="btn-outline">Let&#39;s Collaborate</a>
-      </div>
+
+  <header>
+    <h1>Phatshanant Thanakitpunsakul</h1>
+    <p>Healthcare Innovation | Wellness | Medical Marketing | Strategic Partnership</p>
+  </header>
+
+  <section>
+    <div class="card">
+      <h2>About Me</h2>
+      <p>
+        I am a healthcare and wellness professional with experience in medical innovation,
+        digital transformation, strategic partnership, and business development.
+        My work focuses on creating meaningful health solutions that connect clinical insight,
+        technology, and human-centered service.
+      </p>
     </div>
-    <div class="hero-photo-wrap">
-      <div class="photo-frame">
-        <img src="{data_uri}" alt="Phatshanant Thanakitpunsakul">
-      </div>
-      <div class="photo-badge">
-        <div class="badge-num">20+</div>
-        <div class="badge-lbl">Years of Leadership</div>
-      </div>
+
+    <div class="card">
+      <h2>Expertise</h2>
+      <span class="tag">Healthcare Innovation</span>
+      <span class="tag">Wellness Strategy</span>
+      <span class="tag">Medical Marketing</span>
+      <span class="tag">Telemedicine</span>
+      <span class="tag">Partnership Development</span>
+      <span class="tag">Digital Transformation</span>
     </div>
-  </div>
-</section>
-<section class="about" id="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div>
-        <div class="section-label">Executive Profile</div>
-        <h2 class="section-title">A Career Built at the Intersection of Care &amp; Strategy</h2>
-        <p class="about-text">My journey began as a Registered Nurse — a foundation that gave me something no MBA alone can teach: a deep, lived understanding of what healthcare truly means to a human being. That clinical empathy has guided every strategic decision I have made since.</p>
-        <p class="about-text">Over two decades, I have led marketing, innovation, digital transformation, and business growth across Thailand&#39;s most respected hospital groups — including BDMS, Bangkok Hospital Pattaya, and Paolo Hospital. Today, as COO of Genesenn Group, I lead the transformation of premium wellness and longevity businesses.</p>
-      </div>
-      <div class="about-metrics">
-        <div class="metric"><div class="metric-num">400M</div><div class="metric-lbl">THB Brand Revenue</div></div>
-        <div class="metric"><div class="metric-num">4B</div><div class="metric-lbl">THB Team Revenue</div></div>
-        <div class="metric"><div class="metric-num">10</div><div class="metric-lbl">Clinic Branches</div></div>
-        <div class="metric"><div class="metric-num">100+</div><div class="metric-lbl">Employees Led</div></div>
-        <div class="metric"><div class="metric-num">3+</div><div class="metric-lbl">Digital Platforms</div></div>
-        <div class="metric"><div class="metric-num">ASEAN</div><div class="metric-lbl">Cross-Border Partnerships</div></div>
-      </div>
+
+    <div class="card">
+      <h2>Professional Focus</h2>
+      <p>
+        Building future-ready healthcare and wellness ecosystems through strategy,
+        innovation, customer experience, and sustainable business models.
+      </p>
     </div>
-  </div>
-</section>
-<section class="expertise" id="expertise">
-  <div class="section-inner">
-    <div class="expertise-header">
-      <div class="section-label">Core Expertise</div>
-      <h2 class="section-title">Eight Domains of Strategic Depth</h2>
+
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Email: phatshanant.phanson@gmail.com</p>
     </div>
-    <div class="expertise-grid">
-      <div class="exp-card"><div class="card-icon">🏥</div><div class="card-title">Executive Leadership</div><div class="card-text">Multi-site P&amp;L accountability, strategic vision, and organizational transformation</div></div>
-      <div class="exp-card"><div class="card-icon">💻</div><div class="card-title">Digital Health &amp; Telemedicine</div><div class="card-text">Designing and launching digital health platforms and technology-driven care models</div></div>
-      <div class="exp-card"><div class="card-icon">🚀</div><div class="card-title">Healthcare Innovation</div><div class="card-text">Building new business lines from dental digital labs to wellness ecosystems</div></div>
-      <div class="exp-card"><div class="card-icon">🌏</div><div class="card-title">Global Partnerships</div><div class="card-text">Cross-border ASEAN healthcare alliances and international medical collaborations</div></div>
-      <div class="exp-card"><div class="card-icon">📊</div><div class="card-title">Healthcare Marketing</div><div class="card-text">Brand strategy, service launches, and data-driven marketing that builds trust and revenue</div></div>
-      <div class="exp-card"><div class="card-icon">🤖</div><div class="card-title">AI + Human-Centered Care</div><div class="card-text">Integrating AI into clinical workflows while preserving empathy and trust</div></div>
-      <div class="exp-card"><div class="card-icon">✨</div><div class="card-title">Wellness Journey Design</div><div class="card-text">Crafting premium patient journeys that transform healthcare into human experiences</div></div>
-      <div class="exp-card"><div class="card-icon">🏗</div><div class="card-title">Ecosystem Building</div><div class="card-text">Architecting integrated wellness ecosystems connecting care, hospitality, and lifestyle</div></div>
-    </div>
-  </div>
-</section>
-<section class="experience" id="experience">
-  <div class="section-inner">
-    <div class="exp-header">
-      <div class="section-label">Professional Journey</div>
-      <h2 class="section-title">A Career of Measurable Impact</h2>
-    </div>
-    <div class="timeline">
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025 – Present</div><div class="tl-role">Chief Operating Officer (COO)</div><div class="tl-org">Genesenn Group</div><div class="tl-desc">Leading the full transformation of a premium wellness and longevity business — overseeing P&amp;L, multi-site operations, and the integration of healthcare, hospitality, and property into a luxury human-centered experience.</div><div class="tl-tags"><span class="tl-tag">COO</span><span class="tl-tag">Wellness</span><span class="tl-tag">Longevity</span><span class="tl-tag">P&amp;L</span></div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2024 – 2025</div><div class="tl-role">Senior Medical Affairs &amp; Global Partnership Officer</div><div class="tl-org">Phyathai–Paolo Hospital Group / BDMS</div><div class="tl-desc">Spearheaded global healthcare partnerships, medical innovation, and cross-border digital transformation. Led ASEAN-region alliances to position the group as a global healthcare destination.</div><div class="tl-tags"><span class="tl-tag">Global Partnerships</span><span class="tl-tag">BDMS</span><span class="tl-tag">ASEAN</span></div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2022 – 2024</div><div class="tl-role">Dental Digital &amp; Implant Center Manager</div><div class="tl-org">Phyathai Hospital Phaholyothin</div><div class="tl-desc">Launched and scaled the Dental Digital Lab — a B2B innovation center for advanced digital dentistry. Built a new business model generating multi-million baht revenue growth.</div><div class="tl-tags"><span class="tl-tag">Digital Lab</span><span class="tl-tag">B2B Innovation</span><span class="tl-tag">Revenue Growth</span></div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2013 – 2022</div><div class="tl-role">Marketing Manager → Senior Marketing Manager</div><div class="tl-org">Paolo Hospital Phitsanulok / Bangkok Hospital Pattaya (BDMS)</div><div class="tl-desc">Led 400M THB in branding initiatives. Launched telemedicine services and pioneered drive-thru vaccination during COVID-19. Built long-term brand equity over nearly a decade.</div><div class="tl-tags"><span class="tl-tag">400M THB</span><span class="tl-tag">Telemedicine</span><span class="tl-tag">COVID Innovation</span></div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Earlier Career</div><div class="tl-role">Area Manager → Utilization Review Nurse</div><div class="tl-org">Nitipon Clinic &amp; Earlier Roles</div><div class="tl-desc">Managed 10 clinic branches with 100+ employees and 20M THB monthly performance. Built the clinical, commercial, and operational foundation for all future leadership.</div><div class="tl-tags"><span class="tl-tag">10 Branches</span><span class="tl-tag">RN</span><span class="tl-tag">Operations</span></div></div>
-    </div>
-  </div>
-</section>
-<section class="thought" id="thought">
-  <div class="section-inner">
-    <div class="section-label">Thought Leadership</div>
-    <h2 class="section-title">The Future of Healthcare Should Feel Smarter, Kinder &amp; More Human</h2>
-    <blockquote class="hero-quote">"Healthcare is not just a system to be optimized — it is a human experience to be honored. When we lead with empathy, design with intelligence, and build with purpose, we create health that truly heals."<cite>— Phatshanant Thanakitpunsakul</cite></blockquote>
-    <div class="thought-grid">
-      <div class="t-card"><div class="t-title">AI in Healthcare</div><div class="t-text">Artificial intelligence should amplify human judgment, not replace the empathy that makes healthcare truly healing.</div></div>
-      <div class="t-card"><div class="t-title">Human-Centered Care</div><div class="t-text">The most advanced healthcare system is one where every patient feels seen, heard, and genuinely cared for.</div></div>
-      <div class="t-card"><div class="t-title">Longevity &amp; Healthspan</div><div class="t-text">Living longer means nothing without living well — longevity strategy must be built on quality, purpose, and vitality.</div></div>
-      <div class="t-card"><div class="t-title">Preventive Wellness</div><div class="t-text">The greatest healthcare innovation is helping people never need emergency care in the first place.</div></div>
-      <div class="t-card"><div class="t-title">Digital Health</div><div class="t-text">Digital health tools must be designed for humans first — accessible, intuitive, and deeply trustworthy.</div></div>
-      <div class="t-card"><div class="t-title">Health Behavior</div><div class="t-text">Sustainable health change begins not with protocols, but with understanding the human story behind every behavior.</div></div>
-      <div class="t-card wide"><div class="t-title">Wellness Communication</div><div class="t-text">Clear, compassionate health communication is one of the most powerful tools for population wellbeing.</div></div>
-    </div>
-  </div>
-</section>
-<section class="connect" id="connect">
-  <div class="connect-inner">
-    <div class="section-label">Let&#39;s Connect</div>
-    <h2 class="section-title">Let&#39;s Create Something Meaningful Together</h2>
-    <p class="connect-sub">Whether you&#39;re building a healthcare innovation, designing a wellness strategy, or seeking a thought partner — I&#39;d love to connect.</p>
-    <a href="mailto:phatsha.thana@gmail.com" class="connect-email">phatsha.thana@gmail.com</a>
-    <div class="open-tags">
-      <span class="open-tag">Healthcare Innovation</span><span class="open-tag">Executive Advisory</span><span class="open-tag">Wellness Strategy</span><span class="open-tag">Medical Partnerships</span><span class="open-tag">Speaking</span><span class="open-tag">Thought Leadership</span>
-    </div>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <a href="mailto:phatsha.thana@gmail.com" class="btn-primary">Send a Message</a>
-      <a href="https://www.linkedin.com/in/phatsha-thana831160328" class="btn-outline" style="color:var(--navy);border-color:rgba(11,29,58,0.25)">View LinkedIn</a>
-    </div>
-  </div>
-</section>
-<footer>
-  <div class="footer-name">Phatshanant Thanakitpunsakul</div>
-  <div class="footer-copy">© 2025 · Healthcare &amp; Wellness Executive · COO, Genesenn Group</div>
-</footer>
-<script>
-document.querySelectorAll("a[href^='#']").forEach(a=>{{
-  a.addEventListener("click",e=>{{e.preventDefault();const t=document.querySelector(a.getAttribute("href"));if(t)t.scrollIntoView({{behavior:"smooth"}});}});
-}});
-const obs=new IntersectionObserver(entries=>{{entries.forEach(e=>{{if(e.isIntersecting){{e.target.style.opacity="1";e.target.style.transform="translateY(0)";}}}});}},{{threshold:0.1}});
-document.querySelectorAll(".exp-card,.tl-item,.t-card,.metric,.about-grid>div").forEach(el=>{{el.style.opacity="0";el.style.transform="translateY(20px)";el.style.transition="opacity 0.55s ease,transform 0.55s ease";obs.observe(el);}});
-</script>
+  </section>
+
+  <footer>
+    © 2026 Phatshanant Profile
+  </footer>
+
 </body>
-</html>'''
-
-with open('/mnt/user-data/outputs/phatshanant_website.html', 'w', encoding='utf-8') as f:
-    f.write(html_content)
-
-print(f"Done. File size: {len(html_content):,} bytes")
-PYEOF
-Output
-
-Done. File size: 106,311 bytes
-Done
+</html>
