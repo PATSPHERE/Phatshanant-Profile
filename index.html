@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phatshanant Thanakitpunsakul | Executive Healthcare Brand</title>
+<title>Phatshanant Thanakitpunsakul | Executive Brand</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:Arial,sans-serif;background:#f7f9fc;color:#111827;line-height:1.7}
 a{text-decoration:none;color:inherit}
-nav{position:sticky;top:0;z-index:99;background:white;border-bottom:1px solid #e5eaf2;padding:16px 6vw;display:flex;justify-content:space-between;align-items:center}
+nav{position:sticky;top:0;z-index:99;background:rgba(255,255,255,.95);border-bottom:1px solid #e5eaf2;padding:15px 6vw;display:flex;justify-content:space-between;align-items:center}
 .logo{font-weight:800;color:#0b1d3a}
-.navlinks{display:flex;gap:18px;font-size:13px;color:#64748b}
+.navlinks{display:flex;gap:16px;font-size:13px;color:#64748b}
 .navlinks a:hover{color:#c9a96e}
 section{padding:82px 6vw}
 .label{display:inline-block;border:1px solid #b8c5d6;border-radius:999px;padding:8px 14px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#173c68;background:white;margin-bottom:22px}
@@ -31,6 +31,7 @@ p{color:#475569}
 .photo img{width:100%;height:600px;object-fit:cover;object-position:center top;border-radius:24px;display:block}
 .caption{text-align:center;color:white;padding:18px 6px 4px}
 .caption h3{color:#c9a96e}
+.caption p{color:#dbeafe;font-size:14px}
 .title{max-width:1100px;margin:0 auto 42px}
 .title p{max-width:850px}
 .grid{max-width:1100px;margin:auto;display:grid;gap:22px}
@@ -62,12 +63,119 @@ footer{background:#0b1d3a;color:#cbd5e1;text-align:center;padding:34px 6vw;font-
 @media(max-width:900px){
 .navlinks{display:none}
 .hero{grid-template-columns:1fr}
-.photo img
+.photo img{height:auto;max-height:560px}
+.two,.three,.four,.project,.miniGrid{grid-template-columns:1fr}
+section{padding:60px 6vw}
+}
 </style>
 </head>
+
 <body>
 
-<h1 style="padding:40px;">Website loading test</h1>
+<nav>
+  <div class="logo">K. Pat · Executive Brand</div>
+  <div class="navlinks">
+    <a href="#profile">Profile</a>
+    <a href="#impact">Impact</a>
+    <a href="#projects">Projects</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#human">Human Side</a>
+    <a href="#connect">Connect</a>
+  </div>
+</nav>
 
-</body>
-</html>
+<header class="hero">
+  <div class="heroText">
+    <span class="label">Healthcare · Wellness · Innovation</span>
+    <h1>Phatshanant<br>Thanakitpunsakul</h1>
+    <h2>Bridging Healthcare, Wellness & Human-Centered Innovation</h2>
+    <p>A healthcare and wellness executive with 20+ years of experience transforming clinical insight, digital health, strategic partnerships, and wellness ecosystems into measurable growth and meaningful human impact.</p>
+    <div class="chips">
+      <span class="chip">Healthcare Executive</span>
+      <span class="chip">COO</span>
+      <span class="chip">Registered Nurse</span>
+      <span class="chip">Digital Health</span>
+      <span class="chip">Global Partnerships</span>
+      <span class="chip">Longevity Thinker</span>
+    </div>
+    <div class="btns">
+      <a class="btn primary" href="#projects">Explore Projects</a>
+      <a class="btn secondary" href="#connect">Let’s Collaborate</a>
+    </div>
+  </div>
+  <div class="heroImg">
+    <div class="photo">
+      <img src="new.jpg" alt="Phatshanant Thanakitpunsakul">
+      <div class="caption">
+        <h3>Healthcare & Wellness Executive</h3>
+        <p>Clinical foundation · Strategy · Innovation · Human-centered transformation</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="profile">
+  <div class="title">
+    <span class="label">Executive Profile</span>
+    <h2>From Clinical Foundation to Executive Healthcare Transformation</h2>
+    <p>My journey began as a Registered Nurse — a foundation that gave me a lived understanding of care. Over two decades, that foundation evolved into leadership across hospital marketing, digital transformation, global partnerships, wellness strategy, and innovation-driven business growth.</p>
+  </div>
+  <div class="grid two">
+    <div class="card">
+      <h3>A Career Built at the Intersection of Care & Strategy</h3>
+      <p>From bedside experience to boardroom leadership, my work connects clinical empathy with strategic execution. I build healthcare and wellness models that are clinically credible, commercially practical, and deeply human.</p>
+    </div>
+    <div class="card">
+      <h3>Current Direction</h3>
+      <p>As COO of Genesenn Group, I focus on wellness ecosystem development, longevity strategy, premium client journeys, strategic partnerships, and operational transformation.</p>
+    </div>
+  </div>
+</section>
+
+<section id="impact" class="dark">
+  <div class="title">
+    <span class="label">Impact</span>
+    <h2>Signature Impact & Measurable Results</h2>
+    <p>Numbers that reflect meaningful transformation across healthcare, wellness, and innovation.</p>
+  </div>
+  <div class="grid four">
+    <div class="metric"><strong>20+</strong>Years of Healthcare Leadership</div>
+    <div class="metric"><strong>400M THB</strong>Brand & Service Revenue Impact</div>
+    <div class="metric"><strong>4B THB</strong>Team Revenue Contribution</div>
+    <div class="metric"><strong>ASEAN</strong>Cross-Border Healthcare Partnerships</div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="title">
+    <span class="label">Signature Projects</span>
+    <h2>Recent → Earlier: Strategy in Action</h2>
+    <p>A curated portfolio of transformation projects across wellness, AI, digital health, and healthcare business innovation.</p>
+  </div>
+
+  <div class="project">
+    <div class="projectNo"><span>Most Recent</span><strong>01</strong></div>
+    <div class="projectBody">
+      <div class="meta">Wellness Ecosystem · Longevity · COO Leadership</div>
+      <h3>Wellness Ecosystem & Longevity Transformation</h3>
+      <p>Leading the transformation of a premium wellness and longevity business by integrating healthcare, hospitality, property, and lifestyle into a seamless human-centered wellness ecosystem.</p>
+      <div class="miniGrid">
+        <div class="mini"><b>Challenge</b><p>Wellness businesses need integrated journeys and measurable trust.</p></div>
+        <div class="mini"><b>What I Built</b><p>Multi-site operation logic, premium client journey, product strategy, and ecosystem direction.</p></div>
+        <div class="mini"><b>Strategic Value</b><p>Positioning for longevity, executive wellness, partnership growth, and sustainable scale.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="projectNo"><span>Future Healthcare</span><strong>02</strong></div>
+    <div class="projectBody">
+      <div class="meta">AI · Human-Centered Care · Digital Workflow</div>
+      <h3>AI + Human-Centered Healthcare</h3>
+      <p>Building a healthcare transformation perspective where AI supports clinical workflows, improves access to insight, and amplifies human judgment without replacing empathy.</p>
+      <div class="miniGrid">
+        <div class="mini"><b>Challenge</b><p>Healthcare technology can become cold, fragmented, or difficult for people to trust.</p></div>
+        <div class="mini"><b>What I Designed</b><p>AI-enabled screening concepts, digital journey thinking, and human-centered communication frameworks.</p></div>
+        <div class="mini"><b>Strategic Value</b><p>Future-ready heal
