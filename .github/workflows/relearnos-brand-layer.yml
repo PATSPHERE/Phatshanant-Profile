@@ -1,0 +1,67 @@
+name: RelearnOS brand layer
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/relearnos-brand-layer.yml'
+permissions:
+  contents: write
+jobs:
+  rename-brand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update brand layer only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          main = Path('ai-business-transformation-academy/index.html')
+          s = main.read_text()
+          replacements = {
+            "<title>AI Business Transformation Academy</title>": "<title>RelearnOS by PATSPHERE | AI & Business Transformation System</title>",
+            "<meta name='description' content='Find the right AI starting point for your organization, then turn priority opportunities into practical capability, workflows and measurable business value.'>": "<meta name='description' content='RelearnOS by PATSPHERE is an AI & Business Transformation System that helps organizations identify priority opportunities, build practical capability, improve workflows and create measurable business value.'>",
+            "<a class='brand' href='#top'><span class='mark'>AI</span><span>AI Business Transformation Academy</span></a>": "<a class='brand' href='#top'><span class='mark'>R</span><span>RelearnOS by PATSPHERE</span></a>",
+            "<p class='ey'>Executive AI Transformation</p>": "<p class='ey'>AI & Business Transformation System</p>",
+            "<footer><div class='wrap'>AI Business Transformation Academy · From AI Opportunity to Business Value</div></footer>": "<footer><div class='wrap'>RelearnOS by PATSPHERE · AI & Business Transformation System</div></footer>",
+          }
+          for old, new in replacements.items():
+              if old not in s:
+                  raise SystemExit(f'Main target not found: {old[:80]}')
+              s = s.replace(old, new, 1)
+          main.write_text(s)
+
+          insights = Path('ai-business-transformation-academy/insights/index.html')
+          s = insights.read_text()
+          replacements = {
+            '<title>Business Insights | AI Business Transformation Academy</title>': '<title>Business Insights | RelearnOS by PATSPHERE</title>',
+            '<meta name="description" content="Business insights from real work across AI, business transformation, workflow, knowledge, decision support and high-trust industries.">': '<meta name="description" content="Business insights and applied work from RelearnOS by PATSPHERE across AI, business transformation, workflow, organisational knowledge, decision support and high-trust business.">',
+            '<a class="brand" href="../"><span class="mark">AI</span><span>AI Business Transformation Academy</span></a>': '<a class="brand" href="../"><span class="mark">R</span><span>RelearnOS by PATSPHERE</span></a>',
+            '<footer><div class="wrap">AI Business Transformation Academy · Business Insights</div></footer>': '<footer><div class="wrap">RelearnOS by PATSPHERE · Business Insights & Applied Work</div></footer>',
+          }
+          for old, new in replacements.items():
+              if old in s:
+                  s = s.replace(old, new, 1)
+              elif old.startswith('<footer'):
+                  # Footer wording may differ; replace the old brand name wherever it remains in footer/body brand layer only.
+                  pass
+              else:
+                  raise SystemExit(f'Insights target not found: {old[:80]}')
+          # Catch any remaining visible old header/footer brand string without touching article copy.
+          s = s.replace('AI Business Transformation Academy</span>', 'RelearnOS by PATSPHERE</span>')
+          insights.write_text(s)
+          PY
+      - name: Verify brand layer
+        run: |
+          grep -q 'RelearnOS by PATSPHERE' ai-business-transformation-academy/index.html
+          grep -q 'AI & Business Transformation System' ai-business-transformation-academy/index.html
+          grep -q 'RelearnOS by PATSPHERE' ai-business-transformation-academy/insights/index.html
+          tail -n 3 ai-business-transformation-academy/index.html | grep -q '</html>'
+          tail -n 3 ai-business-transformation-academy/insights/index.html | grep -q '</html>'
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/index.html ai-business-transformation-academy/insights/index.html
+          git commit -m 'Rename Academy brand to RelearnOS by PATSPHERE'
+          git push
