@@ -1,0 +1,35 @@
+name: Fix Thai Business Outcomes
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Replace Thai outcomes only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('ai-business-transformation-academy/index.html')
+          s = p.read_text(encoding='utf-8')
+          old = "outcomes:['Priority AI Opportunities','Actionable Roadmap','Improved Workflow','Reusable Team Assets','Stronger AI Adoption','Measurable Business Value']"
+          new = "outcomes:['โอกาส AI ที่ควรให้ความสำคัญ','แผนการดำเนินงานที่นำไปใช้ได้จริง','กระบวนการทำงานที่ดีขึ้น','ทรัพยากรที่ทีมใช้ซ้ำได้','การนำ AI ไปใช้ได้จริงมากขึ้น','คุณค่าทางธุรกิจที่วัดผลได้']"
+          if old not in s:
+              raise SystemExit('Thai outcomes source string not found')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          rm .github/workflows/fix-th-business-outcomes.yml
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ai-business-transformation-academy/index.html .github/workflows/fix-th-business-outcomes.yml
+          git commit -m "Translate Thai Business Outcomes"
+          git push
