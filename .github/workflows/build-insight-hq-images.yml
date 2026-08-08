@@ -1,0 +1,90 @@
+name: Build Insights HQ Images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-insight-hq-images.yml'
+      - '.image-update/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decode staged high-quality images
+        shell: bash
+        run: |
+          set -u
+          OUT='ai-business-transformation-academy/assets/insights/hq'
+          mkdir -p "$OUT"
+
+          decode_parts() {
+            local name="$1"; shift
+            local tmp
+            tmp="$(mktemp)"
+            : > "$tmp"
+            for part in "$@"; do
+              if [ ! -f "$part" ]; then
+                echo "Missing $part; leaving existing fallback for $name"
+                rm -f "$tmp"
+                return 1
+              fi
+              cat "$part" >> "$tmp"
+            done
+            if tr -d '\r\n ' < "$tmp" | base64 --decode > "$OUT/$name.avif"; then
+              echo "Built $OUT/$name.avif ($(wc -c < "$OUT/$name.avif") bytes)"
+              rm -f "$tmp"
+              return 0
+            fi
+            echo "Could not decode $name; leaving existing fallback"
+            rm -f "$tmp" "$OUT/$name.avif"
+            return 1
+          }
+
+          decode_parts hero .image-update/hero.part01 || true
+          decode_parts telemedicine .image-update/telemedicine.part01 .image-update/telemedicine.part02 || true
+          decode_parts bakery .image-update/bakery.part01 .image-update/bakery.part02 || true
+          decode_parts knowledge .image-update/knowledge.part01 .image-update/knowledge.part02 || true
+          decode_parts governance .image-update/governance.part01 .image-update/governance.part02 || true
+          decode_parts lifescience .image-update/lifescience.part01 || true
+          decode_parts accounting .image-update/accounting.part01 || true
+          decode_parts healthcare .image-update/healthcare.hq || true
+
+      - name: Point Insights page to HQ assets when available
+        shell: python
+        run: |
+          from pathlib import Path
+
+          page = Path('ai-business-transformation-academy/insights/index.html')
+          hq = Path('ai-business-transformation-academy/assets/insights/hq')
+          html = page.read_text(encoding='utf-8')
+
+          for name in ['hero','telemedicine','bakery','knowledge','governance','lifescience','accounting','healthcare']:
+              if (hq / f'{name}.avif').exists():
+                  html = html.replace(f'../assets/insights/{name}.webp', f'../assets/insights/hq/{name}.avif')
+
+          if (hq / 'hero.avif').exists():
+              html = html.replace('width="1000" height="563"', 'width="1200" height="675"')
+
+          page.write_text(html, encoding='utf-8')
+
+      - name: Commit decoded assets
+        shell: bash
+        run: |
+          if git diff --quiet && [ -z "$(git status --porcelain ai-business-transformation-academy/assets/insights/hq)" ]; then
+            echo 'No image changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/assets/insights/hq ai-business-transformation-academy/insights/index.html
+          git commit -m 'Use high-quality Insights image assets'
+          git push
