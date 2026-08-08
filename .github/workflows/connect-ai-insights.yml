@@ -1,0 +1,70 @@
+name: Connect Academy and Insights
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/connect-ai-insights.yml']
+permissions:
+  contents: write
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Connect pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('ai-business-transformation-academy/index.html')
+          s = p.read_text(encoding='utf-8')
+          if "id='insights-link'" in s:
+              print('Insights connection already present')
+          else:
+              nav_old = "<a href='#programs' data-text='navPrograms'></a><a href='#consultation' data-text='navContact'></a>"
+              nav_new = "<a href='#programs' data-text='navPrograms'></a><a href='insights/' data-text='navInsights'></a><a href='#consultation' data-text='navContact'></a>"
+              if nav_old not in s:
+                  raise SystemExit('Navigation anchor pattern not found')
+              s = s.replace(nav_old, nav_new, 1)
+
+              section = """<section id='insights-link' class='ivory'><div class='wrap'><div class='head'><div><p class='ey'>Insights & Applied Work</p><h2 class='display' data-text='insightsSectionTitle'></h2></div><p data-text='insightsSectionLead'></p></div><div class='grid3'><article class='card'><div class='icon'>01</div><h3 data-text='insightsCard1Title'></h3><p data-text='insightsCard1Body'></p></article><article class='card'><div class='icon'>02</div><h3 data-text='insightsCard2Title'></h3><p data-text='insightsCard2Body'></p></article><article class='card'><div class='icon'>03</div><h3 data-text='insightsCard3Title'></h3><p data-text='insightsCard3Body'></p></article></div><div style='margin-top:28px'><a class='btn secondary' href='insights/' data-text='insightsCta'></a></div></div></section>\n"""
+              marker = "<section class='quote'>"
+              if marker not in s:
+                  raise SystemExit('Quote section marker not found')
+              s = s.replace(marker, section + marker, 1)
+
+              th_old = "navCheck:'เช็กจุดเริ่มต้น',navStart:'เริ่มตรงไหน',navPrograms:'แนวทางทำงาน',navContact:'ติดต่อ',checkShort:"
+              th_new = "navCheck:'เช็กจุดเริ่มต้น',navStart:'เริ่มตรงไหน',navPrograms:'แนวทางทำงาน',navInsights:'มุมมองและงานจริง',navContact:'ติดต่อ',checkShort:"
+              if th_old not in s:
+                  raise SystemExit('TH nav content pattern not found')
+              s = s.replace(th_old, th_new, 1)
+
+              en_old = "navCheck:'Starting Point Check',navStart:'Where to Start',navPrograms:'Ways to Engage',navContact:'Contact',checkShort:"
+              en_new = "navCheck:'Starting Point Check',navStart:'Where to Start',navPrograms:'Ways to Engage',navInsights:'Insights & Applied Work',navContact:'Contact',checkShort:"
+              if en_old not in s:
+                  raise SystemExit('EN nav content pattern not found')
+              s = s.replace(en_old, en_new, 1)
+
+              th_key = "bookFull:'คุยโจทย์ธุรกิจ',"
+              th_add = "bookFull:'คุยโจทย์ธุรกิจ',insightsSectionTitle:'ดูวิธีคิดและตัวอย่างงานจริงก่อนคุยกัน',insightsSectionLead:'สำหรับองค์กรที่อยากเห็นว่าแนวคิดนี้ถูกนำไปใช้กับโจทย์จริงอย่างไร โดยไม่จำเป็นต้องอ่านส่วนนี้ก่อนจึงจะติดต่อได้',insightsCard1Title:'มุมมองทางธุรกิจ',insightsCard1Body:'ประเด็นที่เห็นซ้ำเมื่อ AI เข้าไปเจอกับ Strategy, Workflow, People และการนำไปใช้จริง',insightsCard2Title:'งานที่นำไปใช้จริง',insightsCard2Body:'ตัวอย่างโจทย์ตั้งแต่ Business Ecosystem, Operations และ Organisational Knowledge ไปจนถึง Business Architecture',insightsCard3Title:'งานออกแบบเชิงลึก',insightsCard3Body:'กรณีที่ต้องเชื่อม Decision Support, Human Review, Evidence และ Governance ให้ตรวจสอบได้',insightsCta:'ดูมุมมองและงานจริง →',"
+              if th_key not in s:
+                  raise SystemExit('TH bookFull key not found')
+              s = s.replace(th_key, th_add, 1)
+
+              en_key = "bookFull:'Discuss Your Business Need',"
+              en_add = "bookFull:'Discuss Your Business Need',insightsSectionTitle:'See the thinking and applied work before we talk',insightsSectionLead:'For organizations that want to see how this approach is applied to real business problems. This is an optional proof layer—not a required step before contacting us.',insightsCard1Title:'Business Insights',insightsCard1Body:'Patterns that repeatedly appear when AI meets strategy, workflow, people and real-world adoption.',insightsCard2Title:'Applied Work',insightsCard2Body:'Examples spanning business ecosystems, operations, organisational knowledge and business architecture.',insightsCard3Title:'Deeper Design Work',insightsCard3Body:'Cases where decision support, human review, evidence and governance must work together and remain traceable.',insightsCta:'View Insights & Applied Work →',"
+              if en_key not in s:
+                  raise SystemExit('EN bookFull key not found')
+              s = s.replace(en_key, en_add, 1)
+
+              p.write_text(s, encoding='utf-8')
+              print('Academy linked to Insights')
+          PY
+      - name: Remove one-time workflow and commit
+        run: |
+          rm .github/workflows/connect-ai-insights.yml
+          git config user.name "PATSPHERE Automation"
+          git config user.email "actions@github.com"
+          git add ai-business-transformation-academy/index.html .github/workflows/connect-ai-insights.yml
+          git commit -m "Connect Academy to Insights and Applied Work"
+          git push
