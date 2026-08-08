@@ -1,0 +1,31 @@
+name: Rebuild Insights Images
+
+on:
+  push:
+    paths:
+      - '.image-update/**'
+      - '.github/workflows/rebuild-insights-images.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    if: ${{ hashFiles('.image-update/READY') != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode high-quality Insights images
+        run: |
+          set -e
+          mkdir -p ai-business-transformation-academy/assets/insights
+          for name in hero telemedicine bakery knowledge governance lifescience accounting healthcare; do
+            cat .image-update/${name}.part* | base64 -d > ai-business-transformation-academy/assets/insights/${name}.webp
+          done
+      - name: Commit rebuilt images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ai-business-transformation-academy/assets/insights/*.webp
+          git commit -m "Improve Insights image quality" || exit 0
+          git push
