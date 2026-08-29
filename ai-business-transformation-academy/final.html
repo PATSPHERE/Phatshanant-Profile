@@ -37,6 +37,7 @@ function ensureFixStyle(d){
     #framework .fw-term{display:inline-block;white-space:nowrap}
     #framework .fw-arrow{display:inline-block;white-space:nowrap;margin:0 .16em}
     .founder .ey,.founder [data-text="founderTitle"],.founder [data-text="founderBody"],.founder [data-text="founderRole"],.founder .foundername{word-break:normal!important;overflow-wrap:break-word!important}
+    .keep-thai{display:inline-block;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important}
     @media(max-width:620px){#framework .display{font-size:29px!important;line-height:1.32!important}.founder h2{font-size:32px!important;line-height:1.28!important}}
   `;
   d.head.appendChild(s);
@@ -63,6 +64,20 @@ function patchFounder(d){
     if(textNode) textNode.nodeValue=c.name;
   }
 }
+function patchBiotech(d){
+  const cards=[...d.querySelectorAll('.caseCard')];
+  const card=cards.find(x=>x.querySelector('.caseNumber')?.textContent.includes('04 · BIOTECH'));
+  if(!card) return;
+  const title=card.querySelector('h3');
+  if(title && !title.querySelector('.keep-thai')){
+    title.innerHTML='จากบริษัทที่มีเทคโนโลยี สู่โครงสร้างธุรกิจที่<span class="keep-thai">พร้อมต่อยอด</span>';
+  }
+  const operating=[...card.querySelectorAll('.iconItem')].find(x=>x.textContent.includes('Operating Structure'));
+  if(operating && !operating.querySelector('.keep-thai')){
+    const b=operating.querySelector('b');
+    if(b) operating.innerHTML=b.outerHTML+'จัดรูปแบบการดำเนินงานให้<span class="keep-thai">พร้อมต่อยอด</span>ธุรกิจ';
+  }
+}
 function applyFixes(){
   try{
     const d=frame.contentDocument;
@@ -70,6 +85,7 @@ function applyFixes(){
     ensureFixStyle(d);
     patchFramework(d);
     patchFounder(d);
+    patchBiotech(d);
   }catch(e){}
 }
 frame.addEventListener('load',()=>{
