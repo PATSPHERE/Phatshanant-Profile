@@ -4,100 +4,50 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RELEARNOS | Final Review</title>
-<style>
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff}iframe{display:block;width:100%;height:100%;border:0;background:#fff}
-</style>
+<style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff}iframe{display:block;width:100%;height:100%;border:0;background:#fff}</style>
 </head>
 <body>
 <iframe id="site" src="./" title="RELEARNOS Final Review"></iframe>
 <script>
 const frame=document.getElementById('site');
-const founderCopy={
-  th:{
-    label:'ผู้ก่อตั้ง RELEARNOS',
-    title:'คนเติบโตได้ เมื่อการเรียนรู้เชื่อมโยงกับงานจริง เป็นมนุษย์ และรู้สึกว่าเป็นไปได้',
-    body:'พัฌณ์นันณ์เชื่อมประสบการณ์ด้านงานบริการ การพัฒนาความสามารถ และการเปลี่ยนแปลงเชิงปฏิบัติ เพื่อออกแบบเส้นทางการเรียนรู้ที่ผู้เรียนสามารถนำกลับไปใช้กับงานจริงได้',
-    name:'พัฌณ์นันณ์ ธนกิจพันธ์สกุล',
-    role:'ผู้ก่อตั้ง · ผู้นำด้านการเรียนรู้และการเปลี่ยนแปลง'
-  },
-  en:{
-    label:'Founder Spotlight',
-    title:'People grow when learning feels relevant, human and possible.',
-    body:'Phatshanant brings together service experience, capability development and practical transformation to create learning journeys people can carry into their work.',
-    name:'Phatshanant Thanakitpunsakul',
-    role:'Founder · Learning & Transformation Lead'
-  }
-};
-function ensureFixStyle(d){
-  if(d.getElementById('final-review-fixes')) return;
-  const s=d.createElement('style');
-  s.id='final-review-fixes';
-  s.textContent=`
-    #framework .display{word-break:keep-all!important;overflow-wrap:normal!important;hyphens:none!important;line-height:1.22!important}
-    #framework .fw-term{display:inline-block;white-space:nowrap}
-    #framework .fw-arrow{display:inline-block;white-space:nowrap;margin:0 .16em}
-    .founder .ey,.founder [data-text="founderTitle"],.founder [data-text="founderBody"],.founder [data-text="founderRole"],.founder .foundername{word-break:normal!important;overflow-wrap:break-word!important}
-    .keep-thai{display:inline-block;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important}
-    @media(max-width:620px){#framework .display{font-size:29px!important;line-height:1.32!important}.founder h2{font-size:32px!important;line-height:1.28!important}}
-  `;
-  d.head.appendChild(s);
-}
-function patchFramework(d){
-  const h=d.querySelector('#framework .display');
-  if(!h) return;
-  h.innerHTML='<span class="fw-term">Diagnose</span><span class="fw-arrow">→</span><span class="fw-term">Learn</span><span class="fw-arrow">→</span><span class="fw-term">Re-Learn</span><span class="fw-arrow">→</span><span class="fw-term">Re-Act</span><span class="fw-arrow">→</span><span class="fw-term">Measure</span>';
-}
-function patchFounder(d){
-  const lang=d.body?.getAttribute('data-lang')==='en'?'en':'th';
-  const c=founderCopy[lang];
-  const label=d.querySelector('.founder .ey');
-  const title=d.querySelector('[data-text="founderTitle"]');
-  const body=d.querySelector('[data-text="founderBody"]');
-  const role=d.querySelector('[data-text="founderRole"]');
-  const name=d.querySelector('.foundername');
-  if(label) label.textContent=c.label;
-  if(title) title.textContent=c.title;
-  if(body) body.textContent=c.body;
-  if(role) role.textContent=c.role;
-  if(name){
-    let textNode=[...name.childNodes].find(n=>n.nodeType===3);
-    if(textNode) textNode.nodeValue=c.name;
-  }
-}
-function patchBiotech(d){
-  const cards=[...d.querySelectorAll('.caseCard')];
-  const card=cards.find(x=>x.querySelector('.caseNumber')?.textContent.includes('04 · BIOTECH'));
-  if(!card) return;
-  const title=card.querySelector('h3');
-  if(title && !title.querySelector('.keep-thai')){
-    title.innerHTML='จากบริษัทที่มีเทคโนโลยี สู่โครงสร้างธุรกิจที่<span class="keep-thai">พร้อมต่อยอด</span>';
-  }
-  const operating=[...card.querySelectorAll('.iconItem')].find(x=>x.textContent.includes('Operating Structure'));
-  if(operating && !operating.querySelector('.keep-thai')){
-    const b=operating.querySelector('b');
-    if(b) operating.innerHTML=b.outerHTML+'จัดรูปแบบการดำเนินงานให้<span class="keep-thai">พร้อมต่อยอด</span>ธุรกิจ';
-  }
-}
-function applyFixes(){
-  try{
-    const d=frame.contentDocument;
-    if(!d?.body) return;
-    ensureFixStyle(d);
-    patchFramework(d);
-    patchFounder(d);
-    patchBiotech(d);
-  }catch(e){}
-}
-frame.addEventListener('load',()=>{
-  applyFixes();
-  try{
-    const d=frame.contentDocument;
-    const observer=new MutationObserver(()=>setTimeout(applyFixes,20));
-    observer.observe(d.body,{attributes:true,attributeFilter:['data-lang'],childList:true,subtree:true});
-    d.addEventListener('click',()=>{setTimeout(applyFixes,20);setTimeout(applyFixes,120);},true);
-    setInterval(applyFixes,500);
-  }catch(e){}
-});
+const founderCopy={th:{label:'ผู้ก่อตั้ง RELEARNOS',title:'คนเติบโตได้ เมื่อการเรียนรู้เชื่อมโยงกับงานจริง เป็นมนุษย์ และรู้สึกว่าเป็นไปได้',body:'พัฌณ์นันณ์เชื่อมประสบการณ์ด้านงานบริการ การพัฒนาความสามารถ และการเปลี่ยนแปลงเชิงปฏิบัติ เพื่อออกแบบเส้นทางการเรียนรู้ที่ผู้เรียนสามารถนำกลับไปใช้กับงานจริงได้',name:'พัฌณ์นันณ์ ธนกิจพันธ์สกุล',role:'ผู้ก่อตั้ง · ผู้นำด้านการเรียนรู้และการเปลี่ยนแปลง'},en:{label:'Founder Spotlight',title:'People grow when learning feels relevant, human and possible.',body:'Phatshanant brings together service experience, capability development and practical transformation to create learning journeys people can carry into their work.',name:'Phatshanant Thanakitpunsakul',role:'Founder · Learning & Transformation Lead'}};
+const expEN={
+heroH:'We start with the business challenge — then help people, work and technology move forward together.',heroP:'Every business starts from a different context. RELEARNOS begins by understanding the real work before designing the right capability, ways of working and use of AI for that environment.',
+appliedH:'Experience shaped by real business challenges',appliedP:'We do not begin with one formula for every organisation. We start with the work, readiness and business outcomes that matter in that context.',
+cases:[
+['From a central service to a model partners can use in real contexts','Designed and led the integration of a group Telemedicine service across different businesses and locations — from service model, customer journey and access flow to partner coordination and launch readiness.',['Health services embedded in the resident experience','Exclusive health benefits for customers','Service access for the school community','Connected access across locations'],'Designed the service model and partner integration so Telemedicine could plug into each partner’s existing service experience.'],
+['AI-assisted Real-time Service Improvement','Used AI to analyse front-line conditions and service delivery in real time, helping teams see what to replenish, adjust or improve quickly — across product readiness, service environment and store standards.',['See product availability and replenishment needs','See service-area readiness','Track front-line service standards','Use operational data for continuous service improvement'],'Reduce service gaps, protect brand standards and continuously improve customer experience.'],
+['AI-assisted Quality & Standards Design','Strengthened quality and operating standards by first making “quality” explicit — defining shared standards, process steps, evidence and decision points the team can use together.',['Turn principles and standards into shared criteria','Structure documents, data and evidence for review','Use AI to check completeness and surface issues','Feed insights back into workflows, standards and team practice'],'Turn quality work into a learning system that helps the organisation maintain standards and continuously improve how work gets done.'],
+['From a technology-led company to a business structure built to scale','Worked with an established biotech business to structure operations, define its position in the value chain and connect commercial growth with research, partnerships and IP.',['Define the organisation’s role in the business value chain','Structure operations for scalable growth','Connect international collaboration and research','Prepare IP and products for commercialisation'],'Connect Science, Product, Partnership, IP and Commercialisation into one coherent growth picture.']
+],
+currentP:'From incoming documents to close-ready information: designing a workflow for teams managing multiple clients and tracking document readiness each month.',currentItems:['Receive and track monthly documents','Classify documents by relevant transaction','Extract key information for professional review','Identify missing items early, before close'],currentPrinciple:'RELEARNOS helps design the data-analysis framework and AI-assisted workflow around the accounting practice’s own principles.<br><br>AI helps structure information and flag items for review. Accountants remain responsible for interpretation, decisions and accuracy.',
+partnersH:'When good technology has to reach the market — and real users',partnersP:'RELEARNOS develops people, communication and organisational readiness, while Technology Partners build automation and technical solutions for real-world use.',partnerDesc:['Turn Digital Service Expertise into business value that can be communicated to a broader market.','Turn systems expertise into a stronger service experience and greater customer confidence.','Connect customer challenges to systems designed for real-world adoption.'],
+viewH:'Businesses do not change because they have a new tool.<br>They change when people work differently.',viewP:'AI creates value when it helps people understand the work, see information together and improve outcomes that matter to the business.',view3:'We do not start with “Which AI tool should we use?”',viewBody:'We start by understanding where the business is trying to go, what people need to do better, and which ways of working are getting in the way. Then we design learning, work and technology as one connected system.',viewBig:'Good tools make work faster. Shared understanding helps the organisation move forward.',
+buildH:'Three things that have to move together',buildP:'Practical transformation does not separate people from work, or technology from business outcomes.',build:[['People who understand the value of their work','Build the language, thinking and confidence teams need to serve customers, work across functions and make decisions from shared context.','Expertise creates more value when others can understand it and carry it forward.'],['Ways of working that are clearer and repeatable','Clarify workflows, roles, standards and follow-up points so quality does not depend on memory or last-minute recovery.','Good work should not depend on one exceptional person. It should help the team perform well together.'],['Technology used in the role where it adds value','Use AI, automation or specialist systems where they reduce repetition, improve information readiness or free people to focus on analysis, service and expert judgement.','Human judgement stays in the loop — supported by better information and better ways of working.']],
+remainH:'What the organisation should be able to carry forward',remainP:'Not a report or a course that disappears when the project ends, but capabilities the team can keep using in the work ahead.',remain:[['A shared view of the real challenge','See where the issue sits, what should happen first and which outcomes matter most.'],['A team that communicates value more clearly','Connect technical, organisational and customer language into one conversation.'],['Ways of working with standards and visibility','Clarify roles, handoffs and required information before problems accumulate at the end.'],['A starting point that can genuinely scale','Know where AI or technology should help, with people and accountability ready around it.']],
+ctaH:'Have a business challenge you want to make real progress on?',ctaP:'Start with the business context, then design the right starting point for your team and goals.'};
+function ensureFixStyle(d){if(d.getElementById('final-review-fixes'))return;const s=d.createElement('style');s.id='final-review-fixes';s.textContent=`#framework .display{word-break:keep-all!important;overflow-wrap:normal!important;hyphens:none!important;line-height:1.22!important}#framework .fw-term{display:inline-block;white-space:nowrap}#framework .fw-arrow{display:inline-block;white-space:nowrap;margin:0 .16em}.keep-thai{display:inline-block;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important}.expTools{display:flex;align-items:center;gap:10px;margin-left:auto}.expBack{font-size:13px;font-weight:700;color:#104886;white-space:nowrap}.expLang{display:flex;border:1px solid #d7e6da;border-radius:999px;overflow:hidden;background:#fff}.expLang button{border:0;background:transparent;padding:7px 10px;font:600 12px inherit;color:#607083;cursor:pointer}.expLang button.active{background:#104886;color:#fff}@media(max-width:620px){#framework .display{font-size:29px!important;line-height:1.32!important}.expTools{gap:6px}.expBack{font-size:12px}.expLang button{padding:6px 8px}.navlinks{display:none!important}}`;d.head.appendChild(s)}
+function patchFramework(d){const h=d.querySelector('#framework .display');if(h)h.innerHTML='<span class="fw-term">Diagnose</span><span class="fw-arrow">→</span><span class="fw-term">Learn</span><span class="fw-arrow">→</span><span class="fw-term">Re-Learn</span><span class="fw-arrow">→</span><span class="fw-term">Re-Act</span><span class="fw-arrow">→</span><span class="fw-term">Measure</span>'}
+function patchFounder(d){const lang=d.body?.getAttribute('data-lang')==='en'?'en':'th',c=founderCopy[lang];const label=d.querySelector('.founder .ey'),title=d.querySelector('[data-text="founderTitle"]'),body=d.querySelector('[data-text="founderBody"]'),role=d.querySelector('[data-text="founderRole"]'),name=d.querySelector('.foundername');if(label)label.textContent=c.label;if(title)title.textContent=c.title;if(body)body.textContent=c.body;if(role)role.textContent=c.role;if(name){const n=[...name.childNodes].find(x=>x.nodeType===3);if(n)n.nodeValue=c.name}}
+function saveThai(d){if(d.body.dataset.expSaved)return;d.body.dataset.expSaved='1';d.querySelectorAll('h1,h2,h3,p,.iconItem,.outcome,.principle,.quote,.bigline,.navlinks a,.nav .primary,.qrBlock small').forEach((el,i)=>{el.dataset.th=el.innerHTML})}
+function restoreThai(d){d.querySelectorAll('[data-th]').forEach(el=>el.innerHTML=el.dataset.th)}
+function setTxt(el,html){if(el)el.innerHTML=html}
+function applyExperienceLang(d,lang){saveThai(d);if(lang==='th'){restoreThai(d);patchBiotech(d)}else{
+ const hero=d.querySelector('.experienceHero');setTxt(hero?.querySelector('h1'),expEN.heroH);setTxt(hero?.querySelector('.lead'),expEN.heroP);
+ const applied=d.querySelector('#applied');setTxt(applied?.querySelector('.display'),expEN.appliedH);setTxt(applied?.querySelector('.head>p'),expEN.appliedP);
+ [...applied?.querySelectorAll('.caseCard')||[]].forEach((card,i)=>{const c=expEN.cases[i];if(!c)return;setTxt(card.querySelector('h3'),c[0]);setTxt(card.querySelector('.caseContent>p'),c[1]);[...card.querySelectorAll('.iconItem')].forEach((x,j)=>{const b=x.querySelector('b')?.outerHTML||'';x.innerHTML=b+c[2][j]});setTxt(card.querySelector('.outcome'),c[3])});
+ const cur=d.querySelector('#current');setTxt(cur?.querySelector('.currentPanel>div>p:not(.ey)'),expEN.currentP);[...cur?.querySelectorAll('.iconItem')||[]].forEach((x,j)=>{const b=x.querySelector('b')?.outerHTML||'';x.innerHTML=b+expEN.currentItems[j]});setTxt(cur?.querySelector('.principle'),expEN.currentPrinciple);
+ const partners=d.querySelector('#partners');setTxt(partners?.querySelector('.display'),expEN.partnersH);setTxt(partners?.querySelector('.head>p'),expEN.partnersP);[...partners?.querySelectorAll('.partnerCard>p:not(.ey)')||[]].forEach((x,i)=>setTxt(x,expEN.partnerDesc[i]));
+ const view=d.querySelector('#relearn-view');setTxt(view?.querySelector('.display'),expEN.viewH);setTxt(view?.querySelector('.head>p'),expEN.viewP);setTxt(view?.querySelector('.heroInsight h3'),expEN.view3);setTxt(view?.querySelector('.heroInsightMain>p'),expEN.viewBody);setTxt(view?.querySelector('.bigline'),expEN.viewBig);
+ const build=[...d.querySelectorAll('section')].find(s=>s.querySelector('.ey')?.textContent.trim()==='What We Build');if(build){setTxt(build.querySelector('.display'),expEN.buildH);setTxt(build.querySelector('.head>p'),expEN.buildP);[...build.querySelectorAll('.insight')].forEach((x,i)=>{const c=expEN.build[i];if(c){setTxt(x.querySelector('h3'),c[0]);setTxt(x.querySelector('p'),c[1]);setTxt(x.querySelector('.quote,.bigline'),c[2])}})}
+ const remain=[...d.querySelectorAll('section')].find(s=>s.querySelector('.ey')?.textContent.trim()==='What Remains');if(remain){setTxt(remain.querySelector('.display'),expEN.remainH);setTxt(remain.querySelector('.head>p'),expEN.remainP);[...remain.querySelectorAll('.compact')].forEach((x,i)=>{setTxt(x.querySelector('h3'),expEN.remain[i][0]);setTxt(x.querySelector('p'),expEN.remain[i][1])})}
+ const line=d.querySelector('.lineCta');setTxt(line?.querySelector('h2'),expEN.ctaH);setTxt(line?.querySelector('p'),expEN.ctaP);setTxt(line?.querySelector('.btn'),'Discuss your business challenge on LINE OA →');setTxt(line?.querySelector('.qrBlock small'),'On desktop? Scan to add LINE OA.');
+ }
+ d.documentElement.lang=lang;d.body.dataset.expLang=lang;localStorage.setItem('relearnosLang',lang);d.querySelectorAll('.expLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));const back=d.querySelector('.expBack');if(back)back.textContent=lang==='th'?'← กลับ RELEARNOS':'← RELEARNOS';const cta=d.querySelector('.nav .primary');if(cta)cta.textContent=lang==='th'?'คุยโจทย์ธุรกิจ':'Discuss a business challenge';}
+function patchBiotech(d){if(d.body.dataset.expLang==='en')return;const card=[...d.querySelectorAll('.caseCard')].find(x=>x.querySelector('.caseNumber')?.textContent.includes('04 · BIOTECH'));if(!card)return;const title=card.querySelector('h3');if(title&&!title.querySelector('.keep-thai'))title.innerHTML='จากบริษัทที่มีเทคโนโลยี สู่โครงสร้างธุรกิจที่<span class="keep-thai">พร้อมต่อยอด</span>';const operating=[...card.querySelectorAll('.iconItem')].find(x=>x.textContent.includes('Operating Structure'));if(operating&&!operating.querySelector('.keep-thai')){const b=operating.querySelector('b');if(b)operating.innerHTML=b.outerHTML+'จัดรูปแบบการดำเนินงานให้<span class="keep-thai">พร้อมต่อยอด</span>ธุรกิจ'}}
+function patchExperience(d){let path='';try{path=frame.contentWindow.location.pathname}catch(e){}if(!path.includes('/insights'))return;ensureFixStyle(d);const nav=d.querySelector('.navin');if(nav&&!d.querySelector('.expTools')){const tools=d.createElement('div');tools.className='expTools';tools.innerHTML='<a class="expBack" href="../">← กลับ RELEARNOS</a><div class="expLang"><button type="button" data-lang="th">TH</button><button type="button" data-lang="en">EN</button></div>';nav.appendChild(tools);tools.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>applyExperienceLang(d,b.dataset.lang)))}applyExperienceLang(d,localStorage.getItem('relearnosLang')==='en'?'en':'th')}
+function applyFixes(){try{const d=frame.contentDocument;if(!d?.body)return;ensureFixStyle(d);let path='';try{path=frame.contentWindow.location.pathname}catch(e){}if(path.includes('/insights'))patchExperience(d);else{const lang=d.body.getAttribute('data-lang')==='en'?'en':'th';localStorage.setItem('relearnosLang',lang);patchFramework(d);patchFounder(d)}}catch(e){}}
+frame.addEventListener('load',()=>{applyFixes();try{const d=frame.contentDocument;const observer=new MutationObserver(()=>setTimeout(applyFixes,30));observer.observe(d.body,{attributes:true,attributeFilter:['data-lang'],childList:true,subtree:true});d.addEventListener('click',()=>{setTimeout(applyFixes,30);setTimeout(applyFixes,140)},true)}catch(e){}});
+setInterval(applyFixes,700);
 </script>
-</body>
-</html>
+</body></html>
