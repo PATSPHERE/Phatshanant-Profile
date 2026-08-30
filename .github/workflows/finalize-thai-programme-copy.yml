@@ -1,0 +1,41 @@
+name: Finalize Thai Master Programme copy
+on:
+  push:
+    paths:
+      - '.github/workflows/finalize-thai-programme-copy.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Translate remaining Master Programme labels
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text()
+          replacements={
+            'MASTER PROGRAMME':'โปรแกรมหลัก',
+            'Master Programme':'โปรแกรมหลัก',
+            'One Master Programme. Four Learning Paths.':'หนึ่งโปรแกรมหลัก สี่เส้นทางการเรียนรู้',
+            'Customer Service & Experience':'การบริการลูกค้าและประสบการณ์ลูกค้า',
+            'Sales, Marketing & Brand Strategy':'การขาย การตลาด และกลยุทธ์แบรนด์',
+            'Leadership & Workforce Readiness':'ภาวะผู้นำและความพร้อมของทีม',
+            'AI-Enabled Service Operations':'การใช้ AI เพื่อยกระดับงานบริการ',
+            'OUTCOME / สิ่งที่จะได้':'ผลลัพธ์ / สิ่งที่จะได้',
+            'ดู Programme Outline':'ดูโครงหลักสูตร',
+            'Programme Outline':'โครงหลักสูตร'
+          }
+          for a,b in replacements.items(): s=s.replace(a,b)
+          p.write_text(s)
+          PY
+      - name: Commit production change
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add ai-business-transformation-academy/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Finalize Thai Master Programme copy'
+          git push
