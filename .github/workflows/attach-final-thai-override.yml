@@ -1,0 +1,33 @@
+name: Attach final Thai override
+on:
+  push:
+    paths:
+      - '.github/workflows/attach-final-thai-override.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Append final Thai override
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text()
+          tag="<script src='final-thai-override.js?v=131c9f4'></script>"
+          import re
+          s=re.sub(r"\s*<script src=['\"]final-thai-override\.js[^>]*></script>\s*", "\n", s)
+          if '</body>' not in s: raise SystemExit('missing </body>')
+          s=s.replace('</body>', tag+'\n</body>')
+          p.write_text(s)
+          PY
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add ai-business-transformation-academy/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Attach final Thai override after all runtime scripts'
+          git push
