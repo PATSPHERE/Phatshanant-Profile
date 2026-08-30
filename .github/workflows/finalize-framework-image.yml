@@ -34,7 +34,7 @@ jobs:
           p = Path('ai-business-transformation-academy/index.html')
           s = p.read_text(encoding='utf-8')
           new = """<section id='framework' style='padding:0;background:#fff;border-bottom:1px solid var(--line)'><img src='assets/relearnos-framework-final.webp?v=locked-final' alt='RELEARNOS Framework: Diagnose, Learn, Re-Learn, Re-Act and Measure' width='640' height='960' loading='lazy' style='display:block;width:min(100%,760px);height:auto;margin:0 auto;background:#fff'></section>"""
-          updated, n = re.subn(r"<section id='framework'\b.*?</section>", new, s, count=1, flags=re.S)
+          updated, n = re.subn(r"<section id='framework'.*?</section>", new, s, count=1, flags=re.S)
           if n != 1:
               raise SystemExit(f'Expected one framework section, replaced {n}')
           p.write_text(updated, encoding='utf-8')
