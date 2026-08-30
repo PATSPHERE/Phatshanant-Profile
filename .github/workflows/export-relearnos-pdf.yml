@@ -20,13 +20,14 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Export webpage to PDF
         run: |
+          python3 -m http.server 8000 >/tmp/relearnos-http.log 2>&1 &
           cat > export-pdf.mjs <<'JS'
           import { chromium } from 'playwright';
           const browser = await chromium.launch({headless:true});
           const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
-          const url = 'https://thepatsphere.com/Phatshanant-Profile/ai-business-transformation-academy/?v=6811858&utm_source=chatgpt.com#programs';
-          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-          await page.waitForTimeout(8000);
+          const url = 'http://127.0.0.1:8000/ai-business-transformation-academy/index.html#programs';
+          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+          await page.waitForTimeout(5000);
           await page.emulateMedia({ media: 'screen' });
           await page.evaluate(() => window.scrollTo(0, 0));
           await page.pdf({
