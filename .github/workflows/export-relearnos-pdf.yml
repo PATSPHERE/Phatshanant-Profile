@@ -25,8 +25,8 @@ jobs:
           const browser = await chromium.launch({headless:true});
           const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
           const url = 'https://thepatsphere.com/Phatshanant-Profile/ai-business-transformation-academy/?v=6811858&utm_source=chatgpt.com#programs';
-          await page.goto(url, { waitUntil: 'networkidle', timeout: 120000 });
-          await page.waitForTimeout(4000);
+          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+          await page.waitForTimeout(8000);
           await page.emulateMedia({ media: 'screen' });
           await page.evaluate(() => window.scrollTo(0, 0));
           await page.pdf({
