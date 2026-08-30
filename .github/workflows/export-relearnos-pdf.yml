@@ -25,9 +25,14 @@ jobs:
           import { chromium } from 'playwright';
           const browser = await chromium.launch({headless:true});
           const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
+          await page.route('**/*', async route => {
+            const u = route.request().url();
+            if (u.includes('fonts.googleapis.com') || u.includes('fonts.gstatic.com')) return route.abort();
+            return route.continue();
+          });
           const url = 'http://127.0.0.1:8000/ai-business-transformation-academy/index.html#programs';
-          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-          await page.waitForTimeout(5000);
+          await page.goto(url, { waitUntil: 'commit', timeout: 15000 });
+          await page.waitForTimeout(10000);
           await page.emulateMedia({ media: 'screen' });
           await page.evaluate(() => window.scrollTo(0, 0));
           await page.pdf({
