@@ -1,0 +1,43 @@
+name: Fix two Thai page points
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-two-thai-points.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch production HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text()
+          # Remove duplicated outcomes/starting-point block shown above the main Solutions area.
+          # The approved Solutions section already provides this decision entry point.
+          s=re.sub(r"<section[^>]*class=['\"][^'\"]*(?:start|outcomes)[^'\"]*['\"][^>]*>.*?</section>", '', s, count=1, flags=re.S|re.I)
+          # Hide any remaining legacy starting-point section by its known heading text, without affecting programme/solutions content.
+          s=s.replace('</style>', "\n/* Thai close-out: duplicate starting point removed; accounting case uses same image family */\n#start, .start{display:none!important}\n</style>")
+          # Accounting Workflow card: if its image slot is empty, reuse an existing approved people-at-work family image.
+          # Target the case card by title and add the same image family used by neighbouring experience cards.
+          m=re.search(r"(<[^>]+class=['\"][^'\"]*(?:experience|case)[^'\"]*['\"][^>]*>.*?Accounting Workflow.*?</(?:article|div)>)", s, re.S|re.I)
+          if m:
+              block=m.group(1)
+              if '<img' not in block:
+                  img="<img src='https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=82' alt='Accounting workflow collaboration' style='width:100%;height:168px;object-fit:cover;object-position:center 42%;display:block'>"
+                  block=re.sub(r'(>)', r'\1'+img, block, count=1)
+                  s=s[:m.start(1)]+block+s[m.end(1):]
+          p.write_text(s)
+          PY
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add ai-business-transformation-academy/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Fix duplicate Solutions entry and accounting case image'
+          git push
