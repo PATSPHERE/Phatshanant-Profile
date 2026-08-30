@@ -1,0 +1,49 @@
+name: Export RELEARNOS PDF
+on:
+  push:
+    paths:
+      - '.github/workflows/export-relearnos-pdf.yml'
+permissions:
+  contents: write
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Export webpage to PDF
+        run: |
+          cat > export-pdf.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless:true});
+          const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
+          const url = 'https://thepatsphere.com/Phatshanant-Profile/ai-business-transformation-academy/?v=6811858&utm_source=chatgpt.com#programs';
+          await page.goto(url, { waitUntil: 'networkidle', timeout: 120000 });
+          await page.waitForTimeout(4000);
+          await page.emulateMedia({ media: 'screen' });
+          await page.evaluate(() => window.scrollTo(0, 0));
+          await page.pdf({
+            path: 'ai-business-transformation-academy/RELEARNOS-Final-Thai-Web.pdf',
+            format: 'A4',
+            printBackground: true,
+            preferCSSPageSize: false,
+            margin: { top: '8mm', right: '8mm', bottom: '8mm', left: '8mm' }
+          });
+          await browser.close();
+          JS
+          node export-pdf.mjs
+      - name: Commit PDF
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add ai-business-transformation-academy/RELEARNOS-Final-Thai-Web.pdf
+          git diff --cached --quiet && exit 0
+          git commit -m 'Export RELEARNOS Final Thai webpage PDF'
+          git push
