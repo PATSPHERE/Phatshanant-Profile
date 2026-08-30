@@ -221,5 +221,6 @@ function updateStatus(){const answered=[0,1,2,3,4].filter(i=>document.querySelec
 $('#calcBtn').addEventListener('click',()=>{const c=content[currentLang];const vals=[];for(let i=0;i<5;i++){const x=document.querySelector(`input[name=q${i}]:checked`);if(!x){$('#diagStatus').textContent=c.diagIncomplete;$('#result').classList.remove('show');return}vals.push(Number(x.value))}const counts=[0,0,0,0];vals.forEach(x=>counts[x]++);const highest=Math.max(...counts);const idx=counts.indexOf(highest);const r=c.results[idx];$('#resultType').textContent=r[0];$('#resultTitle').textContent=r[1];$('#resultBody').textContent=r[2];$('#resultLink').textContent=c.resultLink;$('#resultLink').href='#programs';$('#result').classList.add('show')});
 document.querySelectorAll('[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>render(b.dataset.langBtn)));const menuBtn=$('#menuBtn'),mobilemenu=$('#mobilemenu');menuBtn.addEventListener('click',()=>{const open=mobilemenu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open))});mobilemenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobilemenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}));render(localStorage.getItem('abta-lang')||'th');
 </script>
+<script src='relearnos-th-restore.js?v=th-final-1'></script>
 </body>
 </html>
