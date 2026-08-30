@@ -1,0 +1,13 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>RELEARNOS | Locked TH Review</title><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff}iframe{display:block;width:100%;height:100%;border:0}</style></head><body><iframe id="locked" src="final-th.html?v=locked-redteam-v1-20260830" title="RELEARNOS Locked Thai Review"></iframe><script>
+const topFrame=document.getElementById('locked');
+const stamp='locked-redteam-v1-20260830';
+function bust(){try{
+ const th=topFrame.contentDocument;if(!th)return;
+ const review=th.getElementById('review');
+ if(review&&review.dataset.lockBust!==stamp){review.dataset.lockBust=stamp;review.src='final-structure.html?v='+stamp;return}
+ const struct=review?.contentDocument;
+ const site=struct?.getElementById('site');
+ if(site&&site.dataset.lockBust!==stamp){site.dataset.lockBust=stamp;site.src='./?v='+stamp;}
+}catch(e){}}
+topFrame.addEventListener('load',()=>{bust();let n=0;const t=setInterval(()=>{bust();if(++n>40)clearInterval(t)},250)});bust();
+</script></body></html>
