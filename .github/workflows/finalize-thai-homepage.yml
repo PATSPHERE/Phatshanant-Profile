@@ -1,0 +1,73 @@
+name: Finalize Thai Homepage
+
+on:
+  push:
+    paths:
+      - '.github/workflows/finalize-thai-homepage.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Finalize Thai homepage
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text(encoding='utf-8')
+
+          # Remove obsolete wording anywhere it may still remain.
+          for old in [
+            'โดยไม่เผยรายละเอียดหลักสูตรทั้งหมดก่อนเห็นบริบท',
+            'โดยไม่เปิดเผยรายละเอียดหลักสูตรทั้งหมดก่อนเห็นบริบท'
+          ]:
+            s=s.replace(old,'')
+
+          css=r'''
+          /* TH final: experience + RELEARNOS bubble visual system */
+          .experience-final{background:#fff}.experience-final .exp-head{max-width:820px;margin-bottom:30px}.experience-final .exp-head p:last-child{margin:14px 0 0;color:var(--muted);font-size:17px}.exp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.exp-card{overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 10px 30px rgba(16,72,134,.06)}.exp-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}.exp-copy{padding:18px}.exp-copy .tag{display:block;margin-bottom:7px;color:var(--gold);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.exp-copy h3{margin:0 0 7px;color:var(--navy);font-size:18px;line-height:1.3}.exp-copy p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.exp-orgs{margin-top:30px;padding-top:25px;border-top:1px solid var(--line)}.exp-orgs-label{margin:0 0 14px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.exp-logos{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.exp-logo{min-height:100px;display:flex;align-items:center;justify-content:center;padding:15px;border:1px solid var(--line);background:#fff}.exp-logo img{max-width:100%;height:62px;object-fit:contain;mix-blend-mode:multiply}
+          .about-final{background:var(--soft)}.about-final .aboutgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px}.about-final .aboutcard{padding:30px;border:1px solid var(--line);background:#fff}.about-final .aboutcard h3{margin:0 0 10px;color:var(--navy);font-size:25px}.about-final .aboutcard>p{margin:0;color:var(--muted)}.bubble-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}.bubble-item{text-align:center;color:var(--navy);font-size:12px;font-weight:700}.bubble-icon{width:58px;height:58px;margin:0 auto 9px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 24%,#effff2 0 12%,#bdf4c9 27%,#48c66d 58%,#159146 78%,#087638 100%);border:1px solid rgba(20,143,68,.28);box-shadow:inset 0 3px 8px rgba(255,255,255,.85),inset 0 -8px 14px rgba(2,97,43,.20),0 8px 18px rgba(18,134,61,.18)}.bubble-icon svg{width:27px;height:27px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 1px rgba(0,80,35,.25))}
+          @media(max-width:1100px){.exp-grid{grid-template-columns:repeat(3,1fr)}}
+          @media(max-width:760px){.exp-grid,.exp-logos,.about-final .aboutgrid{grid-template-columns:1fr 1fr}.bubble-grid{grid-template-columns:repeat(2,1fr)}}
+          @media(max-width:520px){.exp-grid{grid-template-columns:1fr}.exp-logos{grid-template-columns:repeat(2,1fr)}}
+          '''
+          s=s.replace('</style>',css+'\n</style>',1)
+
+          experience=r'''<section id='clients' class='experience-final'><div class='wrap'><div class='exp-head'><p class='ey'>Selected Learning &amp; Collaboration Experience</p><h2 class='display'>ผลงานและ Case Studies จากองค์กรจริง</h2><p>ประสบการณ์จากโจทย์จริงที่เชื่อมคน งาน บริการ เทคโนโลยี และการเปลี่ยนแปลงในองค์กร</p></div><div class='exp-grid'>
+          <article class='exp-card'><img src='assets/insights/hq/telemedicine.avif' alt='Telemedicine case study'><div class='exp-copy'><span class='tag'>Healthcare</span><h3>Telemedicine</h3><p>ออกแบบบริการและการเชื่อมต่อประสบการณ์ผู้ใช้ในบริบทสุขภาพดิจิทัล</p></div></article>
+          <article class='exp-card'><img src='assets/insights/hq/bakery.avif' alt='Multi-branch bakery case study'><div class='exp-copy'><span class='tag'>Service Operations</span><h3>Multi-branch Bakery</h3><p>พัฒนาวิธีทำงานและมาตรฐานบริการให้รองรับการทำงานหลายสาขา</p></div></article>
+          <article class='exp-card'><img src='assets/insights/hq/governance.avif' alt='Quality and standards case study'><div class='exp-copy'><span class='tag'>Quality &amp; Governance</span><h3>Quality &amp; Standards</h3><p>เชื่อมคุณภาพ กระบวนการ และการตัดสินใจให้ทำงานเป็นระบบเดียวกัน</p></div></article>
+          <article class='exp-card'><img src='assets/insights/hq/lifescience.avif' alt='Biotech and life science case study'><div class='exp-copy'><span class='tag'>Life Science</span><h3>Biotech &amp; Life Science</h3><p>ทำงานกับบริบทที่ต้องอาศัยความรู้เฉพาะทาง ความน่าเชื่อถือ และความแม่นยำสูง</p></div></article>
+          <article class='exp-card'><img src='assets/insights/hq/accounting.avif' alt='Accounting workflow case study'><div class='exp-copy'><span class='tag'>Back Office</span><h3>Accounting Workflow</h3><p>ลดงานซ้ำ จัดระบบข้อมูล และทำให้ทีมมี working assets ที่นำกลับมาใช้ได้จริง</p></div></article>
+          </div><div class='exp-orgs'><p class='exp-orgs-label'>Selected learning &amp; collaboration organisations</p><div class='exp-logos'><div class='exp-logo'><img src='assets/nextbetter-logo.jpg' alt='Nextbetter'></div><div class='exp-logo'><img src='assets/we-now-logo.jpg' alt='WE NOW'></div><div class='exp-logo'><img src='assets/be-misa-logo.jpg' alt='BE MISA'></div><div class='exp-logo'><img src='assets/banbunchee-logo.jpg' alt='BANBUNCHEE'></div></div><div style='margin-top:22px'><a class='btn secondary' href='insights/#applied'>ดูประสบการณ์และงานจริงเพิ่มเติม →</a></div></div></div></section>'''
+          s,n=re.subn(r"<section id='clients'\b.*?</section>",experience,s,count=1,flags=re.S)
+          if n!=1: raise SystemExit(f'clients section replaced {n}')
+
+          I={
+          'diagnose':"<svg viewBox='0 0 32 32'><circle cx='14' cy='14' r='7'/><path d='M19 19l7 7'/></svg>",
+          'learn':"<svg viewBox='0 0 32 32'><path d='M5 7c5-2 8 0 11 2v17c-3-2-6-4-11-2z'/><path d='M27 7c-5-2-8 0-11 2v17c3-2 6-4 11-2z'/></svg>",
+          'relearn':"<svg viewBox='0 0 32 32'><path d='M25 10a11 11 0 10 1 13'/><path d='M25 4v6h-6'/></svg>",
+          'react':"<svg viewBox='0 0 32 32'><path d='M18 4c5 2 8 6 9 11l-8 8c-5-1-9-4-11-9z'/><path d='M12 20l-5 5'/><path d='M9 17l-4 1'/><circle cx='20' cy='11' r='2'/></svg>",
+          'people':"<svg viewBox='0 0 32 32'><circle cx='12' cy='11' r='4'/><circle cx='22' cy='12' r='3'/><path d='M4 26c1-6 4-9 8-9s7 3 8 9'/><path d='M20 18c4 0 7 3 8 8'/></svg>",
+          'work':"<svg viewBox='0 0 32 32'><rect x='5' y='9' width='22' height='16' rx='2'/><path d='M11 9V6h10v3M5 15h22'/></svg>",
+          'service':"<svg viewBox='0 0 32 32'><path d='M16 27S5 20 5 12a6 6 0 0111-3 6 6 0 0111 3c0 8-11 15-11 15z'/></svg>",
+          'tech':"<svg viewBox='0 0 32 32'><rect x='9' y='9' width='14' height='14' rx='2'/><path d='M13 3v6m6-6v6m-6 14v6m6-6v6M3 13h6m-6 6h6m14-6h6m-6 6h6'/></svg>"
+          }
+          about=f'''<section id='about' class='about-final'><div class='wrap'><div class='head'><div><p class='ey'>About RELEARNOS</p><h2 class='display'>พื้นที่พัฒนาคนให้พร้อม<br>สำหรับโลกที่กำลังมาถึง</h2></div><p>RELEARNOS คือ learning practice ที่เชื่อมความสามารถของคน งานบริการ และการเปลี่ยนแปลงอย่างมีความหมาย เพื่อสร้าง Future Citizens ที่มีคุณภาพ</p></div><div class='aboutgrid'><article class='aboutcard'><h3>Human-centred learning, applied to real work</h3><p>เราออกแบบการเรียนรู้ให้เริ่มจากบริบทของคนและงาน ใช้กรอบ RELEARNOS เพื่อเปลี่ยนความรู้ให้กลายเป็นความสามารถและความก้าวหน้าที่วัดได้</p><div class='bubble-grid'><div class='bubble-item'><span class='bubble-icon'>{I['diagnose']}</span>Diagnose</div><div class='bubble-item'><span class='bubble-icon'>{I['learn']}</span>Learn</div><div class='bubble-item'><span class='bubble-icon'>{I['relearn']}</span>Re-Learn</div><div class='bubble-item'><span class='bubble-icon'>{I['react']}</span>Re-Act</div></div></article><article class='aboutcard'><h3>A bridge between service, capability and intelligent tools</h3><p>AI เป็นส่วนหนึ่งของการพัฒนา ไม่ใช่จุดหมายทั้งหมด เราใช้เทคโนโลยีเพื่อเสริมวิจารณญาณ คุณภาพงาน และคุณค่าที่มนุษย์สร้างได้</p><div class='bubble-grid'><div class='bubble-item'><span class='bubble-icon'>{I['people']}</span>People</div><div class='bubble-item'><span class='bubble-icon'>{I['work']}</span>Work</div><div class='bubble-item'><span class='bubble-icon'>{I['service']}</span>Service</div><div class='bubble-item'><span class='bubble-icon'>{I['tech']}</span>Technology</div></div></article></div></div></section>'''
+          s,n=re.subn(r"<section id='about'\b.*?</section>",about,s,count=1,flags=re.S)
+          if n!=1: raise SystemExit(f'about section replaced {n}')
+
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/index.html
+          git commit -m 'Finalize Thai homepage experience and About visuals'
+          git push
