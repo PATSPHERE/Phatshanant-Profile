@@ -18,10 +18,11 @@ jobs:
           npm init -y >/dev/null 2>&1
           npm install playwright@1.55.0
           npx playwright install --with-deps chromium
-      - name: Export webpage to PDF
+          python3 -m pip install --break-system-packages pillow
+      - name: Capture webpage
         run: |
           python3 -m http.server 8000 >/tmp/relearnos-http.log 2>&1 &
-          cat > export-pdf.mjs <<'JS'
+          cat > capture.mjs <<'JS'
           import { chromium } from 'playwright';
           const browser = await chromium.launch({headless:true});
           const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
@@ -30,21 +31,34 @@ jobs:
             if (u.includes('fonts.googleapis.com') || u.includes('fonts.gstatic.com')) return route.abort();
             return route.continue();
           });
-          const url = 'http://127.0.0.1:8000/ai-business-transformation-academy/index.html#programs';
-          await page.goto(url, { waitUntil: 'commit', timeout: 15000 });
+          await page.goto('http://127.0.0.1:8000/ai-business-transformation-academy/index.html#programs', { waitUntil: 'commit', timeout: 15000 });
           await page.waitForTimeout(10000);
-          await page.emulateMedia({ media: 'screen' });
           await page.evaluate(() => window.scrollTo(0, 0));
-          await page.pdf({
-            path: 'ai-business-transformation-academy/RELEARNOS-Final-Thai-Web.pdf',
-            format: 'A4',
-            printBackground: true,
-            preferCSSPageSize: false,
-            margin: { top: '8mm', right: '8mm', bottom: '8mm', left: '8mm' }
-          });
+          await page.screenshot({ path: 'relearnos-full.png', fullPage: true });
           await browser.close();
           JS
-          node export-pdf.mjs
+          node capture.mjs
+      - name: Build multipage PDF
+        run: |
+          python3 - <<'PY'
+          from PIL import Image
+          src=Image.open('relearnos-full.png').convert('RGB')
+          w,h=src.size
+          page_h=round(w*1.4142)
+          pages=[]
+          y=0
+          while y<h:
+              crop=src.crop((0,y,w,min(y+page_h,h)))
+              if crop.height < page_h:
+                  canvas=Image.new('RGB',(w,page_h),'white')
+                  canvas.paste(crop,(0,0))
+                  crop=canvas
+              pages.append(crop)
+              y += page_h
+          out='ai-business-transformation-academy/RELEARNOS-Final-Thai-Web.pdf'
+          pages[0].save(out, save_all=True, append_images=pages[1:], resolution=144.0)
+          print(out, len(pages), 'pages')
+          PY
       - name: Commit PDF
         run: |
           git config user.name github-actions[bot]
