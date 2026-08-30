@@ -8,6 +8,8 @@ permissions:
 jobs:
   export:
     runs-on: ubuntu-latest
+    env:
+      PW_TEST_SCREENSHOT_NO_FONTS_READY: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -26,15 +28,21 @@ jobs:
           import { chromium } from 'playwright';
           const browser = await chromium.launch({headless:true});
           const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
+          page.setDefaultTimeout(20000);
           await page.route('**/*', async route => {
             const u = route.request().url();
             if (u.includes('fonts.googleapis.com') || u.includes('fonts.gstatic.com')) return route.abort();
             return route.continue();
           });
           await page.goto('http://127.0.0.1:8000/ai-business-transformation-academy/index.html#programs', { waitUntil: 'commit', timeout: 15000 });
-          await page.waitForTimeout(10000);
-          await page.evaluate(() => window.scrollTo(0, 0));
-          await page.screenshot({ path: 'relearnos-full.png', fullPage: true });
+          await page.waitForTimeout(8000);
+          await page.evaluate(() => {
+            document.querySelectorAll('link[href*="fonts.googleapis.com"],link[href*="fonts.gstatic.com"]').forEach(e=>e.remove());
+            document.documentElement.style.fontFamily='Arial, sans-serif';
+            document.body.style.fontFamily='Arial, sans-serif';
+            window.scrollTo(0,0);
+          });
+          await page.screenshot({ path: 'relearnos-full.png', fullPage: true, animations: 'disabled', timeout: 20000 });
           await browser.close();
           JS
           node capture.mjs
