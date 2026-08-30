@@ -6,26 +6,28 @@ function applyProgrammeCards(){
   if(!cards.length)return;
   const data=[
     {
-      title:'Customer Service & Experience',
+      title:'การบริการลูกค้าและประสบการณ์ลูกค้า',
       fit:'เหมาะกับ: ทีมบริการ หน้างาน และผู้ดูแล customer journey',
       outcomes:['ผลลัพธ์: บริการสม่ำเสมอขึ้นในทุก customer moment','สื่อสาร ฟื้นความเชื่อมั่น และสร้างความไว้วางใจได้ดีขึ้น']
     },
     {
-      title:'Sales, Marketing & Brand Strategy',
+      title:'การขาย การตลาด และกลยุทธ์แบรนด์',
       fit:'เหมาะกับ: ทีมขาย การตลาด และผู้ที่ดูแลการเติบโตของแบรนด์',
       outcomes:['ผลลัพธ์: สื่อสารคุณค่าแบรนด์จากความเข้าใจลูกค้า','เชื่อมบทสนทนาการขาย การตลาด และบริการเข้าด้วยกัน']
     },
     {
-      title:'Leadership & Workforce Readiness',
+      title:'ภาวะผู้นำและความพร้อมของทีม',
       fit:'เหมาะกับ: หัวหน้าทีม ผู้บริหาร และผู้ที่เตรียมพร้อมสู่บทบาทผู้นำ',
       outcomes:['ผลลัพธ์: นำทีมผ่านการเปลี่ยนแปลงได้อย่างชัดเจนและมีความรับผิดชอบ','สร้างความมั่นใจ การร่วมมือ และการลงมือทำในทีม']
     },
     {
-      title:'AI-Enabled Service Operations',
+      title:'การใช้ AI เพื่อยกระดับงานบริการ',
       fit:'เหมาะกับ: ทีมบริการและองค์กรที่ต้องการใช้ AI ยกระดับวิธีทำงาน',
       outcomes:['ผลลัพธ์: มองเห็น use case ที่ใช้ได้กับงานบริการจริง','ออกแบบ workflow ที่มีคน คุณภาพ และความรับผิดชอบอยู่ตรงกลาง']
     }
   ];
+  const ey=root.querySelector('.ey'); if(ey)ey.textContent='โปรแกรมหลัก';
+  const title=root.querySelector('.display'); if(title)title.textContent='หนึ่งโปรแกรมหลัก สี่เส้นทางการเรียนรู้';
   cards.forEach((card,i)=>{
     const x=data[i]; if(!x)return;
     card.querySelector('.lp-visual')?.remove();
@@ -37,9 +39,9 @@ function applyProgrammeCards(){
     p.textContent=x.fit;
     let out=copy.querySelector('.programme-outcome');
     if(!out){out=document.createElement('div');out.className='programme-outcome';p.after(out)}
-    out.innerHTML=`<strong>Outcome / สิ่งที่จะได้</strong><ul>${x.outcomes.map(v=>`<li>${v}</li>`).join('')}</ul>`;
+    out.innerHTML=`<strong>ผลลัพธ์ / สิ่งที่จะได้</strong><ul>${x.outcomes.map(v=>`<li>${v}</li>`).join('')}</ul>`;
     const link=copy.querySelector('.outline-link');
-    if(link)copy.appendChild(link);
+    if(link){link.textContent='ดูโครงหลักสูตร →';copy.appendChild(link)}
   });
   if(!document.getElementById('programme-cards-restore-style')){
     const s=document.createElement('style');s.id='programme-cards-restore-style';s.textContent=`
@@ -57,5 +59,5 @@ function applyProgrammeCards(){
     `;document.head.appendChild(s);
   }
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(applyProgrammeCards,80));else setTimeout(applyProgrammeCards,80);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(applyProgrammeCards,120));else setTimeout(applyProgrammeCards,120);
 })();
