@@ -1,0 +1,1 @@
+Binary asset will be attached to the production tree using Git data.
