@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Remove duplicate starting-point blocks
+      - name: Remove duplicate diagnostic block
         shell: bash
         run: |
           set -euo pipefail
@@ -22,15 +22,9 @@ jobs:
           import re
           p=Path('ai-business-transformation-academy/index.html')
           s=p.read_text(encoding='utf-8')
-          original=s
-          patterns=[
-            r"\n?<section id='start'\b.*?</section>",
-            r"\n?<section id='diagnostic'\b.*?</section>"
-          ]
-          for pat in patterns:
-              s,n=re.subn(pat,'',s,count=1,flags=re.S)
-              if n!=1:
-                  raise SystemExit(f'Expected one section for {pat}, removed {n}')
+          s,n=re.subn(r"\n?<section id='diagnostic'\b.*?</section>",'',s,count=1,flags=re.S)
+          if n!=1:
+              raise SystemExit(f'Expected one diagnostic section, removed {n}')
           if "id='framework'" not in s or "relearnos-framework-final.webp" not in s:
               raise SystemExit('Locked framework image section missing after cleanup')
           p.write_text(s,encoding='utf-8')
@@ -38,5 +32,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add ai-business-transformation-academy/index.html
-          git commit -m 'Remove duplicate starting point and diagnostic blocks for final review'
+          git commit -m 'Remove duplicate diagnostic block for final review'
           git push
