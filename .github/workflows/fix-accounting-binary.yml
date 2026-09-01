@@ -1,0 +1,32 @@
+name: Fix Accounting binary asset
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-accounting-binary.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore approved Accounting image blob
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p ai-business-transformation-academy/assets
+          gh api repos/${{ github.repository }}/git/blobs/e851c804916119f6e7a09629f7720f20160f4d1f --jq '.content' | tr -d '\n' | base64 -d > ai-business-transformation-academy/assets/accounting-workflow-final.webp
+          file ai-business-transformation-academy/assets/accounting-workflow-final.webp
+          test -s ai-business-transformation-academy/assets/accounting-workflow-final.webp
+      - name: Commit repaired binary
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/assets/accounting-workflow-final.webp
+          git commit -m 'Repair Accounting Workflow image binary' || exit 0
+          git push
