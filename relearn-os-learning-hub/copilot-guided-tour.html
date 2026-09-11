@@ -5,75 +5,84 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RELEARN OS × QPM · Microsoft Copilot Guided Tour</title>
 <style>
-:root{--blue:#0b5bd3;--cyan:#1db8d9;--green:#31ae60;--navy:#17345b;--ink:#2f4053;--muted:#6d7f91;--line:#dbe7ef;--soft:#f6fbff;--yellow:#fff7dc;--violet:#6f5bd3}
-*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Arial,Tahoma,sans-serif;background:#eef7fb;color:var(--ink)}body{overflow:hidden}
+:root{--blue:#0b5bd3;--cyan:#1db8d9;--green:#31ae60;--navy:#17345b;--ink:#352f2d;--muted:#756f6c;--line:#e9e3df;--cream:#f8f3ef;--panel:#fff;--yellow:#fff6d8}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:Arial,Tahoma,sans-serif;background:#eef7fb;color:var(--ink)}
+body{overflow:hidden}
 .shell{height:100vh;display:grid;grid-template-rows:68px 1fr 64px}
-header{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:#fff;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:14px}.brand strong{font-size:22px;color:var(--blue)}.brand strong span{color:var(--green)}.badge{padding:7px 12px;border-radius:999px;background:#eaf3ff;color:var(--blue);font-size:12px;font-weight:800}
-main{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,.55fr);gap:18px;padding:18px 22px;min-height:0}
-.sim,.guide{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 14px 38px rgba(30,69,110,.10);overflow:hidden}
-.sim{display:grid;grid-template-rows:48px 1fr}.simhead{display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#fbfdff;border-bottom:1px solid var(--line)}
-.copilot{display:grid;grid-template-columns:220px 1fr;height:100%;position:relative}
-.side{background:#f7f7f9;border-right:1px solid #e8ebef;padding:12px;position:relative}.sidetitle{font-weight:800;margin:6px 4px 12px;color:#202631}.item{padding:9px 10px;border-radius:9px;margin-bottom:4px;font-size:12px;color:#596575}.item.active{background:#eceff3;color:#111827;font-weight:700}.profile{position:absolute;left:12px;right:12px;bottom:12px;border:1px solid #e1e5ea;background:#fff;border-radius:12px;padding:10px 11px;font-size:11px}
-.work{position:relative;overflow:auto}.home{padding:28px 34px;min-height:100%}.welcome{text-align:center;margin-top:36px}.copilotlogo{font-size:46px;font-weight:900;background:linear-gradient(90deg,#1677ff,#7a5cff,#ff6aa2,#ffb21a);-webkit-background-clip:text;color:transparent}.welcome h1{font-size:27px;margin:6px 0;color:#242a32}
-.apps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:760px;margin:24px auto 18px}.app{border:1px solid #e0e5eb;border-radius:15px;padding:14px 8px;text-align:center;font-size:11px;background:#fff}.app b{display:block;margin-bottom:5px;color:#26384d}
-.composer{max-width:760px;margin:12px auto;border:1px solid #d8dee5;border-radius:24px;padding:13px 15px 10px}.composer textarea{width:100%;border:0;outline:0;resize:none;min-height:48px;font:inherit;font-size:13px;background:transparent}.toolrow{display:flex;gap:8px;align-items:center}.pill{padding:6px 8px;border-radius:999px;background:#f2f4f7;font-size:11px;color:#657281}.send{margin-left:auto;width:30px;height:30px;border-radius:50%;border:0;background:#111827;color:white;font-weight:900;cursor:pointer}
-.panel{max-width:760px;margin:20px auto;display:none}.panel h2{font-size:20px;color:#25384d}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{border:1px solid #dbe5ed;border-radius:16px;padding:14px;background:#fff}.card b{display:block;color:var(--blue);margin-bottom:7px}.card p{margin:0;font-size:11px;line-height:1.6;color:#607184}
-.settingspanel{display:none;max-width:760px;margin:26px auto;border:1px solid #dbe5ed;border-radius:18px;background:#fff;overflow:hidden}
-.settingsgrid{display:grid;grid-template-columns:175px 1fr}
-.settingsnav{background:#f7f9fb;border-right:1px solid #e4e9ee;padding:16px 12px}
-.settingsnav h3{margin:0 8px 12px;font-size:16px;color:#26384c}
-.settingsitem{padding:9px 10px;border-radius:9px;font-size:11px;color:#607184;margin-bottom:3px}
-.settingsitem.active{background:#eaf3ff;color:var(--blue);font-weight:800}
-.settingsbody{padding:18px 20px}
-.settingsbody h2{margin:0 0 10px;font-size:19px;color:#25384d}
-.settingcard{border:1px solid #dbe5ed;border-radius:13px;padding:12px;margin-bottom:10px;background:#fbfdff}
-.settingcard b{display:block;color:var(--blue);margin-bottom:5px;font-size:11px}
-.settingcard p{margin:0;color:#607184;font-size:11px;line-height:1.55}
-.response{max-width:760px;margin:18px auto 60px;display:none}.bubbleuser{margin-left:auto;max-width:72%;background:#f0f2f4;padding:10px 12px;border-radius:16px;font-size:12px;line-height:1.55}.bubbleai{margin-top:14px;font-size:12px;line-height:1.7}
+header{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:#fff;border-bottom:1px solid #dce7ef}
+.brand{display:flex;align-items:center;gap:14px}.brand strong{font-size:22px;color:var(--blue)}.brand strong span{color:var(--green)}
+.badge{padding:7px 12px;border-radius:999px;background:#eaf3ff;color:var(--blue);font-size:12px;font-weight:800}
+main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,.5fr);gap:18px;padding:18px 22px;min-height:0}
+.sim,.guide{background:#fff;border:1px solid #dce7ef;border-radius:22px;box-shadow:0 14px 38px rgba(30,69,110,.10);overflow:hidden}
+.sim{display:grid;grid-template-rows:48px 1fr}.simhead{display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#fbfdff;border-bottom:1px solid #dce7ef}
+.copilot{display:grid;grid-template-columns:60px 1fr;height:100%;position:relative;background:var(--cream)}
+.rail{background:#f4efeb;border-right:1px solid #ebe4df;display:flex;flex-direction:column;align-items:center;padding:14px 8px;gap:15px}
+.logoDot{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#4c7cf5,#bc5cf0,#ff8b56);display:grid;place-items:center;color:#fff;font-weight:900}
+.railbtn{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#625c58;font-size:16px;cursor:pointer}
+.railbtn:hover,.railbtn.active{background:#e9e3de}
+.avatar{margin-top:auto;width:30px;height:30px;border-radius:50%;background:#d6c7bd;display:grid;place-items:center;font-size:10px;font-weight:800;cursor:pointer}
+.work{position:relative;overflow:auto}
+.topright{position:absolute;right:18px;top:14px;z-index:5}
+.temp{border:1px solid #e4ded8;background:#fff;border-radius:12px;padding:8px 12px;font-size:11px}
+.home{min-height:100%;padding:55px 60px 30px}
+.center{max-width:760px;margin:105px auto 0;text-align:center}
+.center h1{font-size:26px;font-weight:500;margin:0 0 36px;color:#383330}
+.composer{border:1px solid #e0d8d3;border-radius:28px;background:#fff;padding:14px 16px 10px;box-shadow:0 12px 30px rgba(92,71,58,.08)}
+.composer textarea{width:100%;border:0;outline:0;resize:none;min-height:42px;font:inherit;font-size:13px;background:transparent}
+.toolrow{display:flex;align-items:center;gap:8px}.circle{width:34px;height:34px;border-radius:50%;border:1px solid #e1d9d4;background:#fff;display:grid;place-items:center;font-size:18px}.smart{padding:8px 12px;border:1px solid #e1d9d4;border-radius:18px;font-size:11px;background:#fff}.wave{margin-left:auto;font-size:18px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}.chip{padding:9px 14px;border:1px solid #e4ddd8;border-radius:13px;background:#fff;font-size:11px;color:#655f5b}
+.disclaimer{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:10px;color:#877f7a;text-align:center;width:70%}
+.panel{display:none;max-width:780px;margin:70px auto 0}
+.panel h2{font-size:22px;color:#3a3330;margin:0 0 18px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{border:1px solid #e4ddd8;border-radius:16px;padding:15px;background:#fff}.card b{display:block;color:var(--blue);margin-bottom:7px}.card p{margin:0;font-size:11px;line-height:1.6;color:#69615d}
+.settings{display:none;max-width:780px;margin:55px auto 0;background:#fff;border:1px solid #e2dbd6;border-radius:18px;overflow:hidden}
+.settingsgrid{display:grid;grid-template-columns:180px 1fr}
+.setnav{background:#f6f2ef;border-right:1px solid #e8e0db;padding:18px 12px}.setnav h3{margin:0 8px 12px;font-size:16px}.setitem{padding:9px 10px;border-radius:9px;font-size:11px;color:#6d6560;margin-bottom:3px}.setitem.active{background:#ece7e3;color:#2f2b29;font-weight:800}
+.setbody{padding:20px 24px}.setbody h2{font-size:20px;margin:0 0 10px}.settingcard{border:1px solid #e4ddd8;border-radius:13px;padding:12px;margin-bottom:10px;background:#fdfcfb}.settingcard b{display:block;color:var(--blue);font-size:11px;margin-bottom:5px}.settingcard p{margin:0;font-size:11px;line-height:1.55;color:#6a625e}
+.response{display:none;max-width:760px;margin:30px auto 50px}.bubbleuser{margin-left:auto;max-width:72%;background:#ece8e4;padding:10px 12px;border-radius:16px;font-size:12px;line-height:1.55}.bubbleai{margin-top:14px;font-size:12px;line-height:1.7;background:#fff;padding:14px;border-radius:16px;border:1px solid #e4ddd8}
 .spot{position:absolute;border:4px solid #24a45a;border-radius:14px;box-shadow:0 0 0 5px rgba(36,164,90,.13);pointer-events:none;z-index:50;display:none}.spotnum{position:absolute;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:none;place-items:center;font-size:12px;font-weight:900;z-index:51}
-.guide{padding:20px;display:flex;flex-direction:column}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--blue)}.guide h2{font-size:25px;line-height:1.25;color:var(--navy);margin:7px 0 8px}.guide p{font-size:12px;line-height:1.65;color:#5f7185;margin:0}.info{margin-top:12px;border:1px solid var(--line);background:var(--soft);border-radius:15px;padding:12px}.info b{display:block;color:var(--blue);font-size:11px;margin-bottom:4px}.human{background:var(--yellow);border-color:#ecd98a}.human b{color:#9b6a00}.next{background:#eef9f4;border-color:#cfe8d6}.next b{color:var(--green)}.signature{margin-top:auto;text-align:right;font-size:12px;font-weight:800;color:var(--blue)}
-footer{display:flex;align-items:center;justify-content:space-between;padding:9px 22px;background:#fff;border-top:1px solid var(--line)}.controls{display:flex;gap:8px}.btn{border:0;border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;font-size:12px}.primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff}.secondary{background:#edf3f7;color:#35485d}.progress{font-size:11px;color:#687b8f;text-align:center}.bar{width:220px;height:7px;background:#e2ebf1;border-radius:999px;overflow:hidden;margin-top:4px}.bar>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));width:20%}.note{font-size:10px;color:#748599;text-align:right}
-@media(max-width:900px){body{overflow:auto}.shell{height:auto;min-height:100vh;grid-template-rows:auto auto auto}main{grid-template-columns:1fr}.sim{min-height:650px}.copilot{grid-template-columns:170px 1fr}}
+.guide{padding:20px;display:flex;flex-direction:column}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--blue)}.guide h2{font-size:25px;line-height:1.25;color:var(--navy);margin:7px 0 8px}.guide p{font-size:12px;line-height:1.65;color:#5f7185;margin:0}
+.info{margin-top:12px;border:1px solid #dce7ef;background:#f7fbfe;border-radius:15px;padding:12px}.info b{display:block;color:var(--blue);font-size:11px;margin-bottom:4px}.human{background:var(--yellow);border-color:#ecd98a}.human b{color:#9b6a00}.next{background:#eef9f4;border-color:#cfe8d6}.next b{color:var(--green)}.signature{margin-top:auto;text-align:right;font-size:12px;font-weight:800;color:var(--blue)}
+footer{display:flex;align-items:center;justify-content:space-between;padding:9px 22px;background:#fff;border-top:1px solid #dce7ef}.controls{display:flex;gap:8px}.btn{border:0;border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;font-size:12px}.primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff}.secondary{background:#edf3f7;color:#35485d}.progress{font-size:11px;color:#687b8f;text-align:center}.bar{width:220px;height:7px;background:#e2ebf1;border-radius:999px;overflow:hidden;margin-top:4px}.bar>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));width:20%}.note{font-size:10px;color:#748599;text-align:right}
+@media(max-width:900px){body{overflow:auto}.shell{height:auto;min-height:100vh;grid-template-rows:auto auto auto}main{grid-template-columns:1fr}.sim{min-height:650px}}
 </style>
 </head>
 <body>
 <div class="shell">
-<header><div class="brand"><strong>RELEARN <span>OS</span></strong><span class="badge">Section 2 · Microsoft Copilot Guided Tour</span></div><div><b>Optional Live Demo</b><br><small>ใช้เมื่อมีเวลา · 3–4 นาที</small></div></header>
+<header><div class="brand"><strong>RELEARN <span>OS</span></strong><span class="badge">Section 2 · Microsoft Copilot Guided Tour</span></div><div><b>Optional Live Demo</b><br><small>อิงหน้าจอปัจจุบัน · 3–4 นาที</small></div></header>
 <main>
 <section class="sim">
-<div class="simhead"><b id="simTitle">Copilot Home</b><span>Microsoft Copilot-style simulator</span></div>
+<div class="simhead"><b id="simTitle">Copilot Home</b><span>Simulator อิงหน้าจอจริงปัจจุบัน</span></div>
 <div class="copilot">
-<aside class="side">
-<div class="sidetitle">Microsoft Copilot</div>
-<div class="item active">＋ New chat</div>
-<div class="item">⌕ Search</div>
-<div class="item">▦ Pages</div>
-<div class="item">◇ Agents</div>
-<div style="margin:16px 4px 6px;font-size:10px;color:#9ba4ad">Microsoft 365</div>
-<div class="item">Word</div><div class="item">Excel</div><div class="item">PowerPoint</div><div class="item">Outlook</div><div class="item">Teams</div>
-<div class="profile">● Work account</div>
+<aside class="rail">
+<div class="logoDot">C</div>
+<div class="railbtn active">▣</div><div class="railbtn">✎</div><div class="railbtn">▱</div><div class="railbtn">☑</div><div class="railbtn">▢</div><div class="railbtn">◉</div><div class="railbtn">▧</div>
+<div class="avatar" id="avatar">PA</div>
 </aside>
 <section class="work" id="work">
+<div class="topright"><button class="temp">◯ ชั่วคราว</button></div>
 <div class="home">
-<div class="welcome" id="welcome"><div class="copilotlogo">Copilot</div><h1>What can I help you with?</h1></div>
-<div class="apps" id="apps">
-<div class="app"><b>Word</b>ร่าง/สรุป</div><div class="app"><b>Excel</b>วิเคราะห์ข้อมูล</div><div class="app"><b>PowerPoint</b>สร้างสไลด์</div><div class="app"><b>Outlook</b>สรุปอีเมล</div><div class="app"><b>Teams</b>สรุปประชุม</div>
+<div class="center" id="homeCenter">
+<h1>สวัสดี PATSPHERE วันนี้คุณคิดอะไรอยู่</h1>
+<div class="composer" id="composer"><textarea id="promptBox" placeholder="ข้อความ Copilot"></textarea><div class="toolrow"><div class="circle">＋</div><div class="smart">Smart⌄</div><div class="wave">▥</div></div></div>
+<div class="chips" id="chips"><span class="chip">คำแนะนำผลิตภัณฑ์</span><span class="chip">เขียนเรื่องตลก</span><span class="chip">สร้างรูปภาพ</span><span class="chip">ทำแบบทดสอบ</span><span class="chip">ทำให้หัวข้อเข้าใจง่ายขึ้น</span><span class="chip">ออกแบบโลโก้</span><span class="chip">วาดภาพพระอาทิตย์ขึ้น</span><span class="chip">คิดทบทวนการตัดสินใจ</span></div>
 </div>
-<div class="composer" id="composer"><textarea id="promptBox" placeholder="Message Copilot"></textarea><div class="toolrow"><span class="pill">＋ Attach</span><span class="pill">Work</span><span class="pill">Web</span><button class="send" id="sendBtn">↑</button></div></div>
-<div class="settingspanel" id="settingsPanel"><div class="settingsgrid"><div class="settingsnav"><h3>Settings</h3><div class="settingsitem active">Account & work context</div><div class="settingsitem">Privacy</div><div class="settingsitem">Connected experiences</div><div class="settingsitem">Permissions</div></div><div class="settingsbody"><h2>ก่อนใช้ Copilot ในองค์กร</h2><div class="settingcard"><b>Work account / Personal account</b><p>ตรวจว่ากำลังใช้บัญชีใด เพราะข้อมูลและความสามารถที่เห็นอาจต่างกัน</p></div><div class="settingcard"><b>Microsoft 365 access</b><p>Word, Excel, PowerPoint, Outlook และ Teams จะใช้ได้ตาม License และสิทธิ์ขององค์กร</p></div><div class="settingcard"><b>Permissions / Connected experiences</b><p>ตรวจสิทธิ์เข้าถึงไฟล์ อีเมล ประชุม และข้อมูลที่เชื่อมกับบัญชีองค์กร</p></div></div></div></div>
-<div class="panel" id="workflowPanel"><h2>Copilot ใกล้กับ Workflow เดิมของ Microsoft 365</h2><div class="cards"><div class="card"><b>Outlook / Teams</b><p>ช่วยสรุปอีเมลหรือการประชุมและดึง Action Items</p></div><div class="card"><b>Word / PowerPoint</b><p>ช่วยร่าง ปรับ และต่อยอดเอกสารหรือ Presentation</p></div><div class="card"><b>Excel</b><p>ช่วยตั้งคำถาม วิเคราะห์ Pattern และอธิบายข้อมูล</p></div><div class="card"><b>บริบทองค์กร</b><p>ความสามารถขึ้นกับบัญชี แผน และสิทธิ์ Microsoft 365 ขององค์กร</p></div></div></div>
-<div class="response" id="response"><div class="bubbleuser" id="userBubble"></div><div class="bubbleai"><b>ตัวอย่าง Output</b><br>• สรุปประเด็นสำคัญจากอีเมล<br>• แยกสิ่งที่ต้องทำต่อ<br>• ระบุ Owner / Deadline ที่พบในข้อความ<br>• เสนอร่างคำตอบเพื่อให้คนตรวจต่อ</div></div>
+<div class="settings" id="settingsPanel"><div class="settingsgrid"><div class="setnav"><h3>Settings</h3><div class="setitem active">Account</div><div class="setitem">Privacy</div><div class="setitem">Connected experiences</div><div class="setitem">Permissions</div></div><div class="setbody"><h2>Settings ที่ควรรู้ก่อนใช้ในองค์กร</h2><div class="settingcard"><b>Account</b><p>ตรวจว่ากำลังใช้ Personal หรือ Work account</p></div><div class="settingcard"><b>Microsoft 365 access</b><p>ความสามารถต่างกันตาม License และสิทธิ์ขององค์กร</p></div><div class="settingcard"><b>Connected experiences / Permissions</b><p>ตรวจสิทธิ์ไฟล์ อีเมล การประชุม และข้อมูลที่เชื่อมกับบัญชี</p></div></div></div></div>
+<div class="panel" id="workflowPanel"><h2>Copilot ใกล้กับ Microsoft 365 Workflow</h2><div class="cards"><div class="card"><b>Outlook / Teams</b><p>สรุปอีเมลหรือการประชุม และแยก Action Items</p></div><div class="card"><b>Word / PowerPoint</b><p>ช่วยร่าง ปรับ และต่อยอดเอกสารหรือ Presentation</p></div><div class="card"><b>Excel</b><p>ช่วยตั้งคำถาม วิเคราะห์ Pattern และอธิบายข้อมูล</p></div><div class="card"><b>Account / License</b><p>สิ่งที่เห็นจริงขึ้นกับบัญชีและสิทธิ์ Microsoft 365</p></div></div></div>
+<div class="response" id="response"><div class="bubbleuser" id="userBubble"></div><div class="bubbleai"><b>ตัวอย่าง Output</b><br>• สรุปประเด็นสำคัญจากอีเมล<br>• แยก Action Items<br>• ระบุ Owner / Deadline ที่พบในข้อความ<br>• เสนอร่างคำตอบเพื่อให้คนตรวจต่อ</div></div>
+<div class="disclaimer">Copilot คือ AI และอาจทำผิดพลาดได้ · กิจกรรมการสนทนาของคุณ รวมถึงเนื้อหาที่คุณแชร์ อาจนำไปใช้เพื่อฝึก AI ได้ตามการตั้งค่าและเงื่อนไขบริการ</div>
 <div class="spot" id="spot"></div><div class="spotnum" id="spotnum">1</div>
 </div>
 </section>
 </div>
 </section>
 <aside class="guide">
-<div class="eyebrow" id="eyebrow">STEP 1 · START HERE</div><h2 id="tourTitle">รู้จัก Copilot แบบเร็ว</h2><p id="tourBody">จุดสำคัญของ Copilot คือทำงานใกล้กับ Microsoft 365 ที่องค์กรใช้อยู่แล้ว</p>
-<div class="info"><b>สิ่งที่ต้องจำ</b><p id="memory">ไม่ต้องจำ Feature — ให้จำว่า Copilot เด่นเมื่อ Workflow อยู่ใน Microsoft 365</p></div>
-<div class="info human"><b>Human Check</b><p id="human">สิทธิ์ข้อมูลและความสามารถขึ้นกับบัญชี แผน และนโยบายขององค์กร</p></div>
-<div class="info next"><b>ถัดไปคืออะไร</b><p id="nextText">ดูว่ามันเชื่อมกับ Word / Excel / PowerPoint / Outlook / Teams อย่างไร</p></div>
+<div class="eyebrow" id="eyebrow">STEP 1 · START HERE</div><h2 id="tourTitle">รู้จักหน้าจอ Copilot ปัจจุบัน</h2><p id="tourBody">เริ่มจากช่องกลางหน้าจอสำหรับพิมพ์คำสั่ง พร้อมตัวเลือก Smart และปุ่มเพิ่มไฟล์</p>
+<div class="info"><b>สิ่งที่ต้องจำ</b><p id="memory">หน้าจอเรียบง่ายกว่าเดิม แต่แนวคิดยังเหมือนเดิม: พิมพ์งาน → ดูผล → ปรับต่อ</p></div>
+<div class="info human"><b>Human Check</b><p id="human">เช็กบัญชีและสิทธิ์ก่อนนำข้อมูลขององค์กรมาใช้</p></div>
+<div class="info next"><b>ถัดไปคืออะไร</b><p id="nextText">ดู Settings ที่เกี่ยวกับ Account / Privacy / Permissions</p></div>
 <div class="signature">RELEARN OS · Optional Demo</div>
 </aside>
 </main>
@@ -81,16 +90,16 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:9px
 </div>
 <script>
 const steps=[
-{sim:"Copilot Home",eye:"STEP 1 · START HERE",title:"รู้จัก Copilot แบบเร็ว",body:"จุดสำคัญของ Copilot คือทำงานใกล้กับ Microsoft 365 ที่องค์กรใช้อยู่แล้ว",memory:"ไม่ต้องจำ Feature — ให้จำว่า Copilot เด่นเมื่อ Workflow อยู่ใน Microsoft 365",human:"สิทธิ์ข้อมูลและความสามารถขึ้นกับบัญชี แผน และนโยบายขององค์กร",next:"ก่อนใช้งานจริง ให้ดู Settings และบัญชีที่กำลังใช้",view:"home",target:"composer"},
-{sim:"Settings / Account / Permissions",eye:"STEP 2 · SETTINGS",title:"เช็ก Setting ที่สำคัญก่อน",body:"ดูบัญชีที่ใช้ License และสิทธิ์การเข้าถึง Microsoft 365 เพราะสิ่งเหล่านี้กำหนดว่า Copilot เห็นและทำอะไรได้บ้าง",memory:"Work account กับ Personal account อาจให้บริบทและความสามารถต่างกัน",human:"ตรวจสิทธิ์ไฟล์ อีเมล การประชุม และข้อมูลภายในก่อนใช้กับ AI",next:"ต่อไปดูว่า Copilot เชื่อมกับ Microsoft 365 Workflow อย่างไร",view:"settings",target:"settingsPanel"},
-{sim:"Microsoft 365 Workflow",eye:"STEP 3 · MICROSOFT 365",title:"มองเป็น Workflow เดียวกัน",body:"Copilot ช่วยต่อยอดงานใน Word, Excel, PowerPoint, Outlook และ Teams ได้ตามสิทธิ์ที่องค์กรมี",memory:"AI ที่อยู่ใกล้เครื่องมือเดิม ช่วยลดการย้ายงานไปมาระหว่างระบบ",human:"อย่าคิดว่าทุกบัญชีเห็น Feature เหมือนกัน ต้องเช็ก License และสิทธิ์ก่อน",next:"ลองดูตัวอย่างงานจาก Outlook / Teams",view:"workflow",target:"apps"},
-{sim:"Prompt → Work Context",eye:"STEP 4 · TRY A TASK",title:"ลองงานจริง 1 งาน",body:"ใช้ Prompt ง่าย ๆ กับงานที่เราทำอยู่แล้ว เช่น สรุปอีเมลหรือ Meeting Note แล้วแยก Action Items",memory:"เริ่มจากงานที่ใช้ Microsoft 365 อยู่แล้ว จะเห็นประโยชน์ชัดที่สุด",human:"ตรวจชื่อ วันที่ ตัวเลข Owner และ Deadline ก่อนใช้จริง",next:"ดู Output แล้วค่อยปรับต่อ",view:"prompt",target:"composer"},
-{sim:"Output → Human Check",eye:"STEP 5 · REVIEW",title:"ให้ AI ช่วยร่าง คนยังตรวจ",body:"Copilot ช่วยสรุปและร่างงานได้ แต่คนต้องตรวจบริบทองค์กร ข้อมูลสำคัญ และสิทธิ์ก่อนนำไปใช้",memory:"AI ช่วยลดเวลา แต่ Accountability ยังอยู่กับคน",human:"ข้อมูลถูกไหม · สิทธิ์เหมาะสมไหม · พร้อมส่งหรือยัง",next:"จบ Optional Demo → กลับสไลด์ Section 2 ต่อ",view:"output",target:"response"}]
+{sim:"Copilot Home",eye:"STEP 1 · START HERE",title:"รู้จักหน้าจอ Copilot ปัจจุบัน",body:"เริ่มจากช่องกลางหน้าจอสำหรับพิมพ์คำสั่ง พร้อมตัวเลือก Smart และปุ่มเพิ่มไฟล์",memory:"หน้าจอเรียบง่ายกว่าเดิม แต่แนวคิดยังเหมือนเดิม: พิมพ์งาน → ดูผล → ปรับต่อ",human:"เช็กบัญชีและสิทธิ์ก่อนนำข้อมูลขององค์กรมาใช้",next:"ดู Settings ที่เกี่ยวกับ Account / Privacy / Permissions",view:"home",target:"composer"},
+{sim:"Settings / Account / Permissions",eye:"STEP 2 · SETTINGS",title:"เช็ก Setting ที่สำคัญก่อน",body:"ตรวจว่ากำลังใช้ Personal หรือ Work account และดูสิทธิ์ที่เชื่อมกับ Microsoft 365",memory:"บัญชีและ License เป็นตัวกำหนดว่าคุณเห็น Feature อะไรและเข้าถึงข้อมูลไหนได้",human:"ก่อนใช้ไฟล์ อีเมล หรือข้อมูลภายใน ต้องแน่ใจว่าสิทธิ์และนโยบายองค์กรอนุญาต",next:"ต่อไปดู Microsoft 365 Workflow",view:"settings",target:"settingsPanel"},
+{sim:"Microsoft 365 Workflow",eye:"STEP 3 · MICROSOFT 365",title:"มอง Copilot เป็นส่วนหนึ่งของ Workflow",body:"จุดเด่นคือทำงานใกล้กับ Word, Excel, PowerPoint, Outlook และ Teams ตามสิทธิ์ที่องค์กรมี",memory:"ถ้าองค์กรใช้ Microsoft 365 เป็น Workflow หลัก Copilot เป็นตัวที่ควรรู้จัก",human:"อย่าคิดว่าทุกบัญชีมี Feature เหมือนกัน ต้องเช็ก License ก่อน",next:"ลอง Prompt กับงานจริงหนึ่งงาน",view:"workflow",target:"workflowPanel"},
+{sim:"Prompt → Work Task",eye:"STEP 4 · TRY A TASK",title:"ลองงานจริง 1 งาน",body:"ตัวอย่าง: สรุปอีเมลยาว แล้วแยก Action Items พร้อม Owner / Deadline",memory:"เริ่มจากงานเดิมที่เราทำใน Microsoft 365 จะเห็นประโยชน์ชัดที่สุด",human:"ตรวจชื่อ วันที่ ตัวเลข Owner และ Deadline ก่อนใช้จริง",next:"ดู Output แล้วค่อยปรับต่อ",view:"prompt",target:"composer"},
+{sim:"Output → Human Check",eye:"STEP 5 · REVIEW",title:"ให้ AI ช่วยร่าง คนยังตรวจ",body:"Copilot ช่วยสรุปและร่างงานได้ แต่คนยังต้องตรวจบริบทองค์กรและข้อมูลสำคัญ",memory:"AI ช่วยลดเวลา แต่ Accountability ยังอยู่กับคน",human:"ข้อมูลถูกไหม · สิทธิ์เหมาะสมไหม · พร้อมส่งหรือยัง",next:"จบ Optional Demo → กลับสไลด์ Section 2 ต่อ",view:"output",target:"response"}];
 let i=0;const $=id=>document.getElementById(id);
-function hide(){ $("settingsPanel").style.display="none";$("workflowPanel").style.display="none";$("response").style.display="none";$("spot").style.display="none";$("spotnum").style.display="none";$("welcome").style.display="block";$("apps").style.display="grid";$("composer").style.display="block";}
+function hide(){$("settingsPanel").style.display="none";$("workflowPanel").style.display="none";$("response").style.display="none";$("spot").style.display="none";$("spotnum").style.display="none";$("homeCenter").style.display="block"}
 function spotlight(id){const el=$(id),w=$("work").getBoundingClientRect(),r=el.getBoundingClientRect(),s=$("spot"),n=$("spotnum");s.style.left=(r.left-w.left-6)+"px";s.style.top=(r.top-w.top-6)+"px";s.style.width=(r.width+12)+"px";s.style.height=(r.height+12)+"px";s.style.display="block";n.style.left=Math.max(6,r.left-w.left-15)+"px";n.style.top=Math.max(6,r.top-w.top-15)+"px";n.style.display="grid";n.textContent=i+1}
-function apply(v){hide();if(v==="settings"){$("welcome").style.display="none";$("apps").style.display="none";$("composer").style.display="none";$("settingsPanel").style.display="block"}else if(v==="workflow"){$("welcome").style.display="none";$("composer").style.display="none";$("workflowPanel").style.display="block"}else if(v==="prompt"){$("promptBox").value="ช่วยสรุปอีเมลนี้เป็น 5 ประเด็นสำคัญ และแยก Action Items พร้อม Owner / Deadline";}else if(v==="output"){$("promptBox").value="ช่วยสรุปอีเมลนี้เป็น 5 ประเด็นสำคัญ และแยก Action Items พร้อม Owner / Deadline";$("userBubble").textContent=$("promptBox").value;$("response").style.display="block"}else{$("promptBox").value=""}}
-function render(){const s=steps[i];$("simTitle").textContent=s.sim;$("eyebrow").textContent=s.eye;$("tourTitle").textContent=s.title;$("tourBody").textContent=s.body;$("memory").textContent=s.memory;$("human").textContent=s.human;$("nextText").textContent=s.next;$("count").textContent=(i+1)+" / 5";$("fill").style.width=((i+1)*20)+"%";$("prev").disabled=i===0;$("next").textContent=i===4?"จบ Demo ✓":"ถัดไป →";apply(s.view);setTimeout(()=>spotlight(s.target),80)}
-$("sendBtn").onclick=()=>{let v=$("promptBox").value.trim()||"ช่วยสรุปอีเมลนี้เป็น 5 ประเด็นสำคัญ และแยก Action Items พร้อม Owner / Deadline";$("userBubble").textContent=v;$("response").style.display="block"};$("next").onclick=()=>{if(i<4){i++;render()}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<4){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});window.addEventListener("resize",()=>setTimeout(()=>spotlight(steps[i].target),80));render();
+function apply(v){hide();if(v==="settings"){$("homeCenter").style.display="none";$("settingsPanel").style.display="block"}else if(v==="workflow"){$("homeCenter").style.display="none";$("workflowPanel").style.display="block"}else if(v==="prompt"){$("promptBox").value="ช่วยสรุปอีเมลนี้เป็น 5 ประเด็นสำคัญ และแยก Action Items พร้อม Owner / Deadline"}else if(v==="output"){$("promptBox").value="ช่วยสรุปอีเมลนี้เป็น 5 ประเด็นสำคัญ และแยก Action Items พร้อม Owner / Deadline";$("userBubble").textContent=$("promptBox").value;$("response").style.display="block"}else{$("promptBox").value=""}}
+function render(){const s=steps[i];$("simTitle").textContent=s.sim;$("eyebrow").textContent=s.eye;$("tourTitle").textContent=s.title;$("tourBody").textContent=s.body;$("memory").textContent=s.memory;$("human").textContent=s.human;$("nextText").textContent=s.next;$("count").textContent=(i+1)+" / 5";$("fill").style.width=((i+1)*20)+"%";$("prev").disabled=i===0;$("next").textContent=i===4?"จบ Demo ✓":"ถัดไป →";apply(s.view);setTimeout(()=>spotlight(s.target),90)}
+$("next").onclick=()=>{if(i<4){i++;render()}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<4){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});window.addEventListener("resize",()=>setTimeout(()=>spotlight(steps[i].target),90));render();
 </script>
 </body></html>
