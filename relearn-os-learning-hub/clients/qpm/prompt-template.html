@@ -11,7 +11,7 @@
 body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:linear-gradient(145deg,#FBFDFF,#F0F9FD 58%,#F5FBF7);color:var(--ink)}
 .wrap{max-width:1080px;margin:auto;padding:22px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0 22px}
-.logo{height:62px;width:auto;display:block}
+
 .back{font-size:13px;font-weight:800;color:var(--blue);text-decoration:none}
 .hero{position:relative;background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px 32px;overflow:hidden;box-shadow:0 16px 42px rgba(28,75,113,.07)}
 .hero:after{content:"";position:absolute;width:330px;height:330px;border-radius:50%;right:-150px;top:-170px;background:linear-gradient(145deg,#E8F8FF,#E8FAEF);z-index:0}
@@ -30,13 +30,17 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{
 .builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.fields label{display:block;font-size:12px;font-weight:800;margin:0 0 6px;color:#365B7B}.fields textarea{width:100%;min-height:84px;border:1px solid #CCDDE8;border-radius:14px;padding:12px 13px;font-family:inherit;font-size:14px;resize:vertical;margin-bottom:12px;background:#FCFEFF}.preview{background:#F6FAFD;border:1px solid var(--line);border-radius:18px;padding:18px}.preview h3{margin:0 0 10px}.prompt{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-height:260px;line-height:1.65;font-size:14px}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.mini{border:0;border-radius:11px;padding:10px 12px;font-weight:800;cursor:pointer}.mini.blue{background:var(--blue);color:#fff}.mini.light{background:#EAF4FD;color:var(--blue)}
 .human{margin-top:22px;background:linear-gradient(90deg,#EAF7FD,#EFFBF4);border:1px solid #D7EAF0;border-radius:22px;padding:20px}.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.check{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px}.check b{font-size:13px}.check span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:5px}
 .footer{padding:28px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:#7A8A9A;font-size:11px}
-@media(max-width:780px){.asset-grid,.builder-grid,.checks{grid-template-columns:1fr}.hero{padding:24px 20px}.hero h1{font-size:35px}.logo{height:52px}.wrap{padding:16px}}
+@media(max-width:780px){.asset-grid,.builder-grid,.checks{grid-template-columns:1fr}.hero{padding:24px 20px}.hero h1{font-size:35px}.wrap{padding:16px}}
+
+.brand-lockup{display:flex;align-items:center;min-width:0}
+.brand-lockup img,.brand-logo-img{display:block;width:240px;max-width:72vw;height:72px;object-fit:contain;object-position:left center}
+@media(max-width:720px){.brand-lockup img,.brand-logo-img{width:205px;max-width:68vw;height:58px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <img class="logo" src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS">
+    <img class="brand-logo-img" src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS">
     <a class="back" href="home.html">← QPM Learning Hub</a>
   </div>
 
@@ -48,8 +52,8 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{
   </section>
 
   <section class="section">
-    <h2>3A Learning Assets</h2>
-    <p class="lead">สามชิ้นนี้ทำหน้าที่ต่างกัน และเชื่อมกันเป็นระบบเดียว</p>
+    <h2>3A Learning Assets</h2><div class="ey">PLAYBOOK • PROMPT LIBRARY • INTERACTIVE BUILDER</div>
+    <p class="lead">สามชิ้นนี้เป็นชุดสื่อเดียวกันของ Section 3A แต่ทำหน้าที่ต่างกัน: เรียนและทบทวน • หยิบไปใช้ • ฝึกสร้างเอง</p>
     <div class="asset-grid">
       <article class="asset">
         <div class="badge">A</div>
@@ -112,7 +116,8 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{
 </div>
 <script>
 const ids=['context','data','output','constraint'];
-function build(){const vals=ids.map(id=>document.getElementById(id).value.trim()).filter(Boolean);document.getElementById('promptPreview').textContent=vals.length?vals.join('\n'):'เริ่มพิมพ์ทางซ้าย แล้ว Prompt จะประกอบตรงนี้';}
+function build(){const vals=ids.map(id=>document.getElementById(id).value.trim()).filter(Boolean);document.getElementById('promptPreview').textContent=vals.length?vals.join('
+'):'เริ่มพิมพ์ทางซ้าย แล้ว Prompt จะประกอบตรงนี้';}
 ids.forEach(id=>document.getElementById(id).addEventListener('input',build));
 function loadExample(){document.getElementById('context').value='ฉันเป็นผู้จัดการอาคารชุด ดูแลการสื่อสารกับลูกบ้าน';document.getElementById('data').value='ลูกบ้านแจ้งว่าลิฟต์ขัดข้องหลายครั้ง และต้องการทราบแนวทางแก้ไข';document.getElementById('output').value='ช่วยร่างอีเมลตอบกลับลูกบ้าน';document.getElementById('constraint').value='ใช้ภาษาสุภาพ กระชับ แสดงความเข้าใจ และไม่รับปากสิ่งที่ยังยืนยันไม่ได้';build();}
 function clearAll(){ids.forEach(id=>document.getElementById(id).value='');build()}
