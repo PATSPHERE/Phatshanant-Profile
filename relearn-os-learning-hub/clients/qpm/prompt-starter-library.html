@@ -40,12 +40,16 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;letter-spacing:-.02em}
 .footer{padding:26px 0 38px;border-top:1px solid var(--line);font-size:11px;color:#7C8B9B;margin-top:28px}.footer strong{color:var(--blue2)}.footer strong span{color:var(--green)}
 .hidden{display:none!important}
 @media(max-width:760px){h1{font-size:36px}.grid,.checks{grid-template-columns:1fr}.wrap{padding:16px}.section-head{align-items:start;flex-direction:column}.card{min-height:auto}}
+
+.brand-lockup{display:flex;align-items:center;min-width:0}
+.brand-lockup img,.brand-logo-img{display:block;width:240px;max-width:72vw;height:72px;object-fit:contain;object-position:left center}
+@media(max-width:720px){.brand-lockup img,.brand-logo-img{width:205px;max-width:68vw;height:58px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <div class="brand">RELEARN <span>OS</span></div>
+    <div class="brand-lockup"><img src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS"></div>
     <a class="back" href="prompt-template.html">← 3A Prompt & Template</a>
   </div>
 
@@ -338,7 +342,7 @@ Step | Outcome | Owner | Timeline | Dependency | Risk | Checkpoint
     </div>
   </section>
 
-  <div class="footer"><strong>RELEARN <span>OS</span></strong> × QPM • PREPARE • TRANSFORM • PERFORM</div>
+  <div class="footer">RELEARN OS × QPM • PREPARE • TRANSFORM • PERFORM</div>
 </div>
 
 <script>
