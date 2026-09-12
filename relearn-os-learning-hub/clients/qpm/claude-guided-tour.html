@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RELEARN OS × QPM · Claude Guided Tour</title>
+<style>
+:root{--blue:#0b5bd3;--cyan:#1db8d9;--green:#31ae60;--navy:#17345b;--ink:#2f4053;--muted:#6d7f91;--line:#dbe7ef;--soft:#f7fbfe;--yellow:#fff7dc;--claude:#d97745}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Arial,Tahoma,sans-serif;background:#eef7fb;color:var(--ink)}body{overflow:hidden}
+.shell{height:100vh;display:grid;grid-template-rows:68px 1fr 64px}
+header{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:#fff;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:14px}.brand strong{font-size:22px;color:var(--blue)}.brand strong span{color:var(--green)}.badge{padding:7px 12px;border-radius:999px;background:#eaf3ff;color:var(--blue);font-size:12px;font-weight:800}
+main{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,.55fr);gap:18px;padding:18px 22px;min-height:0}
+.sim,.guide{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 14px 38px rgba(30,69,110,.10);overflow:hidden}
+.sim{display:grid;grid-template-rows:48px 1fr}.simhead{display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#fbfdff;border-bottom:1px solid var(--line)}
+.claude{display:grid;grid-template-columns:220px 1fr;height:100%;position:relative}
+.side{background:#f7f6f3;border-right:1px solid #ebe5de;padding:12px;position:relative}.sidetitle{font-weight:800;margin:6px 4px 12px;color:#2b2926}.item{padding:9px 10px;border-radius:9px;margin-bottom:4px;font-size:12px;color:#635e59}.item.active{background:#ece8e3;color:#2b2926;font-weight:700}.profile{position:absolute;left:12px;right:12px;bottom:12px;border:1px solid #e3ddd6;background:#fff;border-radius:12px;padding:10px 11px;font-size:11px}
+.work{position:relative;overflow:auto;background:#fffdf9}.home{padding:28px 34px;min-height:100%}.welcome{text-align:center;margin-top:38px}.claudelogo{font-size:44px;font-weight:900;color:var(--claude)}.welcome h1{font-size:26px;margin:8px 0;color:#2d2a27}
+.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:760px;margin:24px auto 16px}.suggest{border:1px solid #e7e0d9;border-radius:15px;padding:13px;background:#fff;font-size:11px;color:#655f59}
+.composer{max-width:760px;margin:12px auto;border:1px solid #d9d2cb;border-radius:24px;padding:13px 15px 10px;background:#fff}.composer textarea{width:100%;border:0;outline:0;resize:none;min-height:50px;font:inherit;font-size:13px;background:transparent}.toolrow{display:flex;align-items:center;gap:8px}.pill{padding:6px 8px;border-radius:999px;background:#f4f1ee;font-size:11px;color:#6c645e}.send{margin-left:auto;width:30px;height:30px;border-radius:50%;border:0;background:#2c2926;color:#fff;font-weight:900;cursor:pointer}
+.response{max-width:760px;margin:18px auto 60px;display:none}.bubbleuser{margin-left:auto;max-width:72%;background:#f1eee9;padding:10px 12px;border-radius:16px;font-size:12px;line-height:1.55}.bubbleai{margin-top:14px;font-size:12px;line-height:1.72;color:#3b3733}
+.panel{display:none;max-width:760px;margin:34px auto}.panel h2{font-size:21px;color:#2f2b27}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{border:1px solid #e3ddd7;border-radius:16px;padding:15px;background:#fff}.card b{display:block;color:var(--claude);margin-bottom:8px}.card p{margin:0;font-size:11px;line-height:1.6;color:#665f59}
+.spot{position:absolute;border:4px solid #24a45a;border-radius:14px;box-shadow:0 0 0 5px rgba(36,164,90,.13);pointer-events:none;z-index:50;display:none}.spotnum{position:absolute;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:none;place-items:center;font-size:12px;font-weight:900;z-index:51}
+.guide{padding:20px;display:flex;flex-direction:column}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--blue)}.guide h2{font-size:25px;line-height:1.25;color:var(--navy);margin:7px 0 8px}.guide p{font-size:12px;line-height:1.65;color:#5f7185;margin:0}.info{margin-top:12px;border:1px solid var(--line);background:var(--soft);border-radius:15px;padding:12px}.info b{display:block;color:var(--blue);font-size:11px;margin-bottom:4px}.human{background:var(--yellow);border-color:#ecd98a}.human b{color:#9b6a00}.next{background:#eef9f4;border-color:#cfe8d6}.next b{color:var(--green)}.signature{margin-top:auto;text-align:right;font-size:12px;font-weight:800;color:var(--blue)}
+footer{display:flex;align-items:center;justify-content:space-between;padding:9px 22px;background:#fff;border-top:1px solid var(--line)}.controls{display:flex;gap:8px}.btn{border:0;border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;font-size:12px}.primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff}.secondary{background:#edf3f7;color:#35485d}.progress{font-size:11px;color:#687b8f;text-align:center}.bar{width:220px;height:7px;background:#e2ebf1;border-radius:999px;overflow:hidden;margin-top:4px}.bar>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));width:25%}.note{font-size:10px;color:#748599;text-align:right}
+@media(max-width:900px){body{overflow:auto}.shell{height:auto;min-height:100vh;grid-template-rows:auto auto auto}main{grid-template-columns:1fr}.sim{min-height:650px}.claude{grid-template-columns:170px 1fr}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header><div class="brand"><strong>RELEARN <span>OS</span></strong><span class="badge">Section 2 · Claude Guided Tour</span></div><div><b>Optional Live Demo</b><br><small>ใช้เมื่อมีเวลา · 2–3 นาที</small></div></header>
+<main>
+<section class="sim">
+<div class="simhead"><b id="simTitle">Claude Home</b><span>Claude-style simulator</span></div>
+<div class="claude">
+<aside class="side">
+<div class="sidetitle">Claude</div>
+<div class="item active">＋ New chat</div><div class="item">⌕ Search</div><div class="item">▦ Projects</div><div class="item">◇ Artifacts</div>
+<div style="margin:16px 4px 6px;font-size:10px;color:#9b948d">Recent</div>
+<div class="item">สรุปรายงานเหตุการณ์</div><div class="item">เรียบเรียงข้อร้องเรียน</div><div class="item">วิเคราะห์เอกสารยาว</div>
+<div class="profile">● PAT · Account</div>
+</aside>
+<section class="work" id="work">
+<div class="home">
+<div class="welcome" id="welcome"><div class="claudelogo">✳ Claude</div><h1>How can I help you today?</h1></div>
+<div class="suggestions" id="suggestions"><div class="suggest">อ่านเอกสารยาวและสรุปประเด็น</div><div class="suggest">จัดโครงสร้างรายงาน</div><div class="suggest">เรียบเรียงข้อความให้เป็นระบบ</div><div class="suggest">ช่วยคิดจากบริบทที่มีรายละเอียด</div></div>
+<div class="composer" id="composer"><textarea id="promptBox" placeholder="Message Claude"></textarea><div class="toolrow"><span class="pill">＋ Attach files</span><span class="pill">Project</span><button class="send" id="sendBtn">↑</button></div></div>
+<div class="panel" id="strengthPanel"><h2>จุดที่ Claude เหมาะกับงานในคลาสนี้</h2><div class="cards"><div class="card"><b>ข้อความยาว</b><p>อ่านบริบทเยอะ จับประเด็น และรักษาโครงสร้างได้ดี</p></div><div class="card"><b>เรียบเรียง</b><p>ช่วยปรับภาษา จัดลำดับ และทำให้อ่านง่ายขึ้น</p></div><div class="card"><b>คิดเป็นระบบ</b><p>เหมาะกับงานที่ต้องอ่านก่อน แล้วค่อยวิเคราะห์หรือเสนอแนวทาง</p></div></div></div>
+<div class="response" id="response"><div class="bubbleuser" id="userBubble"></div><div class="bubbleai"><b>ตัวอย่าง Output</b><br>1. ประเด็นหลักจากรายงาน<br>2. สิ่งที่เกิดขึ้นตามลำดับ<br>3. ประเด็นที่ต้องตรวจสอบเพิ่มเติม<br>4. ร่างแนวทางตอบกลับแบบสุภาพและเป็นระบบ</div></div>
+<div class="spot" id="spot"></div><div class="spotnum" id="spotnum">1</div>
+</div>
+</section>
+</div>
+</section>
+<aside class="guide">
+<div class="eyebrow" id="eyebrow">STEP 1 · START HERE</div><h2 id="tourTitle">รู้จัก Claude แบบเร็ว</h2><p id="tourBody">จุดเด่นของ Claude ในคลาสนี้คือการอ่านบริบทยาว จัดโครง และเรียบเรียงข้อความให้เป็นระบบ</p>
+<div class="info"><b>สิ่งที่ต้องจำ</b><p id="memory">ใช้ Claude เมื่อมีข้อความเยอะและอยากให้ช่วยอ่านให้ครบก่อนสรุป</p></div>
+<div class="info human"><b>Human Check</b><p id="human">ตรวจข้อเท็จจริง ชื่อ วันที่ และบริบทก่อนนำคำตอบไปใช้จริง</p></div>
+<div class="info next"><b>ถัดไปคืออะไร</b><p id="nextText">ดูว่าการแนบไฟล์และอ่านเอกสารช่วยงานแบบไหนได้บ้าง</p></div>
+<div class="signature">RELEARN OS · Optional Demo</div>
+</aside>
+</main>
+<footer><div class="controls"><button class="btn secondary" id="prev">← ก่อนหน้า</button><button class="btn primary" id="next">ถัดไป →</button><button class="btn secondary" id="reset">เริ่มใหม่</button></div><div class="progress"><div id="count">1 / 4</div><div class="bar"><div id="fill"></div></div></div><div class="note">ใช้เมื่อมีเวลา · จบแล้วกลับสไลด์ Section 2 ต่อ</div></footer>
+</div>
+<script>
+const steps=[
+{sim:"Claude Home",eye:"STEP 1 · START HERE",title:"รู้จัก Claude แบบเร็ว",body:"จุดเด่นของ Claude ในคลาสนี้คือการอ่านบริบทยาว จัดโครง และเรียบเรียงข้อความให้เป็นระบบ",memory:"ใช้ Claude เมื่อมีข้อความเยอะและอยากให้ช่วยอ่านให้ครบก่อนสรุป",human:"ตรวจข้อเท็จจริง ชื่อ วันที่ และบริบทก่อนนำคำตอบไปใช้จริง",next:"ดูว่าการแนบไฟล์และอ่านเอกสารช่วยงานแบบไหนได้บ้าง",view:"home",target:"composer"},
+{sim:"Long Context / Documents",eye:"STEP 2 · LONG CONTEXT",title:"งานที่มีบริบทเยอะ",body:"เหมาะกับรายงานเหตุการณ์ ข้อร้องเรียน หรือเอกสารยาวที่ต้องอ่านให้ครบก่อนเรียบเรียง",memory:"ให้งานและบริบทชัด แล้วระบุ Output ที่ต้องการ เช่น สรุปสาระ + ประเด็นเสี่ยง + แนวทางตอบ",human:"อย่าให้ AI สรุปเกินข้อมูลที่มี และต้องเช็กสิ่งที่อ้างว่าเกิดขึ้นจริง",next:"ลอง Prompt กับรายงานเหตุการณ์",view:"strength",target:"strengthPanel"},
+{sim:"Prompt → Structured Output",eye:"STEP 3 · TRY A TASK",title:"ลองงานจริง 1 งาน",body:"ใช้ Prompt สั้น ๆ ให้ Claude อ่านรายงานยาว แล้วขอให้จัดโครงสร้างผลลัพธ์",memory:"ตัวอย่าง: สรุปเหตุการณ์ 5 ประเด็น + ความเสี่ยง + สิ่งที่ต้องทำต่อ",human:"ตรวจชื่อ สถานที่ เวลา และข้อเท็จจริงที่สำคัญ",next:"ดู Output แล้วค่อยปรับภาษาและโครงสร้าง",view:"prompt",target:"composer"},
+{sim:"Review → Refine",eye:"STEP 4 · REVIEW",title:"เรียบเรียงต่อ แล้ว Human Check",body:"หลังได้ Output สามารถสั่งให้สั้นลง เปลี่ยนโทน หรือจัดเป็นหัวข้อ/ตารางได้ โดยไม่ต้องเริ่มใหม่",memory:"Claude เหมาะกับการอ่านก่อน แล้วค่อยเรียบเรียงต่อ",human:"AI ช่วยร่างได้ แต่คนยังต้องตรวจและตัดสินใจก่อนใช้จริง",next:"จบ Optional Demo → กลับสไลด์ Section 2 ต่อ",view:"output",target:"response"}];
+let i=0;const $=id=>document.getElementById(id);
+function hide(){ $("strengthPanel").style.display="none";$("response").style.display="none";$("spot").style.display="none";$("spotnum").style.display="none";$("welcome").style.display="block";$("suggestions").style.display="grid";$("composer").style.display="block";}
+function spotlight(id){const el=$(id),w=$("work").getBoundingClientRect(),r=el.getBoundingClientRect(),s=$("spot"),n=$("spotnum");s.style.left=(r.left-w.left-6)+"px";s.style.top=(r.top-w.top-6)+"px";s.style.width=(r.width+12)+"px";s.style.height=(r.height+12)+"px";s.style.display="block";n.style.left=Math.max(6,r.left-w.left-15)+"px";n.style.top=Math.max(6,r.top-w.top-15)+"px";n.style.display="grid";n.textContent=i+1}
+function apply(v){hide();if(v==="strength"){$("welcome").style.display="none";$("suggestions").style.display="none";$("composer").style.display="none";$("strengthPanel").style.display="block"}else if(v==="prompt"){$("promptBox").value="ช่วยอ่านรายงานเหตุการณ์นี้ แล้วสรุป 5 ประเด็นสำคัญ ความเสี่ยง และ Next Step";}else if(v==="output"){$("promptBox").value="ช่วยจัดคำตอบให้กระชับขึ้น และเรียบเรียงเป็นหัวข้อสำหรับผู้จัดการอาคาร";$("userBubble").textContent=$("promptBox").value;$("response").style.display="block"}else{$("promptBox").value=""}}
+function render(){const s=steps[i];$("simTitle").textContent=s.sim;$("eyebrow").textContent=s.eye;$("tourTitle").textContent=s.title;$("tourBody").textContent=s.body;$("memory").textContent=s.memory;$("human").textContent=s.human;$("nextText").textContent=s.next;$("count").textContent=(i+1)+" / 4";$("fill").style.width=((i+1)*25)+"%";$("prev").disabled=i===0;$("next").textContent=i===3?"จบ Demo ✓":"ถัดไป →";apply(s.view);setTimeout(()=>spotlight(s.target),80)}
+$("sendBtn").onclick=()=>{let v=$("promptBox").value.trim()||"ช่วยอ่านรายงานเหตุการณ์นี้ แล้วสรุป 5 ประเด็นสำคัญ ความเสี่ยง และ Next Step";$("userBubble").textContent=v;$("response").style.display="block"};$("next").onclick=()=>{if(i<3){i++;render()}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<3){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});window.addEventListener("resize",()=>setTimeout(()=>spotlight(steps[i].target),80));render();
+</script>
+</body></html>

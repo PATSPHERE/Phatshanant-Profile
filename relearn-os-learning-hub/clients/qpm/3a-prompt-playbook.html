@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3A Prompt Playbook | RELEARN OS × QPM</title>
+<style>
+*{box-sizing:border-box}
+:root{--b:#1767D1;--c:#36B9E9;--g:#24AB5D;--teal:#0AA8A8;--ink:#17345B;--muted:#66798d;--line:#dce9f2;--soft:#eef8fd;--softg:#effbf4}
+body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:#edf6fb;color:var(--ink)}
+.shell{max-width:900px;margin:auto;padding:18px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.brand-logo{height:44px;width:auto;display:block}
+a{color:var(--b);text-decoration:none;font-weight:800}
+.page{background:white;min-height:1120px;border-radius:22px;padding:34px 38px;margin:0 0 20px;box-shadow:0 18px 40px rgba(32,75,110,.08);position:relative;overflow:hidden}
+.page:before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:linear-gradient(135deg,#e8f7ff,#e9faef);right:-110px;top:-130px}
+.header{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.official-logo{height:54px;width:auto;display:block;position:relative;z-index:2}
+.kicker{display:inline-block;margin-top:14px;background:var(--b);color:white;padding:6px 11px;border-radius:999px;font-size:11px;font-weight:900}
+h1{font-size:38px;line-height:1.12;margin:18px 0 8px;color:var(--b)}h2{font-size:23px;margin:0 0 10px;color:var(--b)}h3{margin:0 0 7px;font-size:16px}
+.lead{font-size:16px;line-height:1.65;color:var(--muted);max-width:710px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.card{border:1px solid var(--line);border-radius:19px;padding:18px;background:#fff;box-shadow:0 9px 24px rgba(40,76,107,.05)}
+.icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--b);font-weight:900;margin-bottom:12px}
+.example{background:#f6fafc;border-radius:13px;padding:12px;font-size:13px;line-height:1.55;margin-top:12px;color:#315674}
+.tip{margin-top:22px;background:linear-gradient(90deg,var(--soft),var(--softg));border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center}
+.tipmark{width:52px;height:52px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-weight:900;color:var(--g);font-size:24px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center;border:1px solid var(--line);border-radius:17px;padding:15px;margin:12px 0}
+.n{width:44px;height:44px;border-radius:14px;background:var(--b);color:white;display:grid;place-items:center;font-weight:900}
+.lines{margin-top:12px}.line{height:27px;border-bottom:1px solid #cfe0ea}
+.checks{background:#fffbe9;border:1px solid #efe2a7;border-radius:18px;padding:18px}
+.checks div{margin:11px 0;font-size:13px}
+.library{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+.lib{border:1px solid var(--line);border-radius:16px;padding:15px;background:#fbfdff}
+.human{margin-top:18px;background:var(--softg);border-radius:17px;padding:16px}
+.footer{position:absolute;left:38px;right:38px;bottom:24px;border-top:2px solid transparent;border-image:linear-gradient(90deg,var(--b),var(--c),var(--g)) 1;padding-top:9px;display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 22px}
+.btn{display:inline-block;background:var(--b);color:white;padding:11px 15px;border-radius:12px;font-weight:900;font-size:13px}.btn.alt{background:white;color:var(--b);border:1px solid var(--line)}
+@media(max-width:720px){.page{min-height:auto;padding:22px 18px 72px;border-radius:18px}.grid3,.grid2,.library{grid-template-columns:1fr}h1{font-size:30px;line-height:1.15;word-break:normal;overflow-wrap:anywhere}.footer{left:18px;right:18px}.shell{padding:10px}.official-logo{height:46px}.brand-logo{height:38px}.tip{grid-template-columns:44px 1fr}.tipmark{width:44px;height:44px}}
+@page{size:A4 portrait;margin:0}@media print{html,body{margin:0!important;padding:0!important;background:#fff!important}.top,.actions{display:none!important}.shell{max-width:none!important;padding:0!important;margin:0!important}.page{width:210mm!important;height:297mm!important;min-height:297mm!important;max-height:297mm!important;overflow:hidden!important;box-shadow:none!important;border-radius:0!important;margin:0!important;padding:16mm 16mm 20mm!important;break-after:page!important;page-break-after:always!important}.page:last-child{break-after:auto!important;page-break-after:auto!important}.footer{bottom:11mm}.page:before{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top"><img class="brand-logo" src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS"><a href="prompt-template.html">← กลับ Section 3A</a></div>
+  <div class="actions"><a class="btn" href="javascript:window.print()">บันทึก Playbook 4 หน้าเป็น PDF</a><a class="btn alt" href="prompt-starter-library.html">เปิด Prompt Starter Library</a></div>
+
+  <section class="page">
+    <div class="header"><div><img class="official-logo" src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS"><div class="kicker">SECTION 03 • 3A PROMPT PLAYBOOK</div></div></div>
+    <h1>Prompt แบบไหน<br>เหมาะกับงานแบบไหน?</h1>
+    <p class="lead">Prompt ไม่ได้มีรูปแบบเดียว เลือกให้พอดีกับงานก่อน ไม่ต้องเริ่มจากสูตรยาวทุกครั้ง</p>
+    <div class="grid3">
+      <div class="card"><div class="icon">1</div><h3>Prompt สั้น</h3><p>เหมาะกับงานง่ายและคำสั่งตรง</p><div class="example">“สรุปข้อความนี้เป็น 5 ประเด็น”</div></div>
+      <div class="card"><div class="icon">2</div><h3>Prompt แบบธรรมชาติ</h3><p>อธิบายเหมือนคุยกับเพื่อนร่วมงาน แล้วค่อย Follow-up</p><div class="example">“มีลูกบ้านแจ้งปัญหาลิฟต์ ช่วยร่างอีเมลตอบให้สุภาพ”</div></div>
+      <div class="card"><div class="icon">3</div><h3>Prompt Template</h3><p>เหมาะกับงานหลายเงื่อนไข งานที่ทำซ้ำ หรือเวลานึกไม่ออกว่าต้องบอกอะไร</p><div class="example">บริบท + ข้อมูล + ผลลัพธ์ + ข้อจำกัด / รูปแบบ</div></div>
+    </div>
+    <div class="tip"><div class="tipmark">✦</div><div><b>RELEARN TIP</b><br><span>Prompt ไม่ต้องยาวที่สุด — ต้องให้ข้อมูลพอสำหรับงานนั้น</span></div></div>
+    <div class="footer"><span>PREPARE • TRANSFORM • PERFORM</span><span>3A PROMPT PLAYBOOK • 01</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><div><img class="official-logo" src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS"><div class="kicker">SECTION 03 • 3A PROMPT PLAYBOOK</div></div></div>
+    <h1>Prompt Template</h1>
+    <p class="lead">โครงช่วยคิด 4 ช่อง ใช้เมื่ออยากให้งานชัดขึ้นและลดการเดาของ AI — เป็น “ราวจับ” ไม่ใช่สูตรตายตัว</p>
+    <div class="step"><div class="n">01</div><div><h3>บริบท</h3><span>เราเป็นใคร / งานนี้เกี่ยวกับอะไร / เกิดอะไรขึ้น</span></div></div>
+    <div class="step"><div class="n" style="background:var(--c)">02</div><div><h3>ข้อมูล</h3><span>มีข้อมูล ไฟล์ ตัวเลข หรือข้อความอะไรให้ AI ใช้</span></div></div>
+    <div class="step"><div class="n" style="background:var(--teal)">03</div><div><h3>ผลลัพธ์</h3><span>อยากให้ AI ช่วยทำอะไร และต้องการ Output แบบไหน</span></div></div>
+    <div class="step"><div class="n" style="background:var(--g)">04</div><div><h3>ข้อจำกัด / รูปแบบ</h3><span>น้ำเสียง ความยาว สิ่งที่ห้าม รูปแบบตาราง หรือเงื่อนไขสำคัญ</span></div></div>
+    <div class="tip"><div class="tipmark">✦</div><div><b>ตัวอย่างจากคลาส</b><br>ฉันเป็นผู้จัดการอาคารชุด → ลูกบ้านแจ้งลิฟต์ขัดข้องหลายครั้ง → ช่วยร่างอีเมลตอบกลับ → สุภาพ กระชับ แสดงความเข้าใจ และไม่รับปากสิ่งที่ยังยืนยันไม่ได้</div></div>
+    <div class="footer"><span>PREPARE • TRANSFORM • PERFORM</span><span>3A PROMPT PLAYBOOK • 02</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><div><img class="official-logo" src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS"><div class="kicker">SECTION 03 • 3A PROMPT PLAYBOOK</div></div></div>
+    <h1>Workshop: สร้าง Prompt ของคุณเอง</h1>
+    <p class="lead">เขียนลงในช่อง แล้วนำ 4 ส่วนมาประกอบเป็น Prompt เดียว</p>
+    <div class="grid2">
+      <div>
+        <div class="card"><h3>1 • บริบท</h3><div class="lines"><div class="line"></div><div class="line"></div></div></div>
+        <div class="card" style="margin-top:12px"><h3>2 • ข้อมูล</h3><div class="lines"><div class="line"></div><div class="line"></div></div></div>
+        <div class="card" style="margin-top:12px"><h3>3 • ผลลัพธ์</h3><div class="lines"><div class="line"></div><div class="line"></div></div></div>
+        <div class="card" style="margin-top:12px"><h3>4 • ข้อจำกัด / รูปแบบ</h3><div class="lines"><div class="line"></div><div class="line"></div></div></div>
+      </div>
+      <div class="checks"><h3>Quick Check</h3><div>✓ เป้าหมายของงานชัดหรือยัง?</div><div>✓ ให้ข้อมูลที่จำเป็นครบหรือยัง?</div><div>✓ บอก Output ที่ต้องการชัดหรือยัง?</div><div>✓ มีข้อจำกัดที่ต้องระวังไหม?</div><div>✓ พร้อมลอง แล้วค่อยปรับหรือยัง?</div></div>
+    </div>
+    <div class="card" style="margin-top:16px;background:var(--soft)"><h3>YOUR COMPLETE PROMPT</h3><div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div></div>
+    <div class="footer"><span>PREPARE • TRANSFORM • PERFORM</span><span>3A PROMPT PLAYBOOK • 03</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><div><img class="official-logo" src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS"><div class="kicker">SECTION 03 • 3A PROMPT PLAYBOOK</div></div></div>
+    <h1>Prompt Library</h1>
+    <p class="lead">ตัวอย่าง Prompt พื้นฐานสำหรับทบทวนแนวคิด หากต้องการ Prompt สำเร็จรูปแยกตามงาน ให้เปิด Prompt Starter Library</p>
+    <div class="library">
+      <div class="lib"><h3>สรุป</h3><p>ช่วยสรุปข้อมูลต่อไปนี้เป็น 5 ประเด็นสำคัญ และแยกสิ่งที่ต้องดำเนินการต่อไว้ท้ายสุด</p></div>
+      <div class="lib"><h3>อธิบาย</h3><p>ช่วยอธิบายเรื่องนี้เป็นภาษาง่าย ๆ สำหรับผู้ที่ไม่มีพื้นฐาน โดยยกตัวอย่างประกอบ</p></div>
+      <div class="lib"><h3>เปรียบเทียบ</h3><p>เปรียบเทียบตัวเลือก A และ B โดยดูจากข้อดี ข้อจำกัด ความเสี่ยง และข้อเสนอแนะ</p></div>
+      <div class="lib"><h3>จัดเป็นตาราง</h3><p>จัดข้อมูลเป็นตาราง: ประเด็นสำคัญ / ผู้รับผิดชอบ / กำหนดเวลา / สถานะ</p></div>
+      <div class="lib"><h3>วางแผน</h3><p>จัดทำแผนงานโดยแบ่งเป้าหมาย ขั้นตอน ผู้รับผิดชอบ ระยะเวลา และจุดติดตาม</p></div>
+      <div class="lib"><h3>Research / ถามต่อ</h3><p>ระบุสิ่งที่รู้ สิ่งที่ยังไม่รู้ และคำถามสำคัญที่ควรถามต่อก่อนตัดสินใจ</p></div>
+    </div>
+    <div class="human"><h3>Human Check ก่อนใช้ผลลัพธ์จริง</h3><p>ข้อเท็จจริง • ข้อมูลส่วนบุคคล • โทนภาษา • การตัดสินใจ</p></div>
+    <div class="tip"><div class="tipmark">✦</div><div><b>ต้องการ Prompt พร้อมใช้มากกว่านี้?</b><br><a href="prompt-starter-library.html">เปิด RELEARN OS Prompt Starter Library →</a></div></div>
+    <div class="footer"><span>PREPARE • TRANSFORM • PERFORM</span><span>3A PROMPT PLAYBOOK • 04</span></div>
+  </section>
+</div>
+</body>
+</html>
