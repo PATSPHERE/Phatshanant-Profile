@@ -4,132 +4,119 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#005BC9">
-<title>3A Prompt Playbook | RELEARN OS × QPM</title>
+<title>Section 3A • Prompt & Template | RELEARN OS × QPM</title>
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-:root{--blue:#005BC9;--blue2:#1767D1;--cyan:#36B9E9;--green:#24AB5D;--ink:#17345B;--muted:#64778D;--line:#D9E8F1;--paper:#fff;--bg:#F6FBFE;--soft:#EEF8FD;--softg:#EFFBF4}
-body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:linear-gradient(145deg,#F9FCFF,#EEF8FD 58%,#F3FBF6);color:var(--ink)}
-.wrap{max-width:1040px;margin:auto;padding:22px}
-.top{display:flex;align-items:center;justify-content:space-between;padding:8px 0 20px;gap:16px}
-.brand{font-weight:900;font-size:23px;color:var(--blue2);letter-spacing:-.02em}.brand span{color:var(--green)}
-.back{font-size:13px;font-weight:800;color:var(--blue2);text-decoration:none}
-.hero{padding:28px 0 24px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.12em;color:var(--blue2)}
-.hero h1{font-size:46px;line-height:1.08;margin:10px 0 12px;letter-spacing:-.02em}
-.hero p{max-width:760px;font-size:17px;line-height:1.7;color:var(--muted);margin:0}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.btn{border:0;border-radius:14px;padding:12px 16px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
-.btn.primary{background:linear-gradient(90deg,var(--blue),var(--blue2));color:#fff}.btn.secondary{background:#fff;color:var(--blue2);border:1px solid var(--line)}
-.map{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 30px}
-.map .m{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 10px 28px rgba(28,75,113,.06)}
-.num{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--soft);color:var(--blue);font-weight:900;margin-bottom:10px}
-.m b{display:block;font-size:14px}.m small{display:block;margin-top:5px;color:var(--muted);line-height:1.45}
-.section{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;margin:18px 0;box-shadow:0 14px 36px rgba(28,75,113,.06)}
-.kicker{font-size:11px;font-weight:900;letter-spacing:.08em;color:var(--blue2)}h2{font-size:26px;margin:7px 0 8px}p.lead{color:var(--muted);line-height:1.65;margin-top:0}
-.relearn-note{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;background:linear-gradient(90deg,#EAF7FD,#EFFBF4);border:1px solid #D7EAF0;border-radius:18px;padding:16px;margin-top:16px}
-.relearn-badge{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--line);font-size:18px;font-weight:900;color:var(--blue2)}
-.relearn-note b{color:var(--blue)}.relearn-note p{margin:4px 0 0;line-height:1.55;color:#516A82;font-size:14px}
-.fit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.fit{border:1px solid var(--line);border-radius:16px;padding:16px;background:#FBFDFF}.fit h3{font-size:16px;margin:0 0 7px}.fit p{font-size:13px;line-height:1.55;color:var(--muted);margin:0}.fit code{display:block;margin-top:10px;background:#F2F7FA;padding:9px;border-radius:10px;white-space:normal;font-family:inherit;color:#2D567C;font-size:12px}
-.template-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}.box{border:1px solid var(--line);border-radius:17px;padding:17px;background:#FCFEFF}.box .n{font-size:11px;font-weight:900;color:var(--blue2)}.box h3{margin:5px 0 6px;font-size:17px}.box p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
-.example{margin-top:16px;padding:16px;border-radius:16px;background:#F7FBFE;border-left:4px solid var(--cyan);font-size:14px;line-height:1.65}
-.builder{display:grid;grid-template-columns:1fr 1fr;gap:18px}.fields label{display:block;font-size:12px;font-weight:800;margin:0 0 6px;color:#365B7B}.fields textarea{width:100%;min-height:92px;border:1px solid #CCDDE8;border-radius:14px;padding:12px 13px;font-family:inherit;font-size:14px;resize:vertical;outline:none;background:#FCFEFF;margin-bottom:12px}.fields textarea:focus{border-color:#79B5E9;box-shadow:0 0 0 3px #EAF4FD}
-.preview{background:#F6FAFD;border:1px solid var(--line);border-radius:18px;padding:18px;min-height:100%}.preview h3{margin:0 0 10px;font-size:17px}.prompt{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-height:220px;line-height:1.65;font-size:14px}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.mini{border:0;border-radius:11px;padding:10px 12px;font-weight:800;cursor:pointer}.mini.blue{background:var(--blue);color:#fff}.mini.light{background:#EAF4FD;color:var(--blue2)}
-.library{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}.lib{border:1px solid var(--line);border-radius:16px;padding:16px;background:#FCFEFF}.lib h3{margin:0 0 8px;font-size:16px}.lib p{margin:0;color:#425F7A;line-height:1.6;font-size:13px}.copy{margin-top:10px;width:100%;border:0;border-radius:10px;padding:9px 10px;background:#EEF6FC;color:var(--blue2);font-weight:800;cursor:pointer;text-align:left}
-.human{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.check{background:#FBFDFE;border:1px solid var(--line);border-radius:14px;padding:13px}.check b{font-size:13px}.check span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:5px}
-.footer{padding:26px 0 38px;color:#7A8A9A;font-size:11px;border-top:1px solid var(--line);margin-top:26px}.footer strong{color:var(--blue2)}.footer strong span{color:var(--green)}
-@media(max-width:780px){.hero h1{font-size:38px}.map{grid-template-columns:1fr 1fr}.fit-grid,.template-grid,.builder,.library,.human{grid-template-columns:1fr}}
-@media(max-width:480px){.wrap{padding:16px}.map{grid-template-columns:1fr}.hero h1{font-size:33px}.section{padding:18px}}
-@media print{body{background:#fff}.top,.actions,.back,.row,.copy{display:none!important}.wrap{max-width:none;padding:0}.section{box-shadow:none;break-inside:avoid}.builder{display:none}.hero{padding-top:0}.footer{margin-top:12px}}
+:root{--blue:#1767D1;--royal:#005BC9;--cyan:#36B9E9;--teal:#0AA8A8;--green:#24AB5D;--ink:#17345B;--muted:#64778D;--line:#D9E8F1;--soft:#EEF8FD;--softg:#EFFBF4}
+body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:linear-gradient(145deg,#FBFDFF,#F0F9FD 58%,#F5FBF7);color:var(--ink)}
+.wrap{max-width:1080px;margin:auto;padding:22px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0 22px}
+.logo{height:62px;width:auto;display:block}
+.back{font-size:13px;font-weight:800;color:var(--blue);text-decoration:none}
+.hero{position:relative;background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px 32px;overflow:hidden;box-shadow:0 16px 42px rgba(28,75,113,.07)}
+.hero:after{content:"";position:absolute;width:330px;height:330px;border-radius:50%;right:-150px;top:-170px;background:linear-gradient(145deg,#E8F8FF,#E8FAEF);z-index:0}
+.hero>*{position:relative;z-index:1}.ey{font-size:11px;font-weight:900;letter-spacing:.12em;color:var(--blue)}
+h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{font-size:17px;line-height:1.7;color:var(--muted);max-width:760px;margin:0}
+.pill{display:inline-block;background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff;padding:7px 12px;border-radius:999px;font-size:11px;font-weight:900;margin-top:18px}
+.section{margin-top:22px}
+.section h2{font-size:25px;margin:0 0 8px;color:var(--ink)}.section p.lead{margin:0 0 16px;color:var(--muted);line-height:1.6}
+.asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.asset{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 30px rgba(28,75,113,.06);display:flex;flex-direction:column;min-height:235px}
+.badge{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--soft);color:var(--blue);font-weight:900;font-size:18px}
+.asset h3{font-size:18px;margin:15px 0 7px}.asset p{font-size:13px;line-height:1.55;color:var(--muted);margin:0 0 14px}.asset .why{font-size:12px;line-height:1.5;color:#3E5F7D;background:#F8FBFD;border-radius:12px;padding:10px;margin-top:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;border-radius:12px;padding:11px 14px;text-decoration:none;font-weight:900;font-size:13px}
+.primary{background:linear-gradient(90deg,var(--royal),var(--blue));color:#fff}.secondary{background:#fff;color:var(--blue);border:1px solid var(--line)}
+.builder{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 12px 30px rgba(28,75,113,.05)}
+.builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.fields label{display:block;font-size:12px;font-weight:800;margin:0 0 6px;color:#365B7B}.fields textarea{width:100%;min-height:84px;border:1px solid #CCDDE8;border-radius:14px;padding:12px 13px;font-family:inherit;font-size:14px;resize:vertical;margin-bottom:12px;background:#FCFEFF}.preview{background:#F6FAFD;border:1px solid var(--line);border-radius:18px;padding:18px}.preview h3{margin:0 0 10px}.prompt{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-height:260px;line-height:1.65;font-size:14px}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.mini{border:0;border-radius:11px;padding:10px 12px;font-weight:800;cursor:pointer}.mini.blue{background:var(--blue);color:#fff}.mini.light{background:#EAF4FD;color:var(--blue)}
+.human{margin-top:22px;background:linear-gradient(90deg,#EAF7FD,#EFFBF4);border:1px solid #D7EAF0;border-radius:22px;padding:20px}.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.check{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px}.check b{font-size:13px}.check span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:5px}
+.footer{padding:28px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:#7A8A9A;font-size:11px}
+@media(max-width:780px){.asset-grid,.builder-grid,.checks{grid-template-columns:1fr}.hero{padding:24px 20px}.hero h1{font-size:35px}.logo{height:52px}.wrap{padding:16px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <img src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS" style="height:52px;width:auto">
-    <a class="back" href="home.html">← Learning Hub</a>
+    <img class="logo" src="../../../ai-business-transformation-academy/assets/relearnos-logo.png" alt="RELEARN OS">
+    <a class="back" href="home.html">← QPM Learning Hub</a>
   </div>
 
   <section class="hero">
-    <div class="eyebrow">SECTION 3A • PROMPT & TEMPLATE</div>
-    <h1>3A Prompt Playbook</h1>
-    <p>สื่อประกอบจาก Section 3 ที่ช่วยให้หยิบ Prompt ไปใช้กับงานจริงได้ทันที — ไม่ต้องจำสูตร และไม่จำเป็นต้องเติมทุกช่องทุกครั้ง</p>
-    <div class="actions">
-      <a class="btn primary" href="3a-prompt-playbook.html">เปิด 3A Prompt Playbook 4 หน้า</a>\n      <a class="btn secondary" href="prompt-starter-library.html">เปิด Prompt Starter Library</a>\n      <a class="btn secondary" href="#builder">ลอง Interactive Prompt Builder</a>
-      
+    <div class="ey">SECTION 03 • 3A PROMPT & TEMPLATE</div>
+    <h1>ทำงานกับ AI<br>โดยไม่ต้องจำสูตร</h1>
+    <p>เลือกสื่อให้ตรงกับสิ่งที่ต้องการ — ทบทวนหลักคิด, หยิบ Prompt สำเร็จรูปไปใช้ หรือสร้าง Prompt ของตัวเองจากกรอบ 4 ช่อง</p>
+    <div class="pill">LEARN • USE • PRACTICE</div>
+  </section>
+
+  <section class="section">
+    <h2>3A Learning Assets</h2>
+    <p class="lead">สามชิ้นนี้ทำหน้าที่ต่างกัน และเชื่อมกันเป็นระบบเดียว</p>
+    <div class="asset-grid">
+      <article class="asset">
+        <div class="badge">A</div>
+        <h3>3A Prompt Playbook</h3>
+        <p>เอกสาร 4 หน้า สำหรับเรียน ทบทวน และพิมพ์เก็บ ใช้ Visual System เดียวกับ RELEARN OS Master Document</p>
+        <div class="why">เหมาะเมื่อ: อยากเห็นภาพรวม Prompt, Template 4 ช่อง และ Workshop ในชุดเดียว</div>
+        <a class="btn primary" href="3a-prompt-playbook.html">เปิด Playbook 4 หน้า</a>
+      </article>
+
+      <article class="asset">
+        <div class="badge" style="background:#EEF9F4;color:#24AB5D">B</div>
+        <h3>Prompt Starter Library</h3>
+        <p>Prompt สำเร็จรูปแยกตามงาน เช่น Email, Meeting, Excel/Data, Document, Compare, Plan และ Research</p>
+        <div class="why">เหมาะเมื่อ: ต้องการ Prompt ไปใช้กับงานทันที ไม่อยากเริ่มเขียนจากศูนย์</div>
+        <a class="btn secondary" href="prompt-starter-library.html">เปิด Prompt Starter Library</a>
+      </article>
+
+      <article class="asset">
+        <div class="badge" style="background:#EFFBFB;color:#0AA8A8">C</div>
+        <h3>Interactive Prompt Builder</h3>
+        <p>เติม บริบท • ข้อมูล • ผลลัพธ์ • ข้อจำกัด แล้วประกอบเป็น Prompt เดียวเพื่อ Copy ไปทดลอง</p>
+        <div class="why">เหมาะเมื่อ: อยากฝึกคิด Prompt ด้วยโครงของ RELEARN OS</div>
+        <a class="btn secondary" href="#builder">ลองสร้าง Prompt</a>
+      </article>
     </div>
   </section>
 
-  <section class="section" style="margin-top:4px">\n    <div class="kicker">SECTION 3A • LEARNING HUB RESOURCES</div>\n    <h2>เลือกสื่อที่ต้องการใช้</h2>\n    <div class="map">\n      <a class="m" href="3a-prompt-playbook.html" style="text-decoration:none;color:inherit"><div class="num">A</div><b>3A Prompt Playbook</b><small>อ่าน • ทบทวน • บันทึก PDF 4 หน้า</small></a>\n      <a class="m" href="prompt-starter-library.html" style="text-decoration:none;color:inherit"><div class="num">B</div><b>Prompt Starter Library</b><small>เลือกงาน • Copy Prompt • ใช้ทันที</small></a>\n      <a class="m" href="#builder" style="text-decoration:none;color:inherit"><div class="num">C</div><b>Interactive Prompt Builder</b><small>เติม 4 ช่อง • ประกอบ Prompt • Copy</small></a>\n    </div>\n  </section>\n\n  <section class="section" id="builder">
-    <div class="kicker">3A-3 • INTERACTIVE PROMPT BUILDER</div>
+  <section class="builder" id="builder">
+    <div class="ey">3A • INTERACTIVE PROMPT BUILDER</div>
     <h2>ลองประกอบ Prompt ของคุณเอง</h2>
-    <p class="lead">เติมเฉพาะช่องที่เกี่ยวข้อง แล้วระบบจะรวมให้เป็น Prompt เดียวเพื่อ Copy ไปทดลองกับ AI ที่คุณใช้</p>
-    <div class="builder">
+    <p class="lead">เติมเฉพาะช่องที่เกี่ยวข้อง ไม่จำเป็นต้องครบทุกช่องทุกครั้ง</p>
+    <div class="builder-grid">
       <div class="fields">
-        <label>1. บริบท</label>
-        <textarea id="context" placeholder="เช่น ฉันเป็นผู้จัดการอาคารชุด ดูแลการสื่อสารกับลูกบ้าน"></textarea>
-        <label>2. ข้อมูล</label>
-        <textarea id="data" placeholder="เช่น ลูกบ้านแจ้งว่าลิฟต์ขัดข้องหลายครั้ง และต้องการทราบแนวทางแก้ไข"></textarea>
-        <label>3. ผลลัพธ์ที่ต้องการ</label>
-        <textarea id="output" placeholder="เช่น ช่วยร่างอีเมลตอบกลับลูกบ้าน"></textarea>
-        <label>4. ข้อจำกัด / รูปแบบ</label>
-        <textarea id="constraint" placeholder="เช่น สุภาพ กระชับ แสดงความเข้าใจ และไม่รับปากสิ่งที่ยังยืนยันไม่ได้"></textarea>
-        <div class="row">
-          <button class="mini light" onclick="loadExample()">ใส่ตัวอย่างจากคลาส</button>
-          <button class="mini light" onclick="clearAll()">ล้างข้อมูล</button>
-        </div>
+        <label>1. บริบท</label><textarea id="context" placeholder="เช่น ฉันเป็นผู้จัดการอาคารชุด ดูแลการสื่อสารกับลูกบ้าน"></textarea>
+        <label>2. ข้อมูล</label><textarea id="data" placeholder="เช่น ลูกบ้านแจ้งว่าลิฟต์ขัดข้องหลายครั้ง และต้องการทราบแนวทางแก้ไข"></textarea>
+        <label>3. ผลลัพธ์ที่ต้องการ</label><textarea id="output" placeholder="เช่น ช่วยร่างอีเมลตอบกลับลูกบ้าน"></textarea>
+        <label>4. ข้อจำกัด / รูปแบบ</label><textarea id="constraint" placeholder="เช่น สุภาพ กระชับ แสดงความเข้าใจ และไม่รับปากสิ่งที่ยังยืนยันไม่ได้"></textarea>
+        <div class="row"><button class="mini light" onclick="loadExample()">ใส่ตัวอย่างจากคลาส</button><button class="mini light" onclick="clearAll()">ล้างข้อมูล</button></div>
       </div>
       <div class="preview">
         <h3>Prompt Preview</h3>
         <div class="prompt" id="promptPreview">เริ่มพิมพ์ทางซ้าย แล้ว Prompt จะประกอบตรงนี้</div>
-        <div class="row">
-          <button class="mini blue" onclick="copyPrompt()">Copy Prompt</button>
-        </div>
+        <div class="row"><button class="mini blue" onclick="copyPrompt()">Copy Prompt</button></div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="kicker">3A • NEXT RESOURCE</div>
-    <h2>ต้องการ Prompt พร้อมใช้?</h2>
-    <p class="lead">เปิด Prompt Starter Library เพื่อเลือก Prompt ตามงาน แล้ว Copy ไปใช้ได้ทันที</p>
-    <div class="actions"><a class="btn primary" href="prompt-starter-library.html">เปิด Prompt Starter Library →</a></div>
-  </section>
-
-  <section class="section">
-    <div class="kicker">HUMAN CHECK</div>
+  <section class="human">
+    <div class="ey">HUMAN CHECK</div>
     <h2>ก่อนใช้ผลลัพธ์จริง — คนต้องตรวจ</h2>
-    <div class="human">
+    <div class="checks">
       <div class="check"><b>ข้อเท็จจริง</b><span>ข้อมูลถูก ครบ และอ้างอิงได้หรือไม่</span></div>
       <div class="check"><b>ข้อมูลส่วนบุคคล</b><span>มี PDPA หรือข้อมูลลับที่ไม่ควรใส่หรือไม่</span></div>
       <div class="check"><b>โทนภาษา</b><span>เหมาะกับผู้รับและองค์กรหรือไม่</span></div>
       <div class="check"><b>การตัดสินใจ</b><span>AI ช่วยร่างได้ แต่คนต้องตรวจและรับผิดชอบ</span></div>
     </div>
   </section>
-  <div class="footer"><strong>RELEARN <span>OS</span></strong> × QPM • PREPARE • TRANSFORM • PERFORM</div>
+
+  <div class="footer">RELEARN OS × QPM • PREPARE • TRANSFORM • PERFORM</div>
 </div>
 <script>
 const ids=['context','data','output','constraint'];
-function build(){
-  const vals=ids.map(id=>document.getElementById(id).value.trim()).filter(Boolean);
-  document.getElementById('promptPreview').textContent=vals.length?vals.join('\n'):'เริ่มพิมพ์ทางซ้าย แล้ว Prompt จะประกอบตรงนี้';
-}
+function build(){const vals=ids.map(id=>document.getElementById(id).value.trim()).filter(Boolean);document.getElementById('promptPreview').textContent=vals.length?vals.join('\n'):'เริ่มพิมพ์ทางซ้าย แล้ว Prompt จะประกอบตรงนี้';}
 ids.forEach(id=>document.getElementById(id).addEventListener('input',build));
-function loadExample(){
-  document.getElementById('context').value='ฉันเป็นผู้จัดการอาคารชุด ดูแลการสื่อสารกับลูกบ้าน';
-  document.getElementById('data').value='ลูกบ้านแจ้งว่าลิฟต์ขัดข้องหลายครั้ง และต้องการทราบแนวทางแก้ไข';
-  document.getElementById('output').value='ช่วยร่างอีเมลตอบกลับลูกบ้าน';
-  document.getElementById('constraint').value='ใช้ภาษาสุภาพ กระชับ แสดงความเข้าใจ และไม่รับปากสิ่งที่ยังยืนยันไม่ได้';
-  build();
-}
+function loadExample(){document.getElementById('context').value='ฉันเป็นผู้จัดการอาคารชุด ดูแลการสื่อสารกับลูกบ้าน';document.getElementById('data').value='ลูกบ้านแจ้งว่าลิฟต์ขัดข้องหลายครั้ง และต้องการทราบแนวทางแก้ไข';document.getElementById('output').value='ช่วยร่างอีเมลตอบกลับลูกบ้าน';document.getElementById('constraint').value='ใช้ภาษาสุภาพ กระชับ แสดงความเข้าใจ และไม่รับปากสิ่งที่ยังยืนยันไม่ได้';build();}
 function clearAll(){ids.forEach(id=>document.getElementById(id).value='');build()}
-async function copyPrompt(){
-  const t=document.getElementById('promptPreview').textContent;
-  if(t.startsWith('เริ่มพิมพ์'))return;
-  await navigator.clipboard.writeText(t);
-}
-async function copyText(id,btn){
-  await navigator.clipboard.writeText(document.getElementById(id).textContent);
-  const old=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=old,1200);
-}
+async function copyPrompt(){const t=document.getElementById('promptPreview').textContent;if(t.startsWith('เริ่มพิมพ์'))return;await navigator.clipboard.writeText(t);}
 </script>
 </body>
 </html>
