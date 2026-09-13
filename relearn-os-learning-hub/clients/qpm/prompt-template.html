@@ -20,10 +20,10 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{
 .pill{display:inline-block;background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff;padding:7px 12px;border-radius:999px;font-size:11px;font-weight:900;margin-top:18px}
 .section{margin-top:22px}
 .section h2{font-size:25px;margin:0 0 8px;color:var(--ink)}.section p.lead{margin:0 0 16px;color:var(--muted);line-height:1.6}
-.asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.asset-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .asset{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 30px rgba(28,75,113,.06);display:flex;flex-direction:column;min-height:235px}
 .badge{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--soft);color:var(--blue);font-weight:900;font-size:18px}
-.asset h3{font-size:18px;margin:15px 0 7px}.asset p{font-size:13px;line-height:1.55;color:var(--muted);margin:0 0 14px}.asset .why{font-size:12px;line-height:1.5;color:#3E5F7D;background:#F8FBFD;border-radius:12px;padding:10px;margin-top:auto}
+.asset h3{font-size:18px;margin:15px 0 7px}.asset p{font-size:13px;line-height:1.55;color:var(--muted);margin:0 0 14px}.asset .why{font-size:12px;line-height:1.5;color:#3E5F7D;background:#F8FBFD;border-radius:12px;padding:10px;margin-top:auto}.intent{font-size:11px;font-weight:900;letter-spacing:.08em;color:var(--teal);margin-top:12px}.status{display:inline-block;margin-top:10px;padding:6px 10px;border-radius:999px;background:#F3F6F8;color:#718096;font-size:11px;font-weight:800}.btn.disabled{pointer-events:none;opacity:.55;background:#F5F7F9;color:#7C8B99;border:1px solid #E0E7EC}
 .btn{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;border-radius:12px;padding:11px 14px;text-decoration:none;font-weight:900;font-size:13px}
 .primary{background:linear-gradient(90deg,var(--royal),var(--blue));color:#fff}.secondary{background:#fff;color:var(--blue);border:1px solid var(--line)}
 .builder{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 12px 30px rgba(28,75,113,.05)}
@@ -53,33 +53,56 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{
   </section>
 
   <section class="section">
-    <h2>3A Learning Assets</h2><div class="ey">PLAYBOOK • PROMPT LIBRARY • INTERACTIVE BUILDER</div>
-    <p class="lead">สามชิ้นนี้เป็นชุดสื่อเดียวกันของ Section 3A แต่ทำหน้าที่ต่างกัน: เรียนและทบทวน • หยิบไปใช้ • ฝึกสร้างเอง</p>
+    <h2>เลือกสิ่งที่คุณต้องการตอนนี้</h2>
+    <div class="ey">SECTION 3A • PROMPT & TEMPLATE</div>
+    <p class="lead">ไม่ต้องดาวน์โหลดทุกอย่าง เลือกเฉพาะสิ่งที่ตรงกับงานที่กำลังทำ — ทบทวน • หยิบใช้ • จำ Shortcut • ใช้ข้ามเครื่องมือ</p>
+
     <div class="asset-grid">
       <article class="asset">
-        <div class="badge">A</div>
+        <div class="badge">1</div>
+        <div class="intent">อยากทบทวนสิ่งที่เรียน</div>
         <h3>3A Prompt Playbook</h3>
-        <p>เอกสาร 4 หน้า สำหรับเรียน ทบทวน และพิมพ์เก็บ ใช้ Visual System เดียวกับ RELEARN OS Master Document</p>
-        <div class="why">เหมาะเมื่อ: อยากเห็นภาพรวม Prompt, Template 4 ช่อง และ Workshop ในชุดเดียว</div>
-        <a class="btn primary" href="3a-prompt-playbook.html">เปิด Playbook 4 หน้า</a>
+        <p>4 หน้าที่ผ่านการ Proof แล้ว: รูปแบบ Prompt • Prompt Template • Workshop • Prompt Library</p>
+        <div class="why">เหมาะเมื่อ: อยากกลับมาดูภาพรวมของ 3A ในชุดเดียว ก่อนเริ่มทำงานจริง</div>
+        <a class="btn primary" href="3a-prompt-playbook.html">เปิดดู Playbook 4 หน้า</a>
       </article>
 
       <article class="asset">
-        <div class="badge" style="background:#EEF9F4;color:#24AB5D">B</div>
-        <h3>Prompt Starter Library</h3>
-        <p>Prompt สำเร็จรูปแยกตามงาน เช่น Email, Meeting, Excel/Data, Document, Compare, Plan และ Research</p>
-        <div class="why">เหมาะเมื่อ: ต้องการ Prompt ไปใช้กับงานทันที ไม่อยากเริ่มเขียนจากศูนย์</div>
-        <a class="btn secondary" href="prompt-starter-library.html">เปิด Prompt Starter Library</a>
+        <div class="badge" style="background:#EEF9F4;color:#24AB5D">2</div>
+        <div class="intent">อยากได้ Prompt ไปใช้เดี๋ยวนี้</div>
+        <h3>Prompt พร้อมใช้</h3>
+        <p>เลือกตามงานจริง เช่น Email • Meeting • Excel/Data • Document • Compare • Plan • Research แล้ว Copy ไปใช้ได้ทันที</p>
+        <div class="why">เหมาะเมื่อ: มีงานอยู่ตรงหน้าและไม่ต้องการเริ่มเขียน Prompt จากศูนย์</div>
+        <a class="btn secondary" href="prompt-starter-library.html">เปิด Prompt พร้อมใช้</a>
       </article>
 
       <article class="asset">
-        <div class="badge" style="background:#EFFBFB;color:#0AA8A8">C</div>
-        <h3>Interactive Prompt Builder</h3>
-        <p>เติม บริบท • ข้อมูล • ผลลัพธ์ • ข้อจำกัด แล้วประกอบเป็น Prompt เดียวเพื่อ Copy ไปทดลอง</p>
-        <div class="why">เหมาะเมื่อ: อยากฝึกคิด Prompt ด้วยโครงของ RELEARN OS</div>
-        <a class="btn secondary" href="#builder">ลองสร้าง Prompt</a>
+        <div class="badge" style="background:#FFF8E8;color:#A86A00">3</div>
+        <div class="intent">อยากจำคำสั่งสั้น ๆ</div>
+        <h3>Prompt Shortcuts</h3>
+        <p>คำสั่งสั้นแบบจำง่าย เช่น สรุป • เปรียบเทียบ • Rewrite • ทำตาราง • วางแผน • ตรวจความครบ เพื่อหยิบใช้โดยไม่ต้องจำ Prompt ยาว</p>
+        <div class="why">เหมาะเมื่อ: ต้องการ “สูตรสั้น” ที่จำติดหัวและใช้ซ้ำได้ในงานประจำ</div>
+        <span class="status">กำลังเพิ่มชุด Shortcut ของ 3A</span>
+        <span class="btn disabled">Prompt Shortcuts</span>
+      </article>
+
+      <article class="asset">
+        <div class="badge" style="background:#EFFBFB;color:#0AA8A8">4</div>
+        <div class="intent">อยากใช้ได้กับหลาย AI</div>
+        <h3>Universal Prompts</h3>
+        <p>Prompt กลางที่ใช้เป็นจุดเริ่มต้นได้กับ ChatGPT • Gemini • Claude • Copilot แล้วค่อยปรับตามบริบทและเครื่องมือ</p>
+        <div class="why">เหมาะเมื่อ: ไม่อยากผูกวิธีทำงานกับ AI ตัวเดียว และต้องการ Prompt ที่พกไปใช้ข้ามเครื่องมือได้</div>
+        <span class="status">กำลังเพิ่มชุด Universal ของ 3A</span>
+        <span class="btn disabled">Universal Prompts</span>
       </article>
     </div>
+  </section>
+
+  <section class="section">
+    <h2>ลองทำด้วยตัวเอง</h2>
+    <div class="ey">PRACTICE • INTERACTIVE PROMPT BUILDER</div>
+    <p class="lead">เมื่อเข้าใจหลักแล้ว ค่อยใช้ Builder ด้านล่างเพื่อประกอบ Prompt จากงานจริงของคุณ — ไม่จำเป็นต้องกรอกครบทุกช่อง</p>
+    <a class="btn secondary" href="#builder" style="margin-top:0">ไปที่ Interactive Prompt Builder</a>
   </section>
 
   <section class="builder" id="builder">
