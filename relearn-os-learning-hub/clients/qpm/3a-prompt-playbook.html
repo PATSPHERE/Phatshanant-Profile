@@ -30,9 +30,9 @@ html,body{margin:0;background:var(--bg);font-family:Arial,"Noto Sans Thai",sans-
   .toolbar,.intro,.caption,.footer{display:none!important}
   .shell{max-width:none;padding:0}
   .pages{display:block}
-  .page{border:0;border-radius:0;box-shadow:none;margin:0;break-after:page;page-break-after:always;height:281mm;display:flex;align-items:center;justify-content:center}
-  .page:last-child{break-after:auto;page-break-after:auto}
-  .page img{max-width:194mm;max-height:281mm;width:auto;height:auto}
+  .page{border:0;border-radius:0;box-shadow:none;margin:0 0 8mm;break-after:page;page-break-after:always;height:auto;display:block;overflow:visible}
+  .page:last-child{break-after:auto;page-break-after:auto;margin-bottom:0}
+  .page img{display:block;width:100%!important;max-width:none!important;max-height:none!important;height:auto!important;object-fit:contain}
 }
 </style>
 </head>
