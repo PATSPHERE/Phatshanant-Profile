@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Section 6 · AI Work Playbook Builder | RELEARN OS × QPM</title>
+<style>
+:root{--blue:#1767d1;--cyan:#2db8d8;--green:#35ad62;--ink:#17345b;--muted:#64748b;--line:#d9e8f1;--bg:#eef7fb;--warn:#fff5d6}
+*{box-sizing:border-box}html,body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:1180px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:900;font-size:22px}.brand .r{color:var(--blue)}.brand .o{color:var(--green)}.badge{padding:7px 11px;border-radius:999px;background:#eaf3ff;color:var(--blue);font-size:11px;font-weight:900}
+.hero{padding:26px 0 16px}.hero h1{font-size:38px;margin:6px 0 8px}.hero p{margin:0;color:var(--muted);line-height:1.6}
+.layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 30px rgba(28,75,113,.06)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{border:1px solid #dce7ef;border-radius:15px;padding:12px;background:#fbfdff}.field label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900;margin-bottom:7px}.num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff;font-size:11px}.field:nth-child(even) .num{background:var(--green)}
+textarea{width:100%;min-height:76px;border:1px solid #d3e0e9;border-radius:10px;padding:10px;font:inherit;font-size:12px;resize:vertical;background:#fff}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.btn{border:0;border-radius:10px;padding:10px 13px;font-weight:900;cursor:pointer}.primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff}.secondary{background:#edf3f7;color:#35516f}
+.preview{white-space:pre-wrap;min-height:520px;background:#f8fbfe;border:1px dashed #cbdbe7;border-radius:16px;padding:16px;font-size:12px;line-height:1.65;color:#31465d;overflow:auto}.tip{margin-top:12px;padding:12px;border-radius:13px;background:var(--warn);border:1px solid #ecd98a;font-size:11px;line-height:1.55}
+.footer{text-align:center;color:#7c8b9b;font-size:11px;padding:25px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.hero h1{font-size:32px}}
+</style></head><body>
+<div class="wrap">
+<div class="top"><div class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></div><span class="badge">SECTION 6 · AI WORK PLAYBOOK</span></div>
+<section class="hero"><h1>AI Work Playbook Builder</h1><p>ใช้ 10 ช่องตามสไลด์ Master เพื่อออกแบบ AI Flow ที่ทำซ้ำได้ ควบคุมได้ และมี Human Check ชัดเจน</p></section>
+<div class="layout">
+<section class="panel"><div class="fields">
+<div class="field"><label><span class="num">1</span>Use Case — กำลังแก้งานอะไร</label><textarea id="usecase" placeholder="เช่น สรุปอีเมลร้องเรียนลูกบ้าน"></textarea></div>
+<div class="field"><label><span class="num">2</span>Trigger — เริ่มใช้เมื่อไร</label><textarea id="trigger" placeholder="เช่น เมื่อมีอีเมลร้องเรียนเข้ากล่องกลาง"></textarea></div>
+<div class="field"><label><span class="num">3</span>Input — ต้องใช้ข้อมูลอะไร</label><textarea id="input" placeholder="เช่น เนื้อหาอีเมล, ประเภทเคส, นโยบายที่เกี่ยวข้อง"></textarea></div>
+<div class="field"><label><span class="num">4</span>Workflow — ทำตามลำดับอย่างไร</label><textarea id="workflow" placeholder="เช่น อ่านเคส → แยกประเด็น → ร่างคำตอบ → ตรวจ → ส่ง"></textarea></div>
+<div class="field"><label><span class="num">5</span>Starter Prompt — คำสั่งเริ่มต้น</label><textarea id="prompt" placeholder="เขียน Prompt เริ่มต้นที่ทีมใช้ซ้ำได้"></textarea></div>
+<div class="field"><label><span class="num">6</span>Expected Output — ผลลัพธ์หน้าตาแบบไหน</label><textarea id="output" placeholder="เช่น Summary 5 บรรทัด + Draft Reply + Next Action"></textarea></div>
+<div class="field"><label><span class="num">7</span>Human Check — คนต้องตรวจอะไร</label><textarea id="human" placeholder="เช่น fact, tone, policy, commitment"></textarea></div>
+<div class="field"><label><span class="num">8</span>Risk — อะไรอาจผิดพลาด</label><textarea id="risk" placeholder="เช่น ข้อมูลส่วนบุคคล, AI เดา, ตีความนโยบายผิด"></textarea></div>
+<div class="field"><label><span class="num">9</span>Stop Condition — เมื่อไรต้องหยุด</label><textarea id="stop" placeholder="เช่น ข้อมูลไม่ครบ / เคสกฎหมาย / ความปลอดภัย / AI ไม่แน่ใจ"></textarea></div>
+<div class="field"><label><span class="num">10</span>Escalation — ส่งต่อให้ใคร</label><textarea id="escalation" placeholder="เช่น ผู้จัดการอาคาร / Legal / DPO / Technical"></textarea></div>
+</div>
+<div class="actions"><button class="btn primary" onclick="build()">สร้าง Playbook</button><button class="btn secondary" onclick="loadExample()">ใส่ตัวอย่าง</button><button class="btn secondary" onclick="copyPlaybook()">Copy</button><button class="btn secondary" onclick="clearAll()">Reset</button></div>
+<div class="tip"><b>Key Takeaway:</b> Human Check / Risk / Stop Condition / Escalation คือส่วนที่ทำให้ Playbook “ใช้ในงานจริงได้” ไม่ใช่แค่ Prompt สวย ๆ</div>
+</section>
+<section class="panel"><h2 style="margin-top:0">Playbook Preview</h2><div class="preview" id="preview">กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”</div></section>
+</div>
+<div class="footer">RELEARN OS × QPM • PREPARE • TRANSFORM • PERFORM</div>
+</div>
+<script>
+const ids=["usecase","trigger","input","workflow","prompt","output","human","risk","stop","escalation"];
+const labels=["1. Use Case","2. Trigger","3. Input","4. Workflow","5. Starter Prompt","6. Expected Output","7. Human Check","8. Risk","9. Stop Condition","10. Escalation"];
+function build(){const lines=[];ids.forEach((id,i)=>{const v=document.getElementById(id).value.trim();lines.push(labels[i]+"\n"+(v||"ต้องกำหนด"));});document.getElementById("preview").textContent=lines.join("\n\n");}
+function loadExample(){const x={
+usecase:"สรุปอีเมลร้องเรียนลูกบ้านและร่างคำตอบเบื้องต้น",
+trigger:"เมื่อมีอีเมลร้องเรียนเข้ากล่องกลางของฝ่ายอาคาร",
+input:"ข้อความอีเมล + ประเภทเคส + นโยบาย/ข้อมูลที่เกี่ยวข้อง โดยตัดข้อมูลส่วนบุคคลที่ไม่จำเป็น",
+workflow:"อ่านเคส → แยกประเด็น → ตรวจข้อมูลที่ขาด → ร่างคำตอบ → Human Check → ส่ง",
+prompt:"ช่วยสรุปประเด็นจากอีเมลนี้เป็น 5 bullet และร่างคำตอบสุภาพ กระชับ ห้ามรับปากสิ่งที่ยังไม่ยืนยัน",
+output:"Summary 5 bullet + Draft Reply + Next Action",
+human:"Fact / Tone / Policy / Commitment / Privacy",
+risk:"AI เดาเหตุผล, ใช้ข้อมูลส่วนบุคคลเกินจำเป็น, รับปากเกินอำนาจ",
+stop:"ข้อมูลไม่ครบ / เคสกฎหมายหรือความปลอดภัย / มีข้อขัดแย้งกับ SOP",
+escalation:"ผู้จัดการอาคาร หรือผู้รับผิดชอบตามประเภทเคส"};
+Object.entries(x).forEach(([k,v])=>document.getElementById(k).value=v);build();}
+function clearAll(){ids.forEach(id=>document.getElementById(id).value="");document.getElementById("preview").textContent="กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”";}
+async function copyPlaybook(){const t=document.getElementById("preview").innerText;if(t.startsWith("กรอกข้อมูล"))return;await navigator.clipboard.writeText(t);}
+</script></body></html>
