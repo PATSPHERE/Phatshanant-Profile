@@ -108,10 +108,10 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{
   <section class="builder" id="builder">
     <div class="ey">3A • INTERACTIVE PROMPT BUILDER</div>
     <h2>ลองประกอบ Prompt ของคุณเอง</h2>
-    <p class="lead">เติมเฉพาะช่องที่เกี่ยวข้อง ไม่จำเป็นต้องครบทุกช่องทุกครั้ง</p>
+    <p class="lead">เติมเฉพาะช่องที่เกี่ยวข้อง ไม่จำเป็นต้องครบทุกช่องทุกครั้ง — ช่องด้านล่างพิมพ์แก้ไขได้ทันที</p>
     <div class="builder-grid">
       <div class="fields">
-        <label>1. บริบท</label><textarea id="context" placeholder="เช่น ฉันเป็นผู้จัดการอาคารชุด ดูแลการสื่อสารกับลูกบ้าน"></textarea>
+        <label>1. บริบท</label><textarea id="context" autofocus placeholder="เช่น ฉันเป็นผู้จัดการอาคารชุด ดูแลการสื่อสารกับลูกบ้าน"></textarea>
         <label>2. ข้อมูล</label><textarea id="data" placeholder="เช่น ลูกบ้านแจ้งว่าลิฟต์ขัดข้องหลายครั้ง และต้องการทราบแนวทางแก้ไข"></textarea>
         <label>3. ผลลัพธ์ที่ต้องการ</label><textarea id="output" placeholder="เช่น ช่วยร่างอีเมลตอบกลับลูกบ้าน"></textarea>
         <label>4. ข้อจำกัด / รูปแบบ</label><textarea id="constraint" placeholder="เช่น สุภาพ กระชับ แสดงความเข้าใจ และไม่รับปากสิ่งที่ยังยืนยันไม่ได้"></textarea>
@@ -140,8 +140,7 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{
 </div>
 <script>
 const ids=['context','data','output','constraint'];
-function build(){const vals=ids.map(id=>document.getElementById(id).value.trim()).filter(Boolean);document.getElementById('promptPreview').textContent=vals.length?vals.join('
-'):'เริ่มพิมพ์ทางซ้าย แล้ว Prompt จะประกอบตรงนี้';}
+function build(){const vals=ids.map(id=>document.getElementById(id).value.trim()).filter(Boolean);document.getElementById('promptPreview').textContent=vals.length?vals.join('\n'):'เริ่มพิมพ์ทางซ้าย แล้ว Prompt จะประกอบตรงนี้';}
 ids.forEach(id=>document.getElementById(id).addEventListener('input',build));
 function loadExample(){document.getElementById('context').value='ฉันเป็นผู้จัดการอาคารชุด ดูแลการสื่อสารกับลูกบ้าน';document.getElementById('data').value='ลูกบ้านแจ้งว่าลิฟต์ขัดข้องหลายครั้ง และต้องการทราบแนวทางแก้ไข';document.getElementById('output').value='ช่วยร่างอีเมลตอบกลับลูกบ้าน';document.getElementById('constraint').value='ใช้ภาษาสุภาพ กระชับ แสดงความเข้าใจ และไม่รับปากสิ่งที่ยังยืนยันไม่ได้';build();}
 function clearAll(){ids.forEach(id=>document.getElementById(id).value='');build()}
