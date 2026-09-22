@@ -51,7 +51,25 @@ if(s.view==="action") inner+='<div class="ai" id="actionTable"><h3>Action Tracke
 if(s.view==="final") inner+='<div class="ai" id="finalBox"><h3>Ready to Share</h3><div class="output"><b>Key Decisions</b><br>• ตรวจข้อมูลการใช้งานลิฟต์อาคาร B และประสานช่าง<br><br><b>Action Items</b><br>• คุณนิดติดตามราคา Vendor ป้ายจอดรถภายในวันศุกร์<br><br><b>Open Questions</b><br>• Dashboard รายงานประจำสัปดาห์: ต้องกำหนด Owner / Due Date / ขอบเขตทดลอง</div><div class="prompt" style="margin-top:10px"><b>Human Check:</b> ยืนยัน Owner, Due Date และสิ่งที่เป็น Decision จริงก่อนแชร์</div></div>';
 $("stage").innerHTML=shell(inner);setTimeout(()=>spotlight(s.target),80)
 }
-function spotlight(id){const el=$(id),st=$("stage").getBoundingClientRect();if(!el)return;const r=el.getBoundingClientRect(),sp=$("spot"),n=$("spotnum");sp.style.left=(r.left-st.left-5)+"px";sp.style.top=(r.top-st.top-5)+"px";sp.style.width=(r.width+10)+"px";sp.style.height=(r.height+10)+"px";sp.style.display="block";n.style.left=Math.max(6,r.left-st.left-14)+"px";n.style.top=Math.max(6,r.top-st.top-14)+"px";n.style.display="grid";n.textContent=i+1}
+function spotlight(id){
+  const el=$(id),stage=$("stage");
+  if(!el)return;
+  el.scrollIntoView({block:"center",inline:"nearest"});
+  setTimeout(()=>{
+    const st=stage.getBoundingClientRect(),r=el.getBoundingClientRect(),sp=$("spot"),n=$("spotnum");
+    const left=(r.left-st.left+stage.scrollLeft-5);
+    const top=(r.top-st.top+stage.scrollTop-5);
+    sp.style.left=left+"px";
+    sp.style.top=top+"px";
+    sp.style.width=(r.width+10)+"px";
+    sp.style.height=(r.height+10)+"px";
+    sp.style.display="block";
+    n.style.left=Math.max(6,left-14)+"px";
+    n.style.top=Math.max(6,top-14)+"px";
+    n.style.display="grid";
+    n.textContent=i+1;
+  },60);
+}
 let i=0;function render(){const s=steps[i];$("simTitle").textContent=s.sim;$("eyebrow").textContent=s.eye;$("title").textContent=s.title;$("body").textContent=s.body;$("memory").textContent=s.memory;$("human").textContent=s.human;$("nextText").textContent=s.next;$("count").textContent=(i+1)+" / "+steps.length;$("fill").style.width=((i+1)/steps.length*100)+"%";$("prev").disabled=i===0;$("next").textContent=i===steps.length-1?"จบ Demo ✓":"ถัดไป →";renderStage(s)}
 $("next").onclick=()=>{if(i<steps.length-1){i++;render()}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<steps.length-1){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});render();
 </script></body></html>
