@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Universal Prompt Builder | RELEARN OS × QPM</title>
+<style>
+:root{--blue:#1767d1;--green:#31ae60;--ink:#17345b;--muted:#64748b;--line:#d9e8f1;--bg:#f5fbff;--soft:#eef7ff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:960px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-weight:900;font-size:22px}.brand .r{color:var(--blue)}.brand .o{color:var(--green)}
+.badge{font-size:11px;font-weight:900;color:var(--blue);background:#eaf3ff;padding:7px 10px;border-radius:999px}.hero{padding:34px 0 20px}.hero h1{font-size:38px;margin:6px 0 10px}.hero p{color:var(--muted);line-height:1.7;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}.num{width:34px;height:34px;border-radius:10px;background:#eaf3ff;color:var(--blue);font-weight:900;display:grid;place-items:center;margin-bottom:10px}.card h3{margin:0 0 6px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.builder{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}.field{margin:14px 0}.field label{display:block;font-weight:900;font-size:12px;margin-bottom:6px}.field textarea{width:100%;min-height:70px;border:1px solid #d8e1ea;border-radius:12px;padding:12px;font:inherit}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:900;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#edf3f7;color:#35516f}.output{white-space:pre-wrap;background:#f8fbfe;border:1px dashed #cbdbe7;border-radius:14px;padding:14px;margin-top:14px;min-height:120px;color:#31465d}
+.tip{margin-top:18px;padding:14px;border-radius:14px;background:#fff7dc;border:1px solid #efd88a;font-size:12px;line-height:1.6}.footer{text-align:center;color:#7b8c9d;font-size:11px;padding:28px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+</style></head><body>
+<div class="wrap"><div class="top"><div class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></div><span class="badge">SECTION 3 · PROMPT</span></div>
+<section class="hero"><h1>Universal Prompt Builder</h1><p>สร้าง Prompt จาก 7 ส่วนสำคัญ ให้ผู้เริ่มต้นคิดเป็นโครงก่อนพิมพ์ โดยไม่ต้องจำสูตรยาว ๆ</p></section>
+<section class="grid">
+<div class="card"><div class="num">1</div><h3>Role</h3><p>อยากให้ AI ช่วยคิดในบทบาทอะไร เช่น ผู้ช่วยสรุปข้อมูล ผู้ช่วยวิเคราะห์ หรือผู้ช่วยเขียน</p></div>
+<div class="card"><div class="num">2</div><h3>Goal</h3><p>เป้าหมายปลายทางคืออะไร ต้องการให้ AI ช่วยให้สำเร็จเรื่องไหน</p></div>
+<div class="card"><div class="num">3</div><h3>Context / Data</h3><p>ข้อมูลพื้นฐาน เอกสาร ข้อเท็จจริง หรือบริบทที่ AI จำเป็นต้องรู้</p></div>
+<div class="card"><div class="num">4</div><h3>Task</h3><p>สิ่งที่ต้องการให้ AI ลงมือทำอย่างชัดเจน เช่น สรุป เปรียบเทียบ จัดลำดับ หรือร่าง</p></div>
+<div class="card"><div class="num">5</div><h3>Constraints</h3><p>ข้อจำกัด สิ่งที่ห้าม เวลา งบประมาณ หรือสิ่งที่ห้ามเดา</p></div>
+<div class="card"><div class="num">6</div><h3>Output Format</h3><p>กำหนดรูปแบบผลลัพธ์ เช่น ตาราง Bullet 1 หน้า หรือ Action List</p></div>
+<div class="card"><div class="num">7</div><h3>Check</h3><p>กำหนดให้ AI ระบุจุดที่ไม่แน่ใจ ข้อมูลที่ขาด หรือสิ่งที่มนุษย์ต้องตรวจต่อ</p></div>
+</section>
+<section class="builder"><h2>ประกอบ Prompt ของคุณ</h2>
+<div class="field"><label>Role</label><textarea id="role" placeholder="เช่น คุณคือผู้ช่วยวิเคราะห์ข้อมูลสำหรับทีม Property Management"></textarea></div>
+<div class="field"><label>Goal</label><textarea id="goal" placeholder="เช่น ต้องการเห็นประเด็นสำคัญและสิ่งที่ต้องดำเนินการต่อ"></textarea></div>
+<div class="field"><label>Context / Data</label><textarea id="context" placeholder="วางข้อมูลหรืออธิบายบริบท"></textarea></div>
+<div class="field"><label>Task</label><textarea id="task" placeholder="เช่น สรุป 5 ประเด็นและจัด Action Items"></textarea></div>
+<div class="field"><label>Constraints</label><textarea id="constraints" placeholder="เช่น ห้ามเดาข้อมูลที่ไม่มี และอย่าเปิดเผยข้อมูลส่วนบุคคล"></textarea></div>
+<div class="field"><label>Output Format</label><textarea id="format" placeholder="เช่น ตาราง: Finding | Impact | Action | Owner"></textarea></div>
+<div class="field"><label>Check</label><textarea id="check" placeholder="เช่น ระบุข้อมูลที่ต้องตรวจเพิ่มก่อนนำไปใช้จริง"></textarea></div>
+<div class="actions"><button class="btn primary" onclick="build()">สร้าง Prompt</button><button class="btn secondary" onclick="copyOut()">Copy</button><button class="btn secondary" onclick="resetAll()">Reset</button></div>
+<div id="out" class="output">Prompt ที่ประกอบแล้วจะแสดงตรงนี้</div>
+<div class="tip"><b>RELEARN TIP:</b> ถ้าข้อมูลไม่พอ ให้สั่ง AI ว่า “อย่าเดา ให้ระบุข้อมูลที่ต้องสอบถามเพิ่มเติม”</div>
+</section><div class="footer">RELEARN OS × QPM • PREPARE • TRANSFORM • PERFORM</div></div>
+<script>
+function v(id){return document.getElementById(id).value.trim()}
+function build(){const parts=[["Role",v("role")],["Goal",v("goal")],["Context / Data",v("context")],["Task",v("task")],["Constraints",v("constraints")],["Output Format",v("format")],["Check",v("check")]].filter(x=>x[1]);document.getElementById("out").textContent=parts.length?parts.map(x=>x[0]+":\n"+x[1]).join("\n\n"):"กรอกอย่างน้อย 1 ช่องก่อน"}
+function copyOut(){navigator.clipboard.writeText(document.getElementById("out").innerText)}
+function resetAll(){["role","goal","context","task","constraints","format","check"].forEach(id=>document.getElementById(id).value="");document.getElementById("out").textContent="Prompt ที่ประกอบแล้วจะแสดงตรงนี้"}
+</script></body></html>
