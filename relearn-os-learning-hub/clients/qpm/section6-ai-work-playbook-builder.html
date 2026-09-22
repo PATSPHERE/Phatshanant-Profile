@@ -30,7 +30,7 @@ textarea{width:100%;min-height:76px;border:1px solid #d3e0e9;border-radius:10px;
 <div class="field"><label><span class="num">9</span>Stop Condition — เมื่อไรต้องหยุด</label><textarea id="stop" placeholder="เช่น ข้อมูลไม่ครบ / เคสกฎหมาย / ความปลอดภัย / AI ไม่แน่ใจ"></textarea></div>
 <div class="field"><label><span class="num">10</span>Escalation — ส่งต่อให้ใคร</label><textarea id="escalation" placeholder="เช่น ผู้จัดการอาคาร / Legal / DPO / Technical"></textarea></div>
 </div>
-<div class="actions"><button class="btn primary" onclick="build()">สร้าง Playbook</button><button class="btn secondary" onclick="loadExample()">ใส่ตัวอย่าง</button><button class="btn secondary" onclick="copyPlaybook()">Copy</button><button class="btn secondary" onclick="clearAll()">Reset</button></div>
+<div class="actions"><button class="btn primary" onclick="build()">สร้าง Playbook</button><button class="btn secondary" onclick="loadExample()">ตัวอย่าง Email</button><button class="btn secondary" onclick="loadMeetingExample()">ตัวอย่าง Meeting Note</button><button class="btn secondary" onclick="copyPlaybook()">Copy</button><button class="btn secondary" onclick="clearAll()">Reset</button></div>
 <div class="tip"><b>Key Takeaway:</b> Human Check / Risk / Stop Condition / Escalation คือส่วนที่ทำให้ Playbook “ใช้ในงานจริงได้” ไม่ใช่แค่ Prompt สวย ๆ</div>
 </section>
 <section class="panel"><h2 style="margin-top:0">Playbook Preview</h2><div class="preview" id="preview">กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”</div></section>
@@ -52,6 +52,18 @@ human:"Fact / Tone / Policy / Commitment / Privacy",
 risk:"AI เดาเหตุผล, ใช้ข้อมูลส่วนบุคคลเกินจำเป็น, รับปากเกินอำนาจ",
 stop:"ข้อมูลไม่ครบ / เคสกฎหมายหรือความปลอดภัย / มีข้อขัดแย้งกับ SOP",
 escalation:"ผู้จัดการอาคาร หรือผู้รับผิดชอบตามประเภทเคส"};
+Object.entries(x).forEach(([k,v])=>document.getElementById(k).value=v);build();}
+function loadMeetingExample(){const x={
+usecase:"สรุป Meeting Note และสร้าง Action Items ที่ติดตามต่อได้",
+trigger:"หลังประชุมจบ เมื่อมี Transcript หรือบันทึกประชุมพร้อมใช้งาน",
+input:"Transcript / Meeting Note + รายชื่อผู้เข้าร่วม + วันที่ประชุม + ข้อมูล Deadline ที่ถูกกล่าวถึง",
+workflow:"อ่านบันทึก → แยก Key Decisions → แยก Action Items → ระบุ Owner / Due Date ที่มีข้อมูล → ทำเครื่องหมายจุดที่ยังต้องกำหนด → Human Check → ส่งต่อ To-do",
+prompt:"จาก Meeting Note นี้ ช่วยสรุปเป็น 4 ส่วน: 1) Key Decisions 2) Action Items 3) Owner 4) Due Date ใช้เฉพาะข้อมูลที่มีในบันทึก หากไม่มี Owner หรือ Due Date ให้เขียนว่า “ต้องกำหนด” ห้ามเดา และแยกสิ่งที่เป็นข้อเสนอออกจากสิ่งที่ตัดสินใจแล้ว",
+output:"Meeting Summary + Action Tracker แบบ To-do | Owner | Due Date | Status | Open Question",
+human:"ตรวจ Decision จริง / ชื่อผู้รับผิดชอบ / Due Date / รายการที่ยังไม่ตัดสินใจ",
+risk:"AI อาจตีความข้อเสนอเป็น Decision, สร้าง Owner หรือ Deadline เอง, ตกหล่น Action Item",
+stop:"ข้อมูลประชุมไม่ครบ / มีข้อความขัดแย้ง / ไม่แน่ใจว่าเป็น Decision หรือ Suggestion / ไม่มีผู้ยืนยัน Owner",
+escalation:"ผู้จัดประชุม / Meeting Owner / หัวหน้าทีม หรือผู้รับผิดชอบ Action นั้น"};
 Object.entries(x).forEach(([k,v])=>document.getElementById(k).value=v);build();}
 function clearAll(){ids.forEach(id=>document.getElementById(id).value="");document.getElementById("preview").textContent="กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”";}
 async function copyPlaybook(){const t=document.getElementById("preview").innerText;if(t.startsWith("กรอกข้อมูล"))return;await navigator.clipboard.writeText(t);}
