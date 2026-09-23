@@ -1,28 +1,29 @@
-name: Assemble 3A Prompt Playbook PDF
+name: Build 3A Prompt Playbook PDF
 
 on:
   push:
     paths:
-      - 'tmp/3a_chunks/READY'
+      - 'tmp/3a-build/READY'
 
 permissions:
   contents: write
 
 jobs:
-  assemble:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble PDF
+      - name: Build PDF from locked 3A learner pages
         run: |
-          cat tmp/3a_chunks/part_* | base64 -d > relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
+          python -m pip install --quiet img2pdf
+          img2pdf             relearn-os-learning-hub/clients/qpm/assets/3a-playbook-01.jpg             relearn-os-learning-hub/clients/qpm/assets/3a-playbook-02.jpg             relearn-os-learning-hub/clients/qpm/assets/3a-playbook-03.jpg             relearn-os-learning-hub/clients/qpm/assets/3a-playbook-04.jpg             -o relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
           test -s relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
           file relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
-      - name: Commit assembled PDF
+      - name: Commit PDF
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
-          git rm -r tmp/3a_chunks
+          git rm -r tmp/3a-build
           git commit -m "Add Section 3A Prompt Playbook learner PDF"
           git push
