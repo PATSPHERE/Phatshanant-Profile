@@ -1,0 +1,24 @@
+name: Verify 3A Live Download
+
+on:
+  push:
+    paths:
+      - 'tmp/verify-3a-live/READY'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify live page and PDF
+        run: |
+          set -eux
+          PAGE="https://thepatsphere.com/Phatshanant-Profile/relearn-os-learning-hub/clients/qpm/3a-prompt-playbook.html"
+          PDF="https://thepatsphere.com/Phatshanant-Profile/relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf"
+          curl -fL --retry 5 --retry-delay 3 "$PAGE" -o /tmp/page.html
+          grep -F 'href="RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf" download' /tmp/page.html
+          curl -fL --retry 5 --retry-delay 3 "$PDF" -o /tmp/live.pdf
+          test "$(stat -c%s /tmp/live.pdf)" -eq 3433608
+          test "$(head -c 4 /tmp/live.pdf)" = "%PDF"
+          echo "LIVE_PAGE_OK"
+          echo "LIVE_BUTTON_OK"
+          echo "LIVE_PDF_OK size=$(stat -c%s /tmp/live.pdf)"
