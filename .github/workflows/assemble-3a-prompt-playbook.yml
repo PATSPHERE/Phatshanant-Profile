@@ -15,8 +15,26 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build PDF from locked 3A learner pages
         run: |
-          python -m pip install --quiet img2pdf
-          img2pdf             relearn-os-learning-hub/clients/qpm/assets/3a-playbook-01.jpg             relearn-os-learning-hub/clients/qpm/assets/3a-playbook-02.jpg             relearn-os-learning-hub/clients/qpm/assets/3a-playbook-03.jpg             relearn-os-learning-hub/clients/qpm/assets/3a-playbook-04.jpg             -o relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image, ImageFile
+          ImageFile.LOAD_TRUNCATED_IMAGES = True
+          paths = [
+              "relearn-os-learning-hub/clients/qpm/assets/3a-playbook-01.jpg",
+              "relearn-os-learning-hub/clients/qpm/assets/3a-playbook-02.jpg",
+              "relearn-os-learning-hub/clients/qpm/assets/3a-playbook-03.jpg",
+              "relearn-os-learning-hub/clients/qpm/assets/3a-playbook-04.jpg",
+          ]
+          images = []
+          for p in paths:
+              im = Image.open(p)
+              im.load()
+              if im.mode != "RGB":
+                  im = im.convert("RGB")
+              images.append(im)
+          out = "relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf"
+          images[0].save(out, "PDF", resolution=150.0, save_all=True, append_images=images[1:])
+          PY
           test -s relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
           file relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
       - name: Commit PDF
