@@ -13,20 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Normalize learner page assets and build PDF
+      - name: Decode learner page assets and build PDF
         run: |
           set -eux
           mkdir -p /tmp/3a
           for n in 01 02 03 04; do
             curl -L --fail --retry 3               "https://raw.githubusercontent.com/PATSPHERE/Phatshanant-Profile/main/relearn-os-learning-hub/clients/qpm/assets/3a-playbook-${n}.jpg"               -o "/tmp/3a/page-${n}.jpg"
-            file "/tmp/3a/page-${n}.jpg"
+            ffmpeg -loglevel warning -err_detect ignore_err -y -i "/tmp/3a/page-${n}.jpg" -frames:v 1 "/tmp/3a/page-${n}.png"
+            test -s "/tmp/3a/page-${n}.png"
           done
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq imagemagick
-          for n in 01 02 03 04; do
-            convert "/tmp/3a/page-${n}.jpg" -strip "/tmp/3a/page-${n}.png"
-          done
-          convert /tmp/3a/page-01.png /tmp/3a/page-02.png /tmp/3a/page-03.png /tmp/3a/page-04.png             relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
+          python -m pip install --quiet img2pdf
+          img2pdf /tmp/3a/page-01.png /tmp/3a/page-02.png /tmp/3a/page-03.png /tmp/3a/page-04.png             -o relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
           test -s relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
           file relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
       - name: Commit PDF
