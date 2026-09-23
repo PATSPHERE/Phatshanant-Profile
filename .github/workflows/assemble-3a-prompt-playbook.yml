@@ -13,26 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decode learner page assets and build PDF
+      - name: Assemble exact 3A master PDF
         run: |
           set -eux
-          mkdir -p /tmp/3a
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg
-          for n in 01 02 03 04; do
-            curl -L --fail --retry 3               "https://raw.githubusercontent.com/PATSPHERE/Phatshanant-Profile/main/relearn-os-learning-hub/clients/qpm/assets/3a-playbook-${n}.jpg"               -o "/tmp/3a/page-${n}.jpg"
-            ffmpeg -loglevel warning -err_detect ignore_err -y -i "/tmp/3a/page-${n}.jpg" -frames:v 1 "/tmp/3a/page-${n}.png"
-            test -s "/tmp/3a/page-${n}.png"
-          done
-          python -m pip install --quiet img2pdf
-          img2pdf /tmp/3a/page-01.png /tmp/3a/page-02.png /tmp/3a/page-03.png /tmp/3a/page-04.png             -o relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
-          test -s relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
+          cat tmp/3a-build/parts/part_*.bin > relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
+          echo "a8d3f8d21caabb76d1f67f573c2b290939734a65c8e80df8c07b2a4e05edbf3e  relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf" | sha256sum -c -
           file relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
-      - name: Commit PDF
+      - name: Commit exact PDF
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add relearn-os-learning-hub/clients/qpm/RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf
           git rm -r tmp/3a-build
-          git commit -m "Add Section 3A Prompt Playbook learner PDF"
+          git commit -m "Upload exact Section 3A Prompt Playbook learner PDF"
           git push
