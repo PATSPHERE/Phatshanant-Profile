@@ -17,6 +17,8 @@ jobs:
         run: |
           set -eux
           mkdir -p /tmp/3a
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
           for n in 01 02 03 04; do
             curl -L --fail --retry 3               "https://raw.githubusercontent.com/PATSPHERE/Phatshanant-Profile/main/relearn-os-learning-hub/clients/qpm/assets/3a-playbook-${n}.jpg"               -o "/tmp/3a/page-${n}.jpg"
             ffmpeg -loglevel warning -err_detect ignore_err -y -i "/tmp/3a/page-${n}.jpg" -frames:v 1 "/tmp/3a/page-${n}.png"
