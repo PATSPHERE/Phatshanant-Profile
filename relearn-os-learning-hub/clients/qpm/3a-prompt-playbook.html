@@ -6,34 +6,70 @@
 <meta name="theme-color" content="#F3FAFE">
 <title>3A Prompt Playbook | RELEARN OS × QPM</title>
 <style>
-*{box-sizing:border-box}:root{--blue:#1767D1;--ink:#17345B;--muted:#64778D;--line:#D9E8F1;--bg:#F3FAFE}
+*{box-sizing:border-box}
+:root{--blue:#1767D1;--blue2:#2E7BEF;--green:#27AE60;--ink:#17345B;--muted:#64778D;--line:#D9E8F1;--bg:#F3FAFE;--card:#fff}
 html,body{margin:0;background:var(--bg);font-family:Arial,"Noto Sans Thai",sans-serif;color:var(--ink)}
-.shell{max-width:900px;margin:auto;padding:14px}.toolbar{position:sticky;top:0;z-index:20;background:rgba(243,250,254,.97);padding:8px 0 12px}
-.topline{display:flex;justify-content:space-between;align-items:center;gap:8px}.back{color:var(--blue);text-decoration:none;font-weight:800;font-size:13px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:12px;padding:11px 13px;font-weight:900;font-size:12px;text-decoration:none;cursor:pointer}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
-.intro{padding:8px 2px 14px}.intro h1{font-size:22px;margin:0 0 5px}.intro p{font-size:13px;line-height:1.55;color:var(--muted);margin:0}.note{margin-top:8px;font-size:11px;color:#789}
-.pages{display:grid;gap:16px}.page{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 10px 28px rgba(28,75,113,.08)}.page img{display:block;width:100%;height:auto}.caption{padding:8px 11px;text-align:right;font-size:11px;color:#718096;border-top:1px solid var(--line)}
-.footer{text-align:center;color:#7A8A9A;font-size:11px;padding:24px 0 34px}
-@media(max-width:720px){.shell{padding:10px}.intro h1{font-size:19px}.pages{gap:12px}.page{border-radius:12px}.btn{flex:1;min-width:145px}}
+a{text-decoration:none}
+.shell{max-width:1040px;margin:auto;padding:22px 18px 50px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.back{color:var(--blue);font-weight:800;font-size:13px}
+.brand{font-weight:900;font-size:13px;color:var(--ink)}
+.hero{background:linear-gradient(135deg,#fff 0%,#F4F9FF 58%,#F1FFF7 100%);border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:0 14px 36px rgba(28,75,113,.09)}
+.kicker{display:inline-block;padding:7px 11px;border-radius:999px;background:#EAF3FF;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.04em}
+h1{font-size:32px;line-height:1.2;margin:12px 0 8px}
+.lead{font-size:15px;line-height:1.7;color:var(--muted);margin:0;max-width:720px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800;color:var(--ink)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 16px;border-radius:12px;font-size:13px;font-weight:900;border:1px solid var(--line)}
+.btn.primary{background:linear-gradient(90deg,var(--blue),var(--blue2));color:#fff;border-color:transparent}
+.btn.secondary{background:#fff;color:var(--blue)}
+.section{margin-top:28px}.section h2{font-size:21px;margin:0 0 5px}.section p{font-size:13px;color:var(--muted);margin:0 0 15px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 10px 24px rgba(28,75,113,.07)}
+.preview{background:#F8FBFD;border-radius:14px;display:flex;align-items:center;justify-content:center;min-height:300px;overflow:hidden}
+.preview img{display:block;width:auto;max-width:100%;height:auto;max-height:430px;object-fit:contain}
+.cardfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 2px 0}.pageno{font-size:12px;font-weight:900}.small{font-size:11px;color:var(--muted)}
+.tip{margin-top:20px;padding:14px 16px;border:1px dashed #BFD4E4;background:#fff;border-radius:16px;font-size:12px;line-height:1.65;color:var(--muted)}
+.footer{text-align:center;color:#7A8A9A;font-size:11px;padding:28px 0 0}
+@media(max-width:720px){.shell{padding:14px 10px 34px}.hero{padding:20px;border-radius:20px}h1{font-size:25px}.grid{grid-template-columns:1fr}.preview{min-height:220px}.btn{flex:1;min-width:150px}}
 </style>
-
 </head>
 <body>
 <div class="shell">
- <div class="toolbar">
-  <div class="topline"><a class="back" href="prompt-template.html">← Section 3A</a><strong>3A • 4 หน้า</strong></div>
-  <div class="actions">
-   <a class="btn primary" href="RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf" download>ดาวน์โหลด PDF 4 หน้า</a>
-   <button class="btn" onclick="downloadImages()">ดาวน์โหลดภาพทั้ง 4</button>
+  <div class="topbar">
+    <a class="back" href="prompt-template.html">← Section 3A</a>
+    <div class="brand">RELEARN OS × QPM</div>
   </div>
- </div>
- <div class="intro">
-  <h1>3A Prompt Playbook</h1>
-  <p>สรุปเนื้อหาที่เรียนใน Section 3A สำหรับทบทวนและเก็บไว้ใช้หลังจบคลาส</p>
-  <div class="note">ภาพ 4 หน้านี้เป็น learner-facing summary โดยตรง ไม่ใช่ PowerPoint สำหรับผู้สอน</div>
- </div>
- <main class="pages"><section class="page"><img id="p1" src="assets/3a-playbook-01.jpg" alt="3A Prompt Playbook 1"><div class="caption">01 / 04</div></section><section class="page"><img id="p2" src="assets/3a-playbook-02.jpg" alt="3A Prompt Playbook 2"><div class="caption">02 / 04</div></section><section class="page"><img id="p3" src="assets/3a-playbook-03.jpg" alt="3A Prompt Playbook 3"><div class="caption">03 / 04</div></section><section class="page"><img id="p4" src="assets/3a-playbook-04.jpg" alt="3A Prompt Playbook 4"><div class="caption">04 / 04</div></section></main>
- <div class="footer">RELEARN OS × QPM • PREPARE • TRANSFORM • PERFORM</div>
-</div>
 
-</body></html>
+  <section class="hero">
+    <span class="kicker">SECTION 3A · PROMPT PLAYBOOK</span>
+    <h1>3A Prompt Playbook</h1>
+    <p class="lead">สรุปสำหรับผู้เรียน 4 หน้า ใช้ทบทวนหลังคลาสและนำกลับไปใช้กับงานจริงได้ทันที</p>
+    <div class="meta">
+      <span class="pill">4 หน้า</span>
+      <span class="pill">Learner Version</span>
+      <span class="pill">PDF Download</span>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf" download>ดาวน์โหลด PDF 4 หน้า</a>
+      <a class="btn secondary" href="RELEARN_OS_QPM_Section3A_Prompt_Playbook_4Pages_LEARNER.pdf" target="_blank" rel="noopener">เปิด PDF ดูเต็มหน้า</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>ตัวอย่างทั้ง 4 หน้า</h2>
+    <p>แสดงเป็นภาพตัวอย่างขนาดพอดีเพื่อดูภาพรวม ส่วนรายละเอียดให้อ่านจาก PDF ฉบับเต็ม</p>
+    <div class="grid">
+      <article class="card"><div class="preview"><img src="assets/3a-playbook-01.jpg" alt="3A Prompt Playbook หน้า 1"></div><div class="cardfoot"><div><div class="pageno">หน้า 1</div><div class="small">Prompt Playbook</div></div></div></article>
+      <article class="card"><div class="preview"><img src="assets/3a-playbook-02.jpg" alt="3A Prompt Playbook หน้า 2"></div><div class="cardfoot"><div><div class="pageno">หน้า 2</div><div class="small">Prompt Playbook</div></div></div></article>
+      <article class="card"><div class="preview"><img src="assets/3a-playbook-03.jpg" alt="3A Prompt Playbook หน้า 3"></div><div class="cardfoot"><div><div class="pageno">หน้า 3</div><div class="small">Prompt Playbook</div></div></div></article>
+      <article class="card"><div class="preview"><img src="assets/3a-playbook-04.jpg" alt="3A Prompt Playbook หน้า 4"></div><div class="cardfoot"><div><div class="pageno">หน้า 4</div><div class="small">Prompt Playbook</div></div></div></article>
+    </div>
+  </section>
+
+  <div class="tip"><strong style="color:var(--ink)">สำหรับสไลด์:</strong> ใช้ลิงก์หน้านี้เป็น Landing Page ได้เลย ผู้เรียนจะเห็นตัวอย่างก่อน แล้วเลือกดาวน์โหลดหรือเปิด PDF ฉบับเต็มได้จากปุ่มด้านบน</div>
+
+  <div class="footer">RELEARN OS × QPM · PREPARE • TRANSFORM • PERFORM</div>
+</div>
+</body>
+</html>
