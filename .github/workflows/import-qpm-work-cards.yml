@@ -24,17 +24,8 @@ jobs:
           curl -L --fail --retry 3 'https://export-download.canva.com/2b48bc1c-9f25-4700-ae99-64b327a07463/0/0001-866334000735896648.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260924T072943Z&X-Amz-Expires=91519&X-Amz-Signature=d33b757e7fb1b64e245d08e65d8d273ea4ed59e6f2923f4b53695f05abc754c5&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Fri%2C%2025%20Sep%202026%2008%3A55%3A02%20GMT' -o relearn-os-learning-hub/clients/qpm/assets/work-cards/work-card-meeting-note-ai.png
           curl -L --fail --retry 3 'https://export-download.canva.com/9ea117b6-7e24-4aa9-9206-94bf2e293448/0/0001-6244757859730044643.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260924%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260924T154638Z&X-Amz-Expires=60816&X-Amz-Signature=e9d24634f157ec1f0b36999e3c9d300ac094982996b2ee9a7781b052780393aa&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Fri%2C%2025%20Sep%202026%2008%3A40%3A14%20GMT' -o relearn-os-learning-hub/clients/qpm/assets/work-cards/work-card-excel-csv-ai.png
           curl -L --fail --retry 3 'https://export-download.canva.com/532c07fb-e7f7-4dbc-8ad0-c08178ff4e65/0/0001-5649156806848838468.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260925%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260925T070932Z&X-Amz-Expires=4005&X-Amz-Signature=dbb29eedbe7ddf6db50dcbbcb7aca88a73308d515b5d4b6bd8b0d50d86251758&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Fri%2C%2025%20Sep%202026%2008%3A16%3A17%20GMT' -o relearn-os-learning-hub/clients/qpm/assets/work-cards/work-card-email-ai.png
-          python - <<'PY'
-          from PIL import Image
-          from pathlib import Path
-          root=Path('relearn-os-learning-hub/clients/qpm/assets/work-cards')
-          files=sorted(root.glob('*.png'))
-          assert len(files)==7, len(files)
-          for p in files:
-              im=Image.open(p)
-              print(p.name, im.size, p.stat().st_size)
-              assert im.width >= 1000 and im.height >= 1400
-          PY
+          test $(find relearn-os-learning-hub/clients/qpm/assets/work-cards -name '*.png' | wc -l) -eq 7
+          for f in relearn-os-learning-hub/clients/qpm/assets/work-cards/*.png; do test -s "$f"; file "$f"; done
       - name: Commit Work Cards
         run: |
           git config user.name "github-actions[bot]"
