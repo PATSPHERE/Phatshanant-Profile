@@ -1,0 +1,20 @@
+name: Test Canva Work Card Source
+on:
+  push:
+    paths:
+      - 'tmp/canva-test/READY'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test resized Canva URL
+        run: |
+          set -eux
+          URL='https://media.canva.com/v2/image-resize/format:JPG/height:1536/quality:95/uri:ifs%3A%2F%2FM%2F1bc40518-f7fb-434f-90f9-a8ebaf3fb45e/watermark:F/width:1085?csig=AAAAAAAAAAAAAAAAAAAAAPj42LuStAWI5tPytwQo43yG_DKNqWz5zEydogt4PpUZ&exp=1790335018&osig=AAAAAAAAAAAAAAAAAAAAAAVCT0zkhmekObEZmwTn-myJLF6BYQx2J48CW4pnhgka&signer=media-rpc&x-canva-quality=thumbnail'
+          curl -L --fail "$URL" -o /tmp/test.jpg
+          file /tmp/test.jpg
+          python - <<'PY'
+          from PIL import Image
+          im=Image.open('/tmp/test.jpg')
+          print('SIZE',im.size)
+          PY
