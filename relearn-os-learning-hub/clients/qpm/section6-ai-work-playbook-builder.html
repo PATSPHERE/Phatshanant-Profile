@@ -2,6 +2,12 @@
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Section 6 · AI Work Playbook Builder | RELEARN OS × QPM</title>
 <style>
+.req{margin-left:auto;padding:3px 7px;border-radius:999px;background:#fff0f0;color:#b42318;font-size:9px;font-weight:900}
+.suggest{margin-left:auto;padding:3px 7px;border-radius:999px;background:#eef7ff;color:#1767d1;font-size:9px;font-weight:900}
+.helper{margin-top:7px;font-size:10px;line-height:1.45;color:#718096}
+.aihint{margin-top:14px;padding:12px 14px;border-radius:14px;background:#eef8ff;border:1px solid #cfe5f6;font-size:11px;line-height:1.55;color:#35516f}
+.aihint b{color:#1767d1}
+
 :root{--blue:#1767d1;--cyan:#2db8d8;--green:#35ad62;--ink:#17345b;--muted:#64748b;--line:#d9e8f1;--bg:#eef7fb;--warn:#fff5d6}
 *{box-sizing:border-box}html,body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--ink)}
 .wrap{max-width:1180px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:900;font-size:22px}.brand .r{color:var(--blue)}.brand .o{color:var(--green)}.badge{padding:7px 11px;border-radius:999px;background:#eaf3ff;color:var(--blue);font-size:11px;font-weight:900}
@@ -16,22 +22,22 @@ textarea{width:100%;min-height:76px;border:1px solid #d3e0e9;border-radius:10px;
 </style></head><body>
 <div class="wrap">
 <div class="top"><div class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></div><span class="badge">SECTION 6 · AI WORK PLAYBOOK</span></div>
-<section class="hero"><h1>AI Work Playbook Builder</h1><p>ใช้ 10 ช่องตามสไลด์ Master เพื่อออกแบบ AI Flow ที่ทำซ้ำได้ ควบคุมได้ และมี Human Check ชัดเจน</p></section>
+<section class="hero"><h1>AI Work Playbook Builder</h1><p>กรอกข้อมูลพื้นฐาน 4 ช่อง แล้วใช้ Suggested Draft ช่วยเติมโครงสร้างส่วนที่เหลือ จากนั้น Review → Edit → Approve ก่อนนำไปใช้จริง</p></section>
 <div class="layout">
 <section class="panel"><div class="fields">
-<div class="field"><label><span class="num">1</span>Use Case — กำลังแก้งานอะไร</label><textarea id="usecase" placeholder="เช่น สรุปอีเมลร้องเรียนลูกบ้าน"></textarea></div>
-<div class="field"><label><span class="num">2</span>Trigger — เริ่มใช้เมื่อไร</label><textarea id="trigger" placeholder="เช่น เมื่อมีอีเมลร้องเรียนเข้ากล่องกลาง"></textarea></div>
-<div class="field"><label><span class="num">3</span>Input — ต้องใช้ข้อมูลอะไร</label><textarea id="input" placeholder="เช่น เนื้อหาอีเมล, ประเภทเคส, นโยบายที่เกี่ยวข้อง"></textarea></div>
-<div class="field"><label><span class="num">4</span>Workflow — ทำตามลำดับอย่างไร</label><textarea id="workflow" placeholder="เช่น อ่านเคส → แยกประเด็น → ร่างคำตอบ → ตรวจ → ส่ง"></textarea></div>
-<div class="field"><label><span class="num">5</span>Starter Prompt — คำสั่งเริ่มต้น</label><textarea id="prompt" placeholder="เขียน Prompt เริ่มต้นที่ทีมใช้ซ้ำได้"></textarea></div>
-<div class="field"><label><span class="num">6</span>Expected Output — ผลลัพธ์หน้าตาแบบไหน</label><textarea id="output" placeholder="เช่น Summary 5 บรรทัด + Draft Reply + Next Action"></textarea></div>
-<div class="field"><label><span class="num">7</span>Human Check — คนต้องตรวจอะไร</label><textarea id="human" placeholder="เช่น fact, tone, policy, commitment"></textarea></div>
-<div class="field"><label><span class="num">8</span>Risk — อะไรอาจผิดพลาด</label><textarea id="risk" placeholder="เช่น ข้อมูลส่วนบุคคล, AI เดา, ตีความนโยบายผิด"></textarea></div>
-<div class="field"><label><span class="num">9</span>Stop Condition — เมื่อไรต้องหยุด</label><textarea id="stop" placeholder="เช่น ข้อมูลไม่ครบ / เคสกฎหมาย / ความปลอดภัย / AI ไม่แน่ใจ"></textarea></div>
-<div class="field"><label><span class="num">10</span>Escalation — ส่งต่อให้ใคร</label><textarea id="escalation" placeholder="เช่น ผู้จัดการอาคาร / Legal / DPO / Technical"></textarea></div>
+<div class="field"><label><span class="num">1</span>Use Case — กำลังแก้งานอะไร <span class="req">REQUIRED</span></label><textarea id="usecase" placeholder="เช่น สรุปอีเมลร้องเรียนลูกบ้าน"></textarea><div class="helper">บอกงานจริงที่ต้องการเปลี่ยนให้เป็น workflow</div></div>
+<div class="field"><label><span class="num">2</span>Trigger — เริ่มใช้เมื่อไร <span class="req">REQUIRED</span></label><textarea id="trigger" placeholder="เช่น เมื่อมีอีเมลร้องเรียนเข้ากล่องกลาง"></textarea><div class="helper">ระบุเหตุการณ์ที่ทำให้ workflow นี้เริ่มทำงาน</div></div>
+<div class="field"><label><span class="num">3</span>Input — ต้องใช้ข้อมูลอะไร <span class="req">REQUIRED</span></label><textarea id="input" placeholder="เช่น เนื้อหาอีเมล, ประเภทเคส, นโยบายที่เกี่ยวข้อง"></textarea><div class="helper">ใส่ข้อมูลต้นทาง เอกสาร หรือข้อจำกัดที่จำเป็น</div></div>
+<div class="field"><label><span class="num">4</span>Workflow — ทำตามลำดับอย่างไร <span class="suggest">SUGGESTED DRAFT</span></label><textarea id="workflow" placeholder="ระบบจะเสนอ draft จากข้อมูลที่กรอก หรือพิมพ์เองได้"></textarea><div class="helper">ปรับลำดับขั้นให้ตรงกับวิธีทำงานจริงของทีม</div></div>
+<div class="field"><label><span class="num">5</span>Starter Prompt — คำสั่งเริ่มต้น <span class="suggest">SUGGESTED DRAFT</span></label><textarea id="prompt" placeholder="ระบบจะเสนอ Prompt เริ่มต้นให้ แล้วแก้ไขต่อได้"></textarea><div class="helper">ต้องตรวจว่า Prompt ไม่เปิดช่องให้ AI เดาหรือรับปากแทนคน</div></div>
+<div class="field"><label><span class="num">6</span>Expected Output — ผลลัพธ์หน้าตาแบบไหน <span class="req">REQUIRED</span></label><textarea id="output" placeholder="เช่น Summary 5 บรรทัด + Draft Reply + Next Action"></textarea><div class="helper">กำหนดรูปแบบผลลัพธ์ที่ทีมต้องการใช้ต่อจริง</div></div>
+<div class="field"><label><span class="num">7</span>Human Check — คนต้องตรวจอะไร <span class="suggest">SUGGEST + CONFIRM</span></label><textarea id="human" placeholder="ระบบจะเสนอจุดตรวจ แล้วคนต้องยืนยัน"></textarea></div>
+<div class="field"><label><span class="num">8</span>Risk — อะไรอาจผิดพลาด <span class="suggest">SUGGEST + CONFIRM</span></label><textarea id="risk" placeholder="ระบบจะเสนอความเสี่ยงที่ควรตรวจ"></textarea></div>
+<div class="field"><label><span class="num">9</span>Stop Condition — เมื่อไรต้องหยุด <span class="suggest">SUGGEST + CONFIRM</span></label><textarea id="stop" placeholder="ระบบจะเสนอเงื่อนไขที่ควรหยุดและให้คนตัดสินใจ"></textarea></div>
+<div class="field"><label><span class="num">10</span>Escalation — ส่งต่อให้ใคร <span class="suggest">SUGGEST + CONFIRM</span></label><textarea id="escalation" placeholder="ระบบจะเสนอประเภทผู้รับผิดชอบ แล้วคนยืนยันชื่อ/บทบาทจริง"></textarea></div>
 </div>
-<div class="actions"><button class="btn primary" onclick="build()">สร้าง Playbook</button><button class="btn secondary" onclick="loadExample()">ตัวอย่าง Email</button><button class="btn secondary" onclick="loadMeetingExample()">ตัวอย่าง Meeting Note</button><button class="btn secondary" onclick="copyPlaybook()">Copy</button><button class="btn secondary" onclick="clearAll()">Reset</button></div>
-<div class="tip"><b>Key Takeaway:</b> Human Check / Risk / Stop Condition / Escalation คือส่วนที่ทำให้ Playbook “ใช้ในงานจริงได้” ไม่ใช่แค่ Prompt สวย ๆ</div>
+<div class="actions"><button class="btn primary" onclick="suggestDraft()">สร้าง Suggested Draft</button><button class="btn secondary" onclick="build()">Preview Playbook</button><button class="btn secondary" onclick="loadExample()">ตัวอย่าง Email</button><button class="btn secondary" onclick="loadMeetingExample()">ตัวอย่าง Meeting Note</button><button class="btn secondary" onclick="copyPlaybook()">Copy</button><button class="btn secondary" onclick="clearAll()">Reset</button></div><div class="aihint"><b>วิธีใช้:</b> กรอกช่อง 1, 2, 3 และ 6 ก่อน → กด “สร้าง Suggested Draft” → ตรวจและแก้ช่อง 4, 5, 7, 8, 9, 10 → Preview → Approve ก่อนใช้งานจริง<br><b>หมายเหตุ:</b> Suggested Draft เป็นโครงร่างช่วยคิดจากข้อมูลที่กรอกในหน้านี้ ไม่ใช่การเชื่อมต่อ AI ภายนอกแบบสด</div>
+<div class="tip"><b>Key Takeaway:</b> คนกำหนด “งานจริง + Input + Output” แล้วใช้ระบบช่วยร่าง Workflow / Prompt / Checkpoints จากนั้น Human Review ก่อนใช้งานจริงเสมอ</div>
 </section>
 <section class="panel"><h2 style="margin-top:0">Playbook Preview</h2><div class="preview" id="preview">กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”</div></section>
 </div>
@@ -40,6 +46,24 @@ textarea{width:100%;min-height:76px;border:1px solid #d3e0e9;border-radius:10px;
 <script>
 const ids=["usecase","trigger","input","workflow","prompt","output","human","risk","stop","escalation"];
 const labels=["1. Use Case","2. Trigger","3. Input","4. Workflow","5. Starter Prompt","6. Expected Output","7. Human Check","8. Risk","9. Stop Condition","10. Escalation"];
+function getv(id){return document.getElementById(id).value.trim();}
+function setIfEmpty(id,value){if(!getv(id))document.getElementById(id).value=value;}
+function suggestDraft(){
+  const u=getv("usecase"), t=getv("trigger"), inp=getv("input"), out=getv("output");
+  const missing=[];
+  if(!u)missing.push("1. Use Case");
+  if(!t)missing.push("2. Trigger");
+  if(!inp)missing.push("3. Input");
+  if(!out)missing.push("6. Expected Output");
+  if(missing.length){alert("กรอกช่อง Required ให้ครบก่อน:\n• "+missing.join("\n• "));return;}
+  setIfEmpty("workflow","รับข้อมูล → ตรวจความครบถ้วน → วิเคราะห์/จัดโครงสร้าง → สร้าง "+out+" → Human Check → ส่งต่อ/บันทึกผล");
+  setIfEmpty("prompt","ช่วยทำงานนี้: "+u+"\nTrigger: "+t+"\nInput ที่ใช้: "+inp+"\nOutput ที่ต้องการ: "+out+"\nข้อกำหนด: ใช้เฉพาะข้อมูลที่ให้มา หากข้อมูลไม่พอให้ระบุว่า “ต้องตรวจสอบเพิ่มเติม” ห้ามเดา และแยกข้อเท็จจริงออกจากข้อเสนอแนะ");
+  setIfEmpty("human","ตรวจความถูกต้องของข้อมูล / ความครบถ้วน / ชื่อบุคคลและตัวเลข / นโยบายหรือ SOP ที่เกี่ยวข้อง / Tone และ Commitment ก่อนส่งหรือใช้งาน");
+  setIfEmpty("risk","ข้อมูลไม่ครบหรือเวอร์ชันเก่า / AI ตีความหรือเติมข้อมูลเอง / ข้อมูลส่วนบุคคลเกินจำเป็น / Output ไม่ตรงนโยบายหรือบริบทจริง");
+  setIfEmpty("stop","ข้อมูลสำคัญไม่ครบ / มีความขัดแย้งระหว่างแหล่งข้อมูล / เป็นเรื่องกฎหมาย ความปลอดภัย การเงิน หรือข้อมูลอ่อนไหว / ไม่สามารถยืนยันข้อเท็จจริงได้");
+  setIfEmpty("escalation","เจ้าของกระบวนการหรือหัวหน้างาน → ผู้เชี่ยวชาญที่เกี่ยวข้อง (เช่น Legal / DPO / Technical / Finance) ตามประเภทของเคส");
+  build();
+}
 function build(){const lines=[];ids.forEach((id,i)=>{const v=document.getElementById(id).value.trim();lines.push(labels[i]+"\n"+(v||"ต้องกำหนด"));});document.getElementById("preview").textContent=lines.join("\n\n");}
 function loadExample(){const x={
 usecase:"สรุปอีเมลร้องเรียนลูกบ้านและร่างคำตอบเบื้องต้น",
