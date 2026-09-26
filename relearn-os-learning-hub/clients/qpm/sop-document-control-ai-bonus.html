@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F3FAFE">
+<title>SOP & Document Control + AI | RELEARN OS × QPM</title>
+<style>
+*{box-sizing:border-box}
+:root{--blue:#1767D1;--blue2:#2E7BEF;--green:#27AE60;--ink:#17345B;--muted:#64778D;--line:#D9E8F1;--bg:#F3FAFE;--card:#fff;--gold:#F3B63D}
+html,body{margin:0;background:var(--bg);font-family:Arial,"Noto Sans Thai",sans-serif;color:var(--ink)}
+a{text-decoration:none}.shell{max-width:1100px;margin:auto;padding:22px 18px 54px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.back{color:var(--blue);font-weight:800;font-size:13px}.brand{font-weight:900;font-size:13px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#F4F9FF 58%,#F0FFF6 100%);border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:0 14px 36px rgba(28,75,113,.09)}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;right:-90px;top:-90px;background:linear-gradient(135deg,#38BDF8,#34D399);opacity:.14}
+.kicker{display:inline-block;padding:7px 11px;border-radius:999px;background:#EAF3FF;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.04em}
+.badge{display:inline-block;margin-left:8px;padding:7px 11px;border-radius:999px;background:#FFF4D7;color:#9B6A00;font-size:11px;font-weight:900}
+h1{font-size:42px;line-height:1.12;margin:14px 0 8px}.lead{font-size:17px;line-height:1.75;color:var(--muted);max-width:820px;margin:0}
+.takeaway{margin-top:16px;display:inline-block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 24px rgba(28,75,113,.06)}
+.card h2{font-size:20px;margin:0 0 10px}.card p,.card li{color:var(--muted);line-height:1.65;font-size:14px}.card ul,.card ol{padding-left:20px;margin:10px 0 0}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#F4F9FF;border:1px solid #D6E7F5;border-radius:12px;padding:14px;font-size:17px;font-weight:800;color:#135DB8;overflow:auto}
+.folder{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#F7FBF8;border:1px solid #D8EFE1;border-radius:12px;padding:14px;line-height:1.8;font-size:13px;color:#266243}
+.types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}.type{border:1px solid var(--line);border-radius:12px;padding:10px;background:#FAFCFE;font-size:13px}.type b{color:var(--blue)}
+.steps{counter-reset:step}.step{display:flex;gap:12px;align-items:flex-start;margin:11px 0}.step:before{counter-increment:step;content:counter(step);min-width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--blue),#24A6E8);color:white;font-weight:900}
+.prompt{background:linear-gradient(180deg,#F7FFFA,#fff);border:1px solid #CDEDD8;border-radius:14px;padding:16px;font-size:14px;line-height:1.75;color:#355B48}
+.result{overflow:auto}.result table{width:100%;border-collapse:collapse;font-size:12px}.result th,.result td{border-bottom:1px solid var(--line);padding:8px;text-align:left}.result th{color:var(--blue)}
+.tip{margin-top:18px;background:linear-gradient(90deg,#E9FFF1,#F8FFFB);border:1px solid #C8EED5;border-radius:16px;padding:16px;font-weight:800;color:#187A46}
+.audience{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}.audience h2{margin:0 0 10px;font-size:20px}.pills{display:flex;gap:8px;flex-wrap:wrap}.pill{padding:8px 11px;border-radius:999px;background:#EEF6FF;color:#1D5EAD;font-size:12px;font-weight:800}
+.footer{text-align:center;color:#7A8A9A;font-size:11px;padding:30px 0 0}
+@media(max-width:760px){.shell{padding:14px 10px 36px}.hero{padding:22px;border-radius:22px}h1{font-size:32px}.grid{grid-template-columns:1fr}.types{grid-template-columns:1fr}.badge{margin:8px 0 0}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <a class="back" href="activities-downloads.html">← กิจกรรม & ดาวน์โหลด</a>
+    <div class="brand">RELEARN OS × QPM</div>
+  </div>
+
+  <section class="hero">
+    <span class="kicker">WORK CARD · ONE-PAGE GUIDE</span>
+    <span class="badge">EXCLUSIVE BONUS</span>
+    <h1>SOP & Document Control + AI</h1>
+    <p class="lead">จัดการเอกสาร สร้าง SOP อย่างเป็นระบบด้วยพลังของ AI — เพื่อให้เอกสารค้นง่าย ใช้ได้จริง ทำงานต่อเนื่อง และส่งต่อความรู้ได้แม้เปลี่ยนคน</p>
+    <div class="takeaway">เอกสารเป็นระบบ หาเจอง่าย ใช้ได้จริง ทำงานต่อเนื่อง แม้เปลี่ยนคน</div>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>1. กำหนดมาตรฐานรหัสเอกสาร</h2>
+      <div class="code">QPM - HR - SOP - 001 - V1.0</div>
+      <p>รูปแบบตัวอย่าง: <b>องค์กร – ฝ่าย – ประเภทเอกสาร – ลำดับ – เวอร์ชัน</b></p>
+      <div class="types">
+        <div class="type"><b>POL</b> = นโยบาย (Policy)</div>
+        <div class="type"><b>SOP</b> = ขั้นตอนมาตรฐาน</div>
+        <div class="type"><b>WI</b> = วิธีการปฏิบัติงาน</div>
+        <div class="type"><b>FRM</b> = แบบฟอร์ม</div>
+        <div class="type"><b>CHK</b> = Checklist</div>
+        <div class="type"><b>REP</b> = รายงาน (Report)</div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>2. จัดหมวดหมู่และโครงสร้าง</h2>
+      <div class="folder">📁 QPM<br>　📁 01_Policy (POL)<br>　📁 02_SOP<br>　📁 03_Work Instruction (WI)<br>　📁 04_Form (FRM)<br>　📁 05_Checklist (CHK)<br>　📁 06_Report (REP)<br>　📁 07_Template<br>　📁 08_Archive</div>
+      <p>หลักคือให้คนใหม่เข้ามาแล้วหาเอกสารเจอโดยไม่ต้องถามว่า “ไฟล์อยู่ไหน”</p>
+    </article>
+
+    <article class="card">
+      <h2>3. ใช้ AI ช่วยสร้าง / ปรับปรุง SOP</h2>
+      <div class="steps">
+        <div class="step">วางข้อมูลกระบวนการ เช่น บันทึก เอกสารเดิม หรือสัมภาษณ์ทีม</div>
+        <div class="step">ใช้ Prompt ให้ AI ช่วยร่าง SOP ตามโครงสร้างมาตรฐาน</div>
+        <div class="step">ให้ผู้ทำงานจริงตรวจสอบและปรับแก้</div>
+        <div class="step">กำหนดผู้อนุมัติและเผยแพร่</div>
+        <div class="step">ทบทวนและอัปเดตเวอร์ชันตามรอบ</div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>4. Prompt ตัวอย่าง — Copy & Use</h2>
+      <div class="prompt">“ช่วยจัดทำ SOP จากข้อมูลด้านล่าง โดยใช้โครงสร้างมาตรฐาน: รหัสเอกสาร, ชื่อกระบวนการ, วัตถุประสงค์, ขอบเขต, ผู้รับผิดชอบ, ขั้นตอนการปฏิบัติงาน, เอกสารที่เกี่ยวข้อง, จุดควบคุมและความเสี่ยง, Checklist และ Revision History หากข้อมูลไม่เพียงพอ อย่าเดา ให้ระบุว่าข้อมูลใดต้องสอบถามเพิ่มเติม ใช้ภาษาไทยที่เป็นทางการและอ่านง่าย”</div>
+    </article>
+
+    <article class="card">
+      <h2>5. Prompt สำหรับจัดระเบียบเอกสารเดิม</h2>
+      <div class="prompt">“จากรายการเอกสารด้านล่าง ช่วยจัดหมวดหมู่เป็น POL / SOP / WI / FRM / CHK / REP พร้อมเสนอรหัสเอกสาร ชื่อไฟล์ใหม่ เจ้าของเอกสาร (Owner) เวอร์ชัน และโฟลเดอร์ที่ควรจัดเก็บ ตรวจหาเอกสารซ้ำที่ควรรวมและเวอร์ชันเก่าที่ควรย้ายไป Archive พร้อมจัดทำเป็นตาราง”</div>
+    </article>
+
+    <article class="card result">
+      <h2>6. ตัวอย่างผลลัพธ์ที่ได้</h2>
+      <table>
+        <thead><tr><th>ลำดับ</th><th>ชื่อเอกสาร</th><th>ประเภท</th><th>รหัสใหม่</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>ใบขอเบิกค่าใช้จ่าย</td><td>FRM</td><td>QPM-FIN-FRM-001</td><td>การเงิน</td></tr>
+          <tr><td>2</td><td>ขั้นตอนการจัดซื้อ</td><td>SOP</td><td>QPM-OPS-SOP-001</td><td>ปฏิบัติการ</td></tr>
+          <tr><td>3</td><td>แบบฟอร์มพนักงานใหม่</td><td>FRM</td><td>QPM-HR-FRM-002</td><td>HR</td></tr>
+          <tr><td>4</td><td>รายงานประจำเดือน</td><td>REP</td><td>QPM-MGMT-REP-001</td><td>ผู้บริหาร</td></tr>
+        </tbody>
+      </table>
+      <div class="tip">RELEARN TIP: เริ่มจากเรื่องเล็ก ๆ แต่ทำให้เป็นระบบ แล้วทั้งองค์กรจะไปได้ไกลขึ้นมาก</div>
+    </article>
+  </section>
+
+  <section class="audience">
+    <h2>เหมาะสำหรับ</h2>
+    <div class="pills">
+      <span class="pill">ทีมบริหาร / หัวหน้างาน</span>
+      <span class="pill">เจ้าหน้าที่เอกสาร / ธุรการ</span>
+      <span class="pill">ทุกคนที่ต้องจัดการข้อมูลและความรู้ในองค์กร</span>
+    </div>
+  </section>
+
+  <div class="footer">RELEARN OS • PREPARE • TRANSFORM • PERFORM</div>
+</div>
+</body>
+</html>
