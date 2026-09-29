@@ -40,4 +40,5 @@ function v(id){return document.getElementById(id).value.trim()}
 function build(){const parts=[["Role",v("role")],["Goal",v("goal")],["Context / Data",v("context")],["Task",v("task")],["Constraints",v("constraints")],["Output Format",v("format")],["Check",v("check")]].filter(x=>x[1]);document.getElementById("out").textContent=parts.length?parts.map(x=>x[0]+":\n"+x[1]).join("\n\n"):"กรอกอย่างน้อย 1 ช่องก่อน"}
 function copyOut(){navigator.clipboard.writeText(document.getElementById("out").innerText)}
 function resetAll(){["role","goal","context","task","constraints","format","check"].forEach(id=>document.getElementById(id).value="");document.getElementById("out").textContent="Prompt ที่ประกอบแล้วจะแสดงตรงนี้"}
-</script></body></html>
+</script><a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
+</body></html>
