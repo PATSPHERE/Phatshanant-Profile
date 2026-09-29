@@ -74,4 +74,5 @@ $("sendBtn").onclick=()=>{let v=$("promptBox").value.trim()||"ช่วยอ่
 $("next").onclick=()=>{if(i<steps.length-1){i++;render()}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};
 document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<steps.length-1){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});
 window.addEventListener("resize",()=>setTimeout(()=>spotlight(steps[i].target),90));render();
-</script></body></html>
+</script><a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
+</body></html>
