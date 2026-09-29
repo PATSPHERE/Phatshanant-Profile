@@ -91,4 +91,5 @@ escalation:"ผู้จัดประชุม / Meeting Owner / หัวห�
 Object.entries(x).forEach(([k,v])=>document.getElementById(k).value=v);build();}
 function clearAll(){ids.forEach(id=>document.getElementById(id).value="");document.getElementById("preview").textContent="กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”";}
 async function copyPlaybook(){const t=document.getElementById("preview").innerText;if(t.startsWith("กรอกข้อมูล"))return;await navigator.clipboard.writeText(t);}
-</script></body></html>
+</script><a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
+</body></html>
