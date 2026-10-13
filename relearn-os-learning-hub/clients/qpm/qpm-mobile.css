@@ -1,0 +1,104 @@
+/* Shared mobile stability layer for the QPM Learning Hub.
+   Desktop layouts remain unchanged; this only normalises phone-sized screens. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:auto}
+body{max-width:100%;overflow-x:hidden}
+img,svg,video,canvas,iframe{max-width:100%}
+button,input,textarea,select{max-width:100%;font:inherit}
+
+@media (max-width:700px){
+  html,body{width:100%;min-height:100%;height:auto!important;overflow-x:hidden!important;overflow-y:auto!important}
+  body{overscroll-behavior-y:none}
+  .shell{width:100%!important;height:auto!important;min-height:100dvh!important;grid-template-rows:auto auto auto!important;overflow:visible!important}
+  header{min-height:auto!important;padding:10px 12px!important;gap:8px!important;flex-wrap:wrap!important}
+  header .brand{min-width:0!important;gap:8px!important}
+  header .brand strong{font-size:17px!important;line-height:1.15!important}
+  header .badge{padding:6px 9px!important;font-size:9px!important;white-space:normal!important;text-align:center}
+
+  main{width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important;padding:10px!important;overflow:visible!important}
+  .sim,.guide,.stage,.workspace,.work,.content,.page,.panel,.builder,.preview,.output{min-width:0!important;max-width:100%!important}
+  .sim,.guide{border-radius:15px!important}
+  .sim{min-height:0!important;height:auto!important;overflow:visible!important}
+  .simhead{min-height:42px!important;height:auto!important;padding:8px 10px!important;gap:8px!important;flex-wrap:wrap!important;font-size:10px!important}
+  .guide{padding:16px!important;min-height:0!important}
+  .guide h2{font-size:20px!important;line-height:1.25!important}
+  .guide p,.info p{overflow-wrap:anywhere}
+
+  /* Guided-tour mock applications: keep the important navigation visible,
+     but give the working area most of the phone width. */
+  .chat,.claude,.gemini{grid-template-columns:96px minmax(0,1fr)!important;height:auto!important;min-height:520px!important}
+  .copilot{grid-template-columns:48px minmax(0,1fr)!important;height:auto!important;min-height:520px!important}
+  .side,.sidebar{min-width:0!important;padding:7px!important;overflow:hidden!important}
+  .sidetitle{font-size:10px!important;margin:5px 2px 8px!important}
+  .side .item,.sidebar .mitem,.sidebar .menu{padding:7px 4px!important;font-size:8px!important;white-space:normal!important;overflow-wrap:anywhere}
+  .profile{left:6px!important;right:6px!important;bottom:8px!important;padding:7px!important;font-size:8px!important}
+  .rail{width:48px!important;padding:8px 6px!important}
+  .work{height:auto!important;min-height:520px!important;padding:18px 10px!important;overflow:visible!important}
+  .welcome{margin-top:28px!important}
+  .welcome h1,.hello h1{font-size:22px!important;line-height:1.2!important}
+  .suggestions,.cards,.modegrid,.agentcards,.grid3,.kpis{grid-template-columns:1fr!important;gap:7px!important}
+  .suggestions{margin:14px auto 10px!important}
+  .suggest,.card,.modecard,.agentcard,.kpi{padding:10px!important}
+  .composer{width:100%!important;margin:10px auto!important;padding:10px!important;border-radius:18px!important}
+  .composer textarea{min-height:44px!important;font-size:12px!important}
+  .toolrow{gap:4px!important;flex-wrap:wrap!important}
+  .pill,.tool,.chip,.smart{font-size:9px!important;padding:5px 7px!important}
+  .response,.panel,.modes,.personal,.agent,.gembuilder,.settings{width:100%!important;max-width:100%!important;margin:14px auto!important}
+  .bubbleuser{max-width:92%!important}
+
+  /* Settings and popovers must stay inside the viewport. */
+  .modal,.settings{inset:8px!important;max-height:calc(100dvh - 120px)!important;overflow:auto!important;border-radius:13px!important}
+  .settingsgrid,.settings,.gemgrid{grid-template-columns:1fr!important;height:auto!important}
+  .setnav,.gemnav{display:flex!important;gap:4px!important;overflow-x:auto!important;padding:8px!important;border-right:0!important;border-bottom:1px solid #e4e9ee!important}
+  .setnav h3,.gemnav h3{display:none!important}
+  .setitem,.gemitem{flex:0 0 auto!important;padding:6px 8px!important;font-size:9px!important}
+  .setbody,.gembody{padding:14px!important}
+  .profilemenu,.smartmenu,.addmenu{left:6px!important;right:6px!important;width:auto!important;max-width:calc(100vw - 32px)!important}
+
+  /* Section 4/5 work simulations: remove scale transforms (a common source
+     of jumping) and use a compact navigation column instead. */
+  .stage{min-height:0!important;height:auto!important;padding:8px!important;overflow:visible!important}
+  .window,.desktop,.fakeapp{width:100%!important;max-width:100%!important;height:auto!important;min-height:560px!important;margin:0!important;transform:none!important;transform-origin:initial!important;grid-template-columns:88px minmax(0,1fr)!important;border-radius:13px!important}
+  .window .sidebar,.desktop .sidebar{width:auto!important;min-width:0!important}
+  .workspace,.content{height:auto!important;min-height:540px!important;padding:12px 9px!important;overflow:visible!important}
+  .toolbar,.row{gap:5px!important;flex-wrap:wrap!important}
+  .prompt,.output,.table,.compose,.emailbody,.docs,.qa{width:100%!important;max-width:100%!important;overflow-wrap:anywhere!important}
+  .table{overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+
+  /* NotebookLM uses three panes on desktop; stack them on phones. */
+  .notebook{display:grid!important;grid-template-columns:1fr!important;height:auto!important;min-height:0!important;overflow:visible!important}
+  .notebook>.pane,.notebook>.sources,.notebook>.chat,.notebook>.studio{width:100%!important;max-width:100%!important;min-height:260px!important;height:auto!important;overflow:visible!important;border-right:0!important;border-bottom:1px solid #e1e8ee!important}
+  .notebook>.chat{display:block!important;grid-template-columns:none!important}
+  .tiles{grid-template-columns:1fr!important}
+
+  /* Builders and content cards. */
+  .layout,.grid,.builder-grid,.fields,.asset-grid,.checks{grid-template-columns:1fr!important}
+  .wrap{width:100%!important;padding-left:12px!important;padding-right:12px!important}
+  .actions,.footer{gap:8px!important;flex-wrap:wrap!important}
+  .actions .btn,.footer .btn{flex:1 1 140px!important}
+
+  footer{position:static!important;min-height:auto!important;padding:10px!important;gap:9px!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important}
+  footer .controls{order:1;display:flex!important;gap:6px!important;flex-wrap:wrap!important;justify-content:center!important}
+  footer .progress{order:2;flex:1 1 100%!important}
+  footer .note{order:3;flex:1 1 100%!important;text-align:center!important}
+  footer .btn{min-height:40px!important;padding:9px 11px!important}
+  footer .bar{width:min(220px,70vw)!important;margin:5px auto 0!important}
+
+  [data-qpm-home-button="true"]{position:static!important;display:flex!important;width:max-content!important;max-width:calc(100% - 24px)!important;margin:12px auto 18px!important;justify-content:center!important;white-space:normal!important;text-align:center!important}
+  .spot{max-width:calc(100% - 12px)!important}
+  .spotnum{transform:scale(.85)}
+}
+
+@media (max-width:380px){
+  .chat,.claude,.gemini{grid-template-columns:82px minmax(0,1fr)!important}
+  .window,.desktop,.fakeapp{grid-template-columns:76px minmax(0,1fr)!important}
+  .work,.workspace,.content{padding-left:7px!important;padding-right:7px!important}
+  .guide{padding:13px!important}
+  .btn{font-size:10px!important}
+}
+
+@media (max-width:900px) and (max-height:500px) and (orientation:landscape){
+  html,body{height:auto!important;overflow:auto!important}
+  .shell{height:auto!important;min-height:100dvh!important;grid-template-rows:auto auto auto!important}
+  main{grid-template-columns:minmax(0,1fr)!important}
+  footer{position:static!important}
+}
