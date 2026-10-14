@@ -38,12 +38,20 @@ h1{font-size:46px;line-height:1.08;margin:10px 0 12px;color:var(--blue)}.hero p{
 .brand-wordmark{display:flex;align-items:center;min-width:205px}.brand-wordmark>div{font-family:Arial,sans-serif;font-weight:900;font-size:28px;line-height:1;letter-spacing:-.04em;white-space:nowrap}.brand-wordmark .relearn{color:#0B5BD3}.brand-wordmark .os{color:#24AB5D}.brand-wordmark small{display:block;margin-top:6px;color:#1F2937;font-size:7px;font-weight:800;letter-spacing:.16em}.mascot-master{display:block;width:150px;max-width:34vw;height:auto;object-fit:contain}@media(max-width:720px){.brand-wordmark>div{font-size:25px}.mascot-master{width:118px}}
 </style>
 <link rel="stylesheet" href="qpm-mobile.css">
-</head>
+<style id="qpm-mobile-top-home-20261014">
+#qpm-top-home{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;min-height:42px;border-radius:10px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,Tahoma,sans-serif;white-space:nowrap}
+@media(max-width:850px){
+.top{position:sticky!important;top:0!important;z-index:2147483000!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:6px!important;flex-wrap:nowrap!important;background:#fff!important;padding:10px 8px!important;border-radius:10px!important;box-shadow:0 2px 12px rgba(0,0,0,.10)!important}
+.top #qpm-top-home{display:inline-flex!important;position:relative!important;visibility:visible!important;opacity:1!important;flex:0 0 auto!important;margin-left:auto!important;min-height:44px!important;padding:10px!important;font-size:12px!important}
+.top .badge{display:none!important}
+[data-qpm-home-button="true"]{display:none!important}
+}
+</style></head>
 <body>
 <div class="wrap">
   <div class="top">
     <div class="brand-wordmark" aria-label="RELEARN OS"><div><span class="relearn">RELEARN</span> <span class="os">OS</span><small>PREPARE • TRANSFORM • PERFORM</small></div></div>
-    <a class="back" href="home.html">← QPM Learning Hub</a>
+    <a class="back" id="qpm-top-home" href="https://thepatsphere.com/Phatshanant-Profile/relearn-os-learning-hub/clients/qpm/home.html">⌂ กลับ Learning Hub</a>
   </div>
 
   <section class="hero">
@@ -145,6 +153,6 @@ function loadExample(){document.getElementById('context').value='ฉันเป
 function clearAll(){ids.forEach(id=>document.getElementById(id).value='');build()}
 async function copyPrompt(){const t=document.getElementById('promptPreview').textContent;if(t.startsWith('เริ่มพิมพ์'))return;await navigator.clipboard.writeText(t);}
 </script>
-<a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
+
 </body>
 </html>
