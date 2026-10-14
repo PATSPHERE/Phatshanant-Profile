@@ -11,7 +11,13 @@
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:900;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#edf3f7;color:#35516f}.output{white-space:pre-wrap;background:#f8fbfe;border:1px dashed #cbdbe7;border-radius:14px;padding:14px;margin-top:14px;min-height:120px;color:#31465d}
 .tip{margin-top:18px;padding:14px;border-radius:14px;background:#fff7dc;border:1px solid #efd88a;font-size:12px;line-height:1.6}.footer{text-align:center;color:#7b8c9d;font-size:11px;padding:28px}
 @media(max-width:720px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
-</style><link rel="stylesheet" href="qpm-mobile.css">
+</style><link rel="stylesheet" href="qpm-mobile.css"><style>
+/* Section 3: native vertical touch scrolling for LINE in-app browser */
+html,body{height:auto!important;min-height:100%!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:auto!important;-webkit-overflow-scrolling:touch;touch-action:pan-y pinch-zoom}
+.wrap,.hero,.grid,.builder,.field,.card{height:auto;overflow:visible;touch-action:pan-y pinch-zoom}
+.field textarea{touch-action:auto;-webkit-user-select:text;user-select:text}
+@media(max-width:720px){.wrap{padding-bottom:calc(32px + env(safe-area-inset-bottom))}.top{flex-wrap:wrap}.hero h1{font-size:clamp(24px,7vw,32px)}}
+</style>
 </head><body>
 <div class="wrap"><div class="top"><div class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></div><span class="badge">SECTION 3 · PROMPT</span></div>
 <section class="hero"><h1>Universal Prompt Builder — 7 ส่วน</h1><p>สำหรับงานที่ต้องการ Prompt ละเอียดขึ้น: Role • Goal • Context/Data • Task • Constraints • Output Format • Check ใช้ได้ข้าม ChatGPT, Gemini, Claude และ Copilot</p></section>
