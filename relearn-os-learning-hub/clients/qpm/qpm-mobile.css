@@ -102,3 +102,20 @@ button,input,textarea,select{max-width:100%;font:inherit}
   main{grid-template-columns:minmax(0,1fr)!important}
   footer{position:static!important}
 }
+
+/* LINE in-app browser: Guided Tour pages need an independent scrolling viewport.
+   Avoid body-only scrolling, which can be locked by LINE WebView. */
+@media (max-width:700px){
+  body:has(.shell .sim .guide), body:has(.shell .sim):has(.guide){
+    height:100dvh!important;min-height:0!important;overflow:hidden!important;
+  }
+  body:has(.shell .sim):has(.guide) .shell{
+    height:100dvh!important;min-height:0!important;overflow-y:auto!important;
+    overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;
+    overscroll-behavior-y:contain!important;display:block!important;
+  }
+  body:has(.shell .sim):has(.guide) main{display:block!important;}
+  body:has(.shell .sim):has(.guide) .sim{margin-bottom:12px!important;}
+  body:has(.shell .sim):has(.guide) footer{position:sticky!important;bottom:0!important;z-index:80!important;background:#fff!important;box-shadow:0 -4px 18px rgba(25,55,85,.12)!important;}
+  body:has(.shell .sim):has(.guide) .work{overflow:visible!important;}
+}
