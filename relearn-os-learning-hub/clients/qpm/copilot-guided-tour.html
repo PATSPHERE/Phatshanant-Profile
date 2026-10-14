@@ -126,7 +126,7 @@ body>.shell,.shell{position:static!important;inset:auto!important;width:100%!imp
 </style><style id="copilot-header-home-always-visible">
 #copilot-header-home{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:10px 12px;border-radius:10px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,Tahoma,sans-serif;position:relative;z-index:99999;flex-shrink:0}
 @media(max-width:900px){.shell>header{display:flex!important;flex-wrap:wrap!important;gap:5px!important;padding:7px 10px!important;min-height:54px!important}.shell>header .brand{min-width:0!important}.shell>header .brand strong{font-size:16px!important}.shell>header .badge,.shell>header>div:nth-child(2){display:none!important}#copilot-header-home{display:inline-flex!important;margin-left:auto!important;padding:9px 11px!important;font-size:12px!important}.qpm-tour-top-controls .qpm-copilot-home-top{display:none!important}}
-</style></head>
+</style><style id="copilot-home-label-fix">@media(max-width:900px){.qpm-tour-top-controls .qpm-copilot-home-top{display:none!important}#copilot-header-home{display:inline-flex!important}}</style></head>
 <body>
 <div class="shell">
 <header><div class="brand"><strong>RELEARN <span>OS</span></strong><span class="badge">Section 2 · Microsoft Copilot Guided Tour</span></div><div><b>Optional Live Demo</b><br><small>อิงหน้าจอปัจจุบัน · 3–4 นาที</small></div><a id="copilot-header-home" href="./home.html" aria-label="กลับหน้า Learning Hub">⌂ กลับ Learning Hub</a></header>
@@ -206,7 +206,7 @@ var count=document.createElement('span');count.className='qpm-tour-step-count';n
 var btn=document.createElement('button');btn.type='button';btn.textContent=v[1];btn.title=v[2];btn.setAttribute('aria-label',v[2]);if(v[0]==='next')btn.className='qpm-top-next';
 btn.addEventListener('click',function(){var target=document.getElementById(v[0]);if(target){target.click();var sc=document.querySelector('.shell>main');if(sc)sc.scrollTop=0;}update();});
 nav.appendChild(btn);});
-var home=document.querySelector('[data-qpm-home-button="true"]');if(home){home.textContent='⌂ Home';home.title='กลับหน้า Learning Hub';home.setAttribute('aria-label','กลับหน้า Learning Hub');home.classList.add('qpm-copilot-home-top');nav.insertBefore(home,nav.firstChild);}h.appendChild(nav);
+var home=document.querySelector('[data-qpm-home-button="true"]');if(home){home.textContent='⌂ กลับ Learning Hub';home.title='กลับหน้า Learning Hub';home.setAttribute('aria-label','กลับหน้า Learning Hub');home.classList.add('qpm-copilot-home-top');nav.insertBefore(home,nav.firstChild);}h.appendChild(nav);
 function update(){var source=document.getElementById('count');count.textContent=source?source.textContent:'';
 var p=document.getElementById('prev'),n=document.getElementById('next');
 if(p)nav.children[1].disabled=p.disabled;
