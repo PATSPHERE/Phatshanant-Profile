@@ -29,66 +29,25 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:9px
 @media(max-width:900px){body{overflow:auto}.shell{height:auto;min-height:100vh;grid-template-rows:auto auto auto}main{grid-template-columns:1fr}.sim{min-height:650px}.chat{grid-template-columns:170px 1fr}}
 </style>
 <link rel="stylesheet" href="qpm-mobile.css">
-<style id="line-webview-scroll-fix">
+<style id="qpm-single-tour-responsive">
+.tour-nav{display:flex;align-items:center;gap:7px;margin-left:auto}.tour-nav button{border:1px solid #d8e4ee;border-radius:9px;background:#eef5ff;color:#17345b;font-weight:800;padding:8px 12px;cursor:pointer;min-height:36px}.tour-nav #topNext{background:#0b5bd3;color:white}.tour-nav button:disabled{opacity:.35}.tour-nav #topCount{font-size:12px;color:#0b5bd3;font-weight:800;white-space:nowrap}footer .controls{display:none!important}
 @media(max-width:900px){
-html,body{height:100%!important;overflow:hidden!important;overscroll-behavior:none!important}
-body>.shell,.shell{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;height:100dvh!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
-.shell>header{flex:0 0 auto!important}
-.shell>main{flex:1 1 auto!important;min-height:0!important;display:block!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain!important;touch-action:pan-y!important}
-.shell>main>.sim{min-height:550px!important;height:auto!important;overflow:visible!important;margin-bottom:12px!important}
-.shell>main>.guide{height:auto!important;min-height:0!important;margin-bottom:12px!important}
-.shell>footer{flex:0 0 auto!important;position:relative!important;z-index:100!important;max-height:28vh!important;overflow-y:auto!important;padding:7px!important;box-shadow:0 -3px 14px rgba(0,0,0,.1)!important}
-.shell>footer .controls{order:0!important;flex:1 1 100%!important}
-.shell>footer .progress,.shell>footer .note{display:none!important}
-[data-qpm-home-button="true"]{display:none!important}
-}
-</style><style id="qpm-mobile-top-nav">
-@media(max-width:900px){
-.shell>main{padding-top:0!important}
-.shell>main>.sim{display:flex!important;flex-direction:column!important}
-.shell>main>.sim>.simhead{position:sticky!important;top:0!important;z-index:90!important;background:#fff!important;min-height:55px!important;align-items:center!important}
+html,body{height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important}
+.shell{position:static!important;height:auto!important;min-height:100vh!important;display:flex!important;flex-direction:column!important;overflow:visible!important}
+.shell>main{display:flex!important;flex-direction:column!important;height:auto!important;min-height:0!important;overflow:visible!important;padding:10px!important}
+.shell>main>.sim{display:flex!important;flex-direction:column!important;min-height:0!important;height:auto!important;overflow:visible!important}
+.shell>main>.sim>.simhead{position:sticky!important;top:0!important;z-index:90!important;min-height:52px!important;padding:7px!important;gap:5px!important;background:white!important}
+.simhead b{font-size:12px!important;max-width:34%;overflow-wrap:anywhere}
+.tour-nav{gap:4px}.tour-nav button{padding:6px 8px;font-size:12px;min-height:37px}.tour-nav #topCount{font-size:10px}
+.chat{display:grid!important;grid-template-columns:92px minmax(0,1fr)!important;height:auto!important;min-height:500px!important;overflow:visible!important;position:relative!important}
+.chat>.side{display:block!important;min-height:500px!important;position:relative!important;overflow:visible!important}
+.chat>.work{display:block!important;min-height:500px!important;height:auto!important;overflow:visible!important;padding:10px!important}
+.home{padding:10px!important;min-height:0!important}.welcome{margin-top:15px!important}
+.modal{position:relative!important;inset:auto!important;max-height:none!important;height:auto!important;overflow:visible!important;margin:8px!important}
+.settings{display:block!important;max-height:none!important;height:auto!important;overflow:visible!important}
+.setbody{padding:12px!important}.field textarea,.composer textarea{height:auto!important;min-height:110px!important;max-height:none!important;overflow:visible!important}
+.spot,.spotnum{pointer-events:none!important}
 .shell>footer{display:none!important}
-.qpm-tour-top-controls{display:flex!important;align-items:center;gap:5px;flex-wrap:nowrap;margin-left:auto}
-.qpm-tour-top-controls button{min-width:35px;min-height:36px;border:1px solid #d8e4ee;border-radius:9px;background:#eef5ff;color:#17345b;font-weight:800;font-size:15px;cursor:pointer}
-.qpm-tour-top-controls button.qpm-top-next{background:#0b5bd3;color:white}
-.qpm-tour-top-controls button:disabled{opacity:.35}
-.qpm-tour-step-count{font-size:10px;font-weight:800;color:#0b5bd3;white-space:nowrap}
-.simhead>span:not(.qpm-tour-step-count){display:none!important}
-}
-@media(min-width:901px){.qpm-tour-top-controls{display:none!important}}
-</style><style id="chatgpt-mobile-step-fixes">
-@media(max-width:900px){
-#settingsModal{position:relative!important;inset:auto!important;top:auto!important;left:auto!important;right:auto!important;max-height:none!important;height:auto!important;overflow:visible!important;margin:8px!important;box-shadow:none!important;z-index:2!important}
-#settingsModal .settings{max-height:none!important;overflow:visible!important;margin:0!important}
-#settingsModal .setbody{overflow:visible!important}
-#settingsModal textarea{height:auto!important;min-height:70px!important}
-#settingsModal .close{position:absolute!important;right:5px!important;top:5px!important;z-index:3!important}
-#composer textarea{height:auto!important;min-height:100px!important;overflow:visible!important;resize:none!important;line-height:1.55!important}
-#composer{overflow:visible!important}
-.chat{min-height:600px!important}
-}
-</style><style id="qpm-line-mobile-rebuild">
-@media(max-width:900px){
-html,body{position:static!important;height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important}
-body>.shell,.shell{position:static!important;inset:auto!important;width:100%!important;height:auto!important;min-height:100vh!important;display:block!important;overflow:visible!important}
-.shell>header{position:static!important}
-.shell>main{display:flex!important;flex-direction:column!important;height:auto!important;min-height:0!important;overflow:visible!important;padding:8px!important;touch-action:auto!important}
-.shell>main>.sim{display:block!important;height:auto!important;min-height:0!important;overflow:visible!important}
-.shell>main>.sim>.simhead{position:sticky!important;top:0!important;z-index:80!important;padding:8px!important}
-.shell>main>.guide{display:flex!important;height:auto!important;overflow:visible!important}
-.shell>footer{display:none!important}
-.chat,.claude,.copilot{display:block!important;height:auto!important;min-height:0!important;overflow:visible!important}
-.chat>.side,.claude>.side,.copilot>.rail{display:none!important}
-.chat>.work,.claude>.work,.copilot>.work{display:block!important;height:auto!important;min-height:0!important;overflow:visible!important;padding:10px!important}
-.home{min-height:0!important;height:auto!important;padding:12px!important}
-.modal{position:static!important;inset:auto!important;width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important;margin:10px auto!important;box-shadow:none!important}
-.settings{display:block!important;height:auto!important;max-height:none!important;overflow:visible!important}
-.setnav{display:flex!important;overflow-x:auto!important}
-.setbody{height:auto!important;overflow:visible!important;padding:12px!important}
-.field textarea,.composer textarea{display:block!important;height:auto!important;min-height:110px!important;max-height:none!important;overflow:visible!important;white-space:pre-wrap!important}
-.composer,.response,.panel,.modes,.personal,.agent{height:auto!important;max-height:none!important;overflow:visible!important}
-.spot,.spotnum{display:none!important}
-.qpm-tour-top-controls{display:flex!important}
 [data-qpm-home-button="true"]{display:flex!important;position:static!important;margin:12px auto!important}
 }
 </style></head>
@@ -97,7 +56,7 @@ body>.shell,.shell{position:static!important;inset:auto!important;width:100%!imp
 <header><div class="brand"><strong>RELEARN <span>OS</span></strong><span class="badge">Section 2 · ChatGPT Guided Tour</span></div><div><b>Live Demo Simulator</b><br><small>ไม่ต้อง Sign in จริง</small></div></header>
 <main>
 <section class="sim">
-<div class="simhead"><b id="simTitle">หน้าจอหลัก</b><span>ChatGPT-style simulator</span></div>
+<div class="simhead"><b id="simTitle">หน้าจอหลัก</b><div class="tour-nav"><span id="topCount">1 / 5</span><button id="topPrev" type="button" aria-label="ก่อนหน้า">‹</button><button id="topReset" type="button" aria-label="เริ่มใหม่">↻</button><button id="topNext" type="button" aria-label="ถัดไป">ถัดไป ›</button></div></div>
 <div class="chat" id="chat">
 <aside class="side">
 <div class="sidetitle">ChatGPT</div>
@@ -126,7 +85,7 @@ body>.shell,.shell{position:static!important;inset:auto!important;width:100%!imp
 <div class="mascot">RELEARN OS · AI ช่วยคิด คนตรวจ คนตัดสินใจ</div>
 </aside>
 </main>
-<footer><div class="controls"><button class="btn secondary" id="prev">← ก่อนหน้า</button><button class="btn primary" id="next">ถัดไป →</button><button class="btn secondary" id="reset">เริ่มใหม่</button></div><div class="progress"><div id="count">1 / 5</div><div class="bar"><div id="fill"></div></div></div><div class="note">ใช้ ← → บนคีย์บอร์ดได้ · จบ Tour แล้วกลับ Slide 18: Gemini</div></footer>
+<footer><div class="controls" id="tour-controls"><button class="btn secondary" id="prev">← ก่อนหน้า</button><button class="btn primary" id="next">ถัดไป →</button><button class="btn secondary" id="reset">เริ่มใหม่</button></div><div class="progress"><div id="count">1 / 5</div><div class="bar"><div id="fill"></div></div></div><div class="note">ใช้ ← → บนคีย์บอร์ดได้ · จบ Tour แล้วกลับ Slide 18: Gemini</div></footer>
 </div>
 <script>
 const steps=[
@@ -139,28 +98,7 @@ let i=0;const $=id=>document.getElementById(id);
 function hide(){ $("profileMenu").style.display="none";$("settingsModal").style.display="none";$("modes").style.display="none";$("welcome").style.display="block";$("suggestions").style.display="grid";$("composer").style.display="block";$("response").style.display="none";$("spot").style.display="none";$("spotnum").style.display="none";}
 function spotlight(id){const el=$(id),w=$("work").getBoundingClientRect(),r=el.getBoundingClientRect(),s=$("spot"),n=$("spotnum");if(!el)return;const root=$("chat").getBoundingClientRect();s.style.left=(r.left-root.left-6)+"px";s.style.top=(r.top-root.top-6)+"px";s.style.width=(r.width+12)+"px";s.style.height=(r.height+12)+"px";s.style.display="block";n.style.left=Math.max(6,r.left-root.left-15)+"px";n.style.top=Math.max(6,r.top-root.top-15)+"px";n.style.display="grid";n.textContent=i+1}
 function view(v){hide();if(v==="settings"){$("profileMenu").style.display="block";$("settingsModal").style.display="block"}else if(v==="modes"){$("welcome").style.display="none";$("suggestions").style.display="none";$("composer").style.display="none";$("modes").style.display="block"}else if(v==="prompt"){$("promptBox").value="ช่วยสรุปข้อความนี้เป็น 3 ประเด็นสำคัญ และบอกสิ่งที่ต้องทำต่อ";$("userBubble").textContent=$("promptBox").value;$("response").style.display="block"}else if(v==="refine"){$("promptBox").value="ทำให้สั้นลง และจัดเป็นตาราง พร้อมเพิ่มสิ่งที่ต้องทำต่อ";$("userBubble").textContent=$("promptBox").value;$("response").style.display="block"}else{$("promptBox").value=""}}
-function render(){const s=steps[i];$("simTitle").textContent=s.sim;$("eyebrow").textContent=s.eye;$("tourTitle").textContent=s.title;$("tourBody").textContent=s.body;$("memory").textContent=s.memory;$("human").textContent=s.human;$("nextText").textContent=s.next;$("count").textContent=(i+1)+" / 5";$("fill").style.width=((i+1)*20)+"%";$("prev").disabled=i===0;$("next").textContent=i===4?"จบ Tour ✓":"ถัดไป →";view(s.view);setTimeout(()=>{if(s.view==="settings" && window.matchMedia("(max-width:900px)").matches){$("spot").style.display="none";$("spotnum").style.display="none"}else spotlight(s.target)},80)}
-$("profileBtn").onclick=()=>{$("profileMenu").style.display=$("profileMenu").style.display==="block"?"none":"block"};$("settingsBtn").onclick=()=>{$("settingsModal").style.display="block";setTimeout(()=>spotlight("aboutField"),50)};$("closeSettings").onclick=()=>{$("settingsModal").style.display="none"};$("sendBtn").onclick=()=>{let v=$("promptBox").value.trim()||"ช่วยสรุปข้อความนี้เป็น 3 ประเด็นสำคัญ และบอกสิ่งที่ต้องทำต่อ";$("userBubble").textContent=v;$("response").style.display="block"};$("next").onclick=()=>{if(i<4){i++;render()}else{window.location.href="home.html"}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<4){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});window.addEventListener("resize",()=>setTimeout(()=>spotlight(steps[i].target),80));render();
+function render(){const s=steps[i];$("topCount").textContent=(i+1)+" / "+steps.length;$("topPrev").disabled=i===0;$("topNext").textContent=i===steps.length-1?"จบ · Home":"ถัดไป ›";$("simTitle").textContent=s.sim;$("eyebrow").textContent=s.eye;$("tourTitle").textContent=s.title;$("tourBody").textContent=s.body;$("memory").textContent=s.memory;$("human").textContent=s.human;$("nextText").textContent=s.next;$("count").textContent=(i+1)+" / 5";$("fill").style.width=((i+1)*20)+"%";$("prev").disabled=i===0;$("next").textContent=i===4?"จบ Tour ✓":"ถัดไป →";view(s.view);setTimeout(()=>spotlight(s.target),100)}
+$("profileBtn").onclick=()=>{$("profileMenu").style.display=$("profileMenu").style.display==="block"?"none":"block"};$("settingsBtn").onclick=()=>{$("settingsModal").style.display="block";setTimeout(()=>spotlight("aboutField"),50)};$("closeSettings").onclick=()=>{$("settingsModal").style.display="none"};$("sendBtn").onclick=()=>{let v=$("promptBox").value.trim()||"ช่วยสรุปข้อความนี้เป็น 3 ประเด็นสำคัญ และบอกสิ่งที่ต้องทำต่อ";$("userBubble").textContent=v;$("response").style.display="block"};$("next").onclick=()=>{if(i<4){i++;render()}else{window.location.href="home.html"}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<4){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});window.addEventListener("resize",()=>setTimeout(()=>spotlight(steps[i].target),80));$("topPrev").onclick=()=>$("prev").click();$("topNext").onclick=()=>$("next").click();$("topReset").onclick=()=>$("reset").click();render();
 </script><a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
-<script id="qpm-mobile-top-nav-script">
-(function(){
-function init(){
-var h=document.querySelector('.simhead'),old=document.querySelector('footer .controls');
-if(!h||!old||document.getElementById('qpm-tour-top-controls'))return;
-var nav=document.createElement('div');nav.className='qpm-tour-top-controls';nav.id='qpm-tour-top-controls';
-var count=document.createElement('span');count.className='qpm-tour-step-count';nav.appendChild(count);
-[['prev','‹','ก่อนหน้า'],['reset','↻','เริ่มใหม่'],['next','›','ถัดไป']].forEach(function(v){
-var btn=document.createElement('button');btn.type='button';btn.textContent=v[1];btn.title=v[2];btn.setAttribute('aria-label',v[2]);if(v[0]==='next')btn.className='qpm-top-next';
-btn.addEventListener('click',function(){var target=document.getElementById(v[0]);if(target){target.click();var sc=document.querySelector('.shell>main');if(sc)sc.scrollTop=0;}update();});
-nav.appendChild(btn);});
-h.appendChild(nav);
-function update(){var source=document.getElementById('count');count.textContent=source?source.textContent:'';
-var p=document.getElementById('prev'),n=document.getElementById('next');
-if(p)nav.children[1].disabled=p.disabled;
-if(n){nav.children[3].disabled=n.disabled;nav.children[3].title=n.textContent;nav.children[3].setAttribute('aria-label',n.textContent);}}
-new MutationObserver(update).observe(old,{subtree:true,attributes:true,childList:true,characterData:true});
-var source=document.getElementById('count');if(source)new MutationObserver(update).observe(source,{subtree:true,childList:true,characterData:true});update();
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();
-</script></body></html>
+</body></html>
