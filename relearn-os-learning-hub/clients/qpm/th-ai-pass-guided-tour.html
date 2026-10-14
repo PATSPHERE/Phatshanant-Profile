@@ -40,9 +40,25 @@ main{display:grid;grid-template-columns:minmax(560px,1.35fr) minmax(340px,.65fr)
 footer{display:flex;align-items:center;justify-content:space-between;padding:9px 22px;background:#fff;border-top:1px solid var(--line)}.controls{display:flex;gap:8px}.fbtn{border:0;border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;font-size:12px}.fprimary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff}.fsecondary{background:#edf3f7;color:#35485d}.progress{font-size:11px;color:#687b8f;text-align:center}.bar{width:220px;height:7px;background:#e2ebf1;border-radius:999px;overflow:hidden;margin-top:4px}.bar>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));width:6.67%}.note{font-size:10px;color:#748599;text-align:right}
 @media(max-width:980px){body{overflow:auto}.shell{height:auto;min-height:100vh;grid-template-rows:auto auto auto}main{grid-template-columns:1fr}.sim{min-height:760px}.desktop{transform:scale(.8);transform-origin:center}.stage{min-height:720px}}
 </style><link rel="stylesheet" href="qpm-mobile.css">
-</head>
+<style id="qpm-unified-tour-controls-style">
+#qpm-unified-home{display:inline-flex!important;align-items:center;justify-content:center;white-space:nowrap;padding:9px 12px;border-radius:9px;background:#1767d1;color:white;text-decoration:none;font:800 12px Arial,Tahoma,sans-serif;position:relative;z-index:9999}
+#qpm-unified-tour-nav{display:none}
+@media(max-width:900px){
+header,#qpm-unified-tour-nav{box-sizing:border-box!important}
+header{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:6px!important;padding:8px 10px!important;min-height:55px!important}
+header .badge,header .pill,header .headright,header>div:nth-child(2){display:none!important}
+header .brand strong,header .brand .wordmark,header .brand{font-size:16px!important}
+#qpm-unified-home{margin-left:auto!important;min-height:36px!important;flex-shrink:0!important}
+#qpm-unified-tour-nav{display:flex!important;position:sticky!important;top:0!important;z-index:9998!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important;padding:7px 10px!important;background:#fff!important;border-bottom:1px solid #dce7ef!important;min-height:48px!important}
+#qpm-unified-tour-nav button{min-width:38px!important;min-height:35px!important;padding:6px 10px!important;border:1px solid #d8e4ee!important;border-radius:9px!important;background:#eef5ff!important;color:#17345b!important;font-weight:800!important;font-size:15px!important}
+#qpm-unified-tour-nav button:last-child{background:#0b5bd3!important;color:white!important}
+#qpm-unified-tour-nav button:disabled{opacity:.35!important}
+#qpm-unified-tour-nav .qpm-count{font:800 11px Arial,Tahoma,sans-serif!important;color:#0b5bd3!important;margin-right:auto!important}
+footer .controls,footer .nav{display:none!important}
+}
+</style></head>
 <body><div class="shell">
-<header><div class="brand"><strong>RELEARN <span>OS</span></strong><span class="badge">Section 2 · TH-AI Passport / AiPASS Guided Tour</span></div><div><b>Registration Tour → AiPASS Workspace Tour</b><br><small>Mobile registration + desktop workspace simulator</small></div></header>
+<header><div class="brand"><strong>RELEARN <span>OS</span></strong><span class="badge">Section 2 · TH-AI Passport / AiPASS Guided Tour</span></div><div><b>Registration Tour → AiPASS Workspace Tour</b><br><small>Mobile registration + desktop workspace simulator</small></div><a id="qpm-unified-home" href="./home.html" aria-label="กลับหน้า Learning Hub">⌂ กลับ Learning Hub</a></header><div id="qpm-unified-tour-nav" aria-label="ปุ่มนำทาง Guided Tour"><span class="qpm-count" id="qpm-unified-count"></span><button type="button" data-step="prev" aria-label="ก่อนหน้า">‹</button><button type="button" data-step="reset" aria-label="เริ่มใหม่">↻</button><button type="button" data-step="next" aria-label="ถัดไป">›</button></div>
 <main><section class="sim"><div class="simhead"><b id="simTitle"></b><div class="phaseTabs"><span class="phaseTab active" id="regTab">1. Registration Tour</span><span class="phaseTab" id="wsTab">2. AiPASS Workspace Tour</span></div><span id="modeText"></span></div><div class="stage" id="stage"></div></section>
 <aside class="guide"><div class="eyebrow" id="eyebrow"></div><h2 id="tourTitle"></h2><p id="tourBody"></p><div class="info"><b>สิ่งที่ต้องจำ</b><p id="memory"></p></div><div class="info human"><b>Human Check</b><p id="human"></p></div><div class="info next"><b>ถัดไปคืออะไร</b><p id="nextText"></p></div></aside></main>
 <footer><div class="controls"><button class="fbtn fsecondary" id="prev">← ก่อนหน้า</button><button class="fbtn fprimary" id="next">ถัดไป →</button><button class="fbtn fsecondary" id="reset">เริ่มใหม่</button></div><div class="progress"><div id="count"></div><div class="bar"><div id="fill"></div></div></div><div class="note">RELEARN OS · AI ช่วยคิด คนตรวจ คนตัดสินใจ</div></footer></div>
@@ -126,4 +142,4 @@ $("next").onclick=()=>{if(i<steps.length-1){i++;render()}};$("prev").onclick=()=
 document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<steps.length-1){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});
 window.addEventListener("resize",()=>setTimeout(()=>spotlight(steps[i].target),100));render();
 </script><a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
-</body></html>
+<script id="qpm-unified-tour-nav-script">(function(){function init(){const nav=document.getElementById('qpm-unified-tour-nav');if(!nav)return;const count=nav.querySelector('#qpm-unified-count');function sync(){const c=document.getElementById('count');if(c)count.textContent=c.textContent;nav.querySelectorAll('button[data-step]').forEach(b=>{const src=document.getElementById(b.dataset.step);b.disabled=!src||src.disabled;});}nav.querySelectorAll('button[data-step]').forEach(b=>b.addEventListener('click',()=>{const src=document.getElementById(b.dataset.step);if(src)src.click();sync();}));const obs=new MutationObserver(sync);const footer=document.querySelector('footer');if(footer)obs.observe(footer,{subtree:true,childList:true,characterData:true,attributes:true});sync();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script></body></html>
