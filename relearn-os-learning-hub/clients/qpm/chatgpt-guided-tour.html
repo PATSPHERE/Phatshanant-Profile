@@ -29,7 +29,20 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:9px
 @media(max-width:900px){body{overflow:auto}.shell{height:auto;min-height:100vh;grid-template-rows:auto auto auto}main{grid-template-columns:1fr}.sim{min-height:650px}.chat{grid-template-columns:170px 1fr}}
 </style>
 <link rel="stylesheet" href="qpm-mobile.css">
-</head>
+<style id="line-webview-scroll-fix">
+@media(max-width:900px){
+html,body{height:100%!important;overflow:hidden!important;overscroll-behavior:none!important}
+body>.shell,.shell{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;height:100dvh!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+.shell>header{flex:0 0 auto!important}
+.shell>main{flex:1 1 auto!important;min-height:0!important;display:block!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain!important;touch-action:pan-y!important}
+.shell>main>.sim{min-height:550px!important;height:auto!important;overflow:visible!important;margin-bottom:12px!important}
+.shell>main>.guide{height:auto!important;min-height:0!important;margin-bottom:12px!important}
+.shell>footer{flex:0 0 auto!important;position:relative!important;z-index:100!important;max-height:28vh!important;overflow-y:auto!important;padding:7px!important;box-shadow:0 -3px 14px rgba(0,0,0,.1)!important}
+.shell>footer .controls{order:0!important;flex:1 1 100%!important}
+.shell>footer .progress,.shell>footer .note{display:none!important}
+[data-qpm-home-button="true"]{display:none!important}
+}
+</style></head>
 <body>
 <div class="shell">
 <header><div class="brand"><strong>RELEARN <span>OS</span></strong><span class="badge">Section 2 · ChatGPT Guided Tour</span></div><div><b>Live Demo Simulator</b><br><small>ไม่ต้อง Sign in จริง</small></div></header>
