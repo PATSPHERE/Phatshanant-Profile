@@ -61,14 +61,15 @@ html{height:auto!important;min-height:100%!important;overflow-x:hidden!important
       <span class="pill">Section 2</span>
       <span class="pill">Tool Card + Guided Tour</span>
     </div>
+    <div style="margin-top:16px"><a href="#first-tool" onclick="document.getElementById('first-tool').scrollIntoView();return false" style="display:inline-flex;background:#1767d1;color:white;padding:13px 20px;border-radius:12px;font-weight:800">↓ ไปยังการ์ดทั้ง 7 ใบ</a></div>
   </section>
 
-  <section class="section">
+  <section class="section" id="all-tools">
     <h2>เครื่องมือทั้งหมด</h2>
     <p>เลื่อนลงเพื่อดูการ์ดทั้ง 7 ใบ และปุ่ม Guided Tour / เปิดภาพเพื่อบันทึก ใต้แต่ละใบ</p><p>แตะภาพเพื่อเปิด Tool Card เต็มหน้า หรือเลือก Guided Tour เพื่อฝึกใช้งานตามหน้าจอจำลอง หากต้องการบันทึกภาพ ให้เปิดภาพเต็มหน้าแล้วเลือกบันทึกรูปภาพจากเมนูของโทรศัพท์</p>
     <div class="grid">
 
-      <article class="card">
+      <article class="card" id="first-tool">
         <a class="preview" href="assets/tool-cards/tool-card-chatgpt.jpg" ><img src="assets/tool-cards/tool-card-chatgpt.jpg" alt="ChatGPT Tool Card"></a>
         <div class="cardfoot"><h3>ChatGPT</h3><div class="small">ค้นหา สรุป ช่วยคิด เขียน วิเคราะห์ และแก้ปัญหา</div><div class="actions"><a class="btn primary" href="chatgpt-guided-tour.html">Guided Tour</a><a class="btn secondary" href="assets/tool-cards/tool-card-chatgpt.jpg" >เปิดเต็มหน้า</a><a class="btn green" href="assets/tool-cards/tool-card-chatgpt.jpg">เปิดภาพเพื่อบันทึก</a></div></div>
       </article>
@@ -108,5 +109,23 @@ html{height:auto!important;min-height:100%!important;overflow-x:hidden!important
   <div class="footer">RELEARN OS • PREPARE • PERFORM • TRANSFORM</div>
 </div>
 <a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
+<script>
+/* Fallback for LINE embedded WebViews that consume touch gestures without page scrolling. */
+(function(){
+  var startY=0,startX=0,lastY=0;
+  document.addEventListener("touchstart",function(e){if(e.touches.length!==1)return;startY=lastY=e.touches[0].clientY;startX=e.touches[0].clientX},{passive:true});
+  document.addEventListener("touchmove",function(e){
+    if(e.touches.length!==1)return;
+    var t=e.touches[0],dy=lastY-t.clientY;
+    if(Math.abs(t.clientX-startX)>Math.abs(t.clientY-startY)*1.4)return;
+    if(Math.abs(dy)<1)return;
+    var root=document.scrollingElement||document.documentElement;
+    var before=root.scrollTop;
+    window.scrollBy(0,dy);
+    if(root.scrollTop===before){root.scrollTop=Math.max(0,Math.min(root.scrollHeight-innerHeight,before+dy));}
+    lastY=t.clientY;
+  },{passive:true});
+})();
+</script>
 </body>
 </html>
