@@ -27,9 +27,31 @@ main{display:grid;grid-template-columns:minmax(650px,1.35fr) minmax(340px,.65fr)
 footer{display:flex;align-items:center;justify-content:space-between;padding:9px 22px;background:#fff;border-top:1px solid var(--line)}.controls{display:flex;gap:8px}.btn{border:0;border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;font-size:12px}.primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff}.secondary{background:#edf3f7;color:#35485d}.progress{font-size:11px;color:#687b8f;text-align:center}.bar{width:220px;height:7px;background:#e2ebf1;border-radius:999px;overflow:hidden;margin-top:4px}.bar>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));width:16.6%}.note{font-size:10px;color:#748599}
 @media(max-width:980px){body{overflow:auto}.shell{height:auto;grid-template-rows:auto auto auto}main{grid-template-columns:1fr}.stage{min-height:720px}.window{transform:scale(.82);transform-origin:top center}}
 </style><link rel="stylesheet" href="qpm-mobile.css">
-</head><body><div class="shell">
-<header><div><span class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></span><span class="badge">SECTION 4 · REAL WORK USE CASE</span></div><div><b>Document Knowledge + AI Guided Demo</b><br><small>จากเอกสารจำนวนมาก → ฐานความรู้ที่ถามได้</small></div></header>
-<main><section class="sim"><div class="simhead"><b id="simTitle"></b><span>Interactive Simulation · Knowledge Base Thinking</span></div><div class="stage" id="stage"></div></section>
+<style id="qpm-section4-mobile-tour-controls">
+#qpm-s4-home{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:9px 12px;border-radius:9px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,Tahoma,sans-serif;position:relative;z-index:9999}
+#qpm-s4-top-nav{display:none}
+@media(max-width:900px){
+.shell{display:block!important;height:auto!important;min-height:100dvh!important}
+header{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:6px!important;padding:8px 10px!important}
+header>div:nth-child(2),header .badge{display:none!important}
+#qpm-s4-home{display:inline-flex!important;margin-left:auto!important;flex-shrink:0!important;min-height:36px!important}
+main{display:flex!important;flex-direction:column!important;gap:10px!important;padding:8px!important;width:100%!important;min-width:0!important}
+main>.sim{display:flex!important;flex-direction:column!important;width:100%!important;min-width:0!important;min-height:0!important;height:auto!important;overflow:visible!important}
+.simhead{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:7px!important;height:auto!important;min-height:0!important;padding:8px!important;overflow:visible!important}
+.simhead>b{font-size:12px!important;line-height:1.3!important}
+.simhead>span{display:none!important}
+#qpm-s4-top-nav{display:flex!important;position:relative!important;top:auto!important;align-items:center!important;justify-content:space-between!important;gap:6px!important;width:100%!important;min-width:0!important;max-width:100%!important;padding:6px!important;background:#eef5ff!important;border-radius:10px!important;box-sizing:border-box!important}
+#qpm-s4-top-nav .qpm-step{flex:1 1 auto!important;font:800 11px Arial,Tahoma,sans-serif!important;color:#0b5bd3!important;white-space:nowrap!important}
+#qpm-s4-top-nav button{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 41px!important;width:41px!important;min-width:41px!important;max-width:41px!important;min-height:42px!important;padding:5px!important;border:1px solid #cfddeb!important;border-radius:9px!important;background:#fff!important;color:#17345b!important;font:800 19px Arial,Tahoma,sans-serif!important}
+#qpm-s4-top-nav button[data-step="next"]{background:#0b5bd3!important;color:#fff!important}
+#qpm-s4-top-nav button:disabled{opacity:.35!important}
+main>.sim .stage{width:100%!important;min-width:0!important;max-width:100%!important;overflow:visible!important}
+footer .controls{display:none!important}
+[data-qpm-home-button="true"]{display:none!important}
+}
+</style></head><body><div class="shell">
+<header><div><span class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></span><span class="badge">SECTION 4 · REAL WORK USE CASE</span></div><div><b>Document Knowledge + AI Guided Demo</b><br><small>จากเอกสารจำนวนมาก → ฐานความรู้ที่ถามได้</small></div><a id="qpm-s4-home" href="./home.html" aria-label="กลับหน้า Learning Hub">⌂ กลับ Learning Hub</a></header>
+<main><section class="sim"><div class="simhead"><b id="simTitle"></b><span>Interactive Simulation · Knowledge Base Thinking</span><div id="qpm-s4-top-nav" aria-label="ปุ่มนำทาง Guided Demo"><span class="qpm-step" id="qpm-s4-step"></span><button type="button" data-step="prev" aria-label="ก่อนหน้า">‹</button><button type="button" data-step="reset" aria-label="เริ่มใหม่">↻</button><button type="button" data-step="next" aria-label="ถัดไป">›</button></div></div><div class="stage" id="stage"></div></section>
 <aside class="guide"><div class="eyebrow" id="eyebrow"></div><h2 id="title"></h2><p id="body"></p><div class="info"><b>สิ่งที่ต้องจำ</b><p id="memory"></p></div><div class="info human"><b>Human Check</b><p id="human"></p></div><div class="info next"><b>ถัดไปคืออะไร</b><p id="nextText"></p></div></aside></main>
 <footer><div class="controls"><button class="btn secondary" id="prev">← ก่อนหน้า</button><button class="btn primary" id="next">ถัดไป →</button><button class="btn secondary" id="reset">เริ่มใหม่</button></div><div class="progress"><div id="count"></div><div class="bar"><div id="fill"></div></div></div><div class="note">RELEARN OS · Documents → Scope → Ask → Cite → Synthesize → Human Approval</div></footer>
 </div>
@@ -62,4 +84,4 @@ function spotlight(id){
 let i=0;function render(){const s=steps[i];$("simTitle").textContent=s.sim;$("eyebrow").textContent=s.eye;$("title").textContent=s.title;$("body").textContent=s.body;$("memory").textContent=s.memory;$("human").textContent=s.human;$("nextText").textContent=s.next;$("count").textContent=(i+1)+" / "+steps.length;$("fill").style.width=((i+1)/steps.length*100)+"%";$("prev").disabled=i===0;$("next").textContent=i===steps.length-1?"จบ Demo ✓":"ถัดไป →";renderStage(s)}
 $("next").onclick=()=>{if(i<steps.length-1){i++;render()}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<steps.length-1){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});render();
 </script><a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
-</body></html>
+<script id="qpm-s4-top-nav-script">(function(){function init(){var nav=document.getElementById('qpm-s4-top-nav');if(!nav)return;function sync(){var count=document.getElementById('count'),label=document.getElementById('qpm-s4-step');if(count)label.textContent=count.textContent;nav.querySelectorAll('button[data-step]').forEach(function(b){var source=document.getElementById(b.getAttribute('data-step'));b.disabled=!source||source.disabled;});}nav.querySelectorAll('button[data-step]').forEach(function(b){b.addEventListener('click',function(){var source=document.getElementById(b.getAttribute('data-step'));if(source)source.click();sync();});});var footer=document.querySelector('footer');if(footer)new MutationObserver(sync).observe(footer,{subtree:true,attributes:true,childList:true,characterData:true});sync();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script></body></html>
