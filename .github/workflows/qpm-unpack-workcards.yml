@@ -1,0 +1,48 @@
+name: Publish QPM Work Cards from Archive
+on:
+  push:
+    paths:
+      - '.github/workflows/qpm-unpack-workcards.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract approved PNG images
+        run: |
+          python3 - <<'PY'
+          import zipfile, pathlib
+          base=pathlib.Path('relearn-os-learning-hub/clients/qpm/assets/work-cards')
+          mapping={
+          'Calendar + .png':'calendar.png',
+          'Dashboard + AI ขั้นสูง.png':'dashboard.png',
+          'Document AI.png':'document.png',
+          'Email + AI.png':'email.png',
+          'Excel CSV.png':'excel-csv.png',
+          'Gemini add skill.png':'gemini-skill.png',
+          'Meeting AI.png':'meeting.png',
+          'Playbook flow png.png':'playbook-flow.png',
+          'PPT AI.png':'presentation-ppt.png',
+          'SOP โบนัสพิเศษ.png':'sop.png',
+          'To-do + AI หน้า 05.png':'todo.png'
+          }
+          with zipfile.ZipFile(base/'Archive.zip') as z:
+              for original, destination in mapping.items():
+                  data=z.read(original)
+                  if not data.startswith(b'\x89PNG\r\n\x1a\n'):
+                      raise ValueError('Not PNG: '+original)
+                  (base/destination).write_bytes(data)
+          print('Extracted',len(mapping),'cards')
+          PY
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add relearn-os-learning-hub/clients/qpm/assets/work-cards/*.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish 11 QPM Work Card PNG assets"
+            git push
+          fi
