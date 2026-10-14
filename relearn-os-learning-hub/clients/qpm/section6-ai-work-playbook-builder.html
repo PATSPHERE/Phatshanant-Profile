@@ -20,9 +20,16 @@ textarea{width:100%;min-height:76px;border:1px solid #d3e0e9;border-radius:10px;
 .footer{text-align:center;color:#7c8b9b;font-size:11px;padding:25px}
 @media(max-width:850px){.layout{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.hero h1{font-size:32px}}
 </style><link rel="stylesheet" href="qpm-mobile.css">
-<style id="s6-home-visibility">.top{flex-wrap:wrap}.top #s6-learning-hub-home{display:inline-flex;align-items:center;justify-content:center;margin-left:auto;padding:10px 13px;border-radius:10px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,Tahoma,sans-serif;white-space:nowrap;min-height:40px}@media(max-width:850px){.top .badge{display:none!important}.top{gap:8px!important}.top #s6-learning-hub-home{display:inline-flex!important;flex-shrink:0!important}.wrap{padding:12px!important}[data-qpm-home-button="true"]{display:none!important}}</style></head><body>
+<style id="s6-home-visibility">.top{flex-wrap:wrap}.top #s6-learning-hub-home{display:inline-flex;align-items:center;justify-content:center;margin-left:auto;padding:10px 13px;border-radius:10px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,Tahoma,sans-serif;white-space:nowrap;min-height:40px}@media(max-width:850px){.top .badge{display:none!important}.top{gap:8px!important}.top #s6-learning-hub-home{display:inline-flex!important;flex-shrink:0!important}.wrap{padding:12px!important}[data-qpm-home-button="true"]{display:none!important}}</style><style id="s6-mobile-home-sticky-fix">
+@media(max-width:850px){
+html,body{overflow-x:hidden!important}
+.top{display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important;gap:6px!important;position:sticky!important;top:0!important;z-index:2147483000!important;background:#fff!important;padding:10px 8px!important;margin:-12px -12px 8px!important;box-shadow:0 2px 12px rgba(0,0,0,.1)!important}
+.top .brand{font-size:18px!important;flex:0 1 auto!important;white-space:nowrap!important}
+.top #s6-learning-hub-home{display:inline-flex!important;position:relative!important;visibility:visible!important;opacity:1!important;flex:0 0 auto!important;margin:0!important;padding:11px 10px!important;min-height:44px!important;white-space:nowrap!important;font-size:12px!important;z-index:2147483000!important}
+}
+</style></head><body>
 <div class="wrap">
-<div class="top"><div class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></div><span class="badge">SECTION 6 · AI WORK PLAYBOOK</span><a id="s6-learning-hub-home" href="./home.html" aria-label="กลับหน้า Learning Hub">⌂ กลับ Learning Hub</a></div>
+<div class="top"><div class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></div><span class="badge">SECTION 6 · AI WORK PLAYBOOK</span><a id="s6-learning-hub-home" href="https://thepatsphere.com/Phatshanant-Profile/relearn-os-learning-hub/clients/qpm/home.html" aria-label="กลับหน้า Learning Hub">⌂ กลับ Learning Hub</a></div>
 <section class="hero"><h1>AI Work Playbook Builder</h1><p>กรอกข้อมูลพื้นฐาน 4 ช่อง แล้วใช้ Suggested Draft ช่วยเติมโครงสร้างส่วนที่เหลือ จากนั้น Review → Edit → Approve ก่อนนำไปใช้จริง</p></section>
 <div class="layout">
 <section class="panel"><div class="fields">
@@ -92,5 +99,5 @@ escalation:"ผู้จัดประชุม / Meeting Owner / หัวห�
 Object.entries(x).forEach(([k,v])=>document.getElementById(k).value=v);build();}
 function clearAll(){ids.forEach(id=>document.getElementById(id).value="");document.getElementById("preview").textContent="กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”";}
 async function copyPlaybook(){const t=document.getElementById("preview").innerText;if(t.startsWith("กรอกข้อมูล"))return;await navigator.clipboard.writeText(t);}
-</script><a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
+</script>
 </body></html>
