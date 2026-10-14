@@ -117,6 +117,12 @@ body>.shell,.shell{position:static!important;inset:auto!important;width:100%!imp
 #smartMenu.qpm-copilot-mobile-frame{left:0!important;top:auto!important;position:relative!important;margin:12px 0!important;max-width:100%!important}
 [data-qpm-home-button="true"]{display:inline-flex!important;position:relative!important;inset:auto!important;margin:16px auto 24px!important;width:max-content!important;max-width:calc(100% - 32px)!important;z-index:120!important;pointer-events:auto!important;touch-action:manipulation!important}
 }
+</style><style id="copilot-home-top-visible">
+@media(max-width:900px){
+.qpm-tour-top-controls .qpm-copilot-home-top{display:inline-flex!important;position:static!important;inset:auto!important;margin:0 4px 0 0!important;padding:8px 10px!important;min-height:36px!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;border-radius:9px!important;background:#1767d1!important;color:#fff!important;font:800 11px Arial,Tahoma,sans-serif!important;box-shadow:none!important;max-width:none!important;flex:0 0 auto!important}
+.qpm-tour-top-controls{gap:4px!important;flex-wrap:nowrap!important}
+.qpm-tour-top-controls .qpm-tour-step-count{font-size:9px!important}
+}
 </style></head>
 <body>
 <div class="shell">
@@ -197,7 +203,7 @@ var count=document.createElement('span');count.className='qpm-tour-step-count';n
 var btn=document.createElement('button');btn.type='button';btn.textContent=v[1];btn.title=v[2];btn.setAttribute('aria-label',v[2]);if(v[0]==='next')btn.className='qpm-top-next';
 btn.addEventListener('click',function(){var target=document.getElementById(v[0]);if(target){target.click();var sc=document.querySelector('.shell>main');if(sc)sc.scrollTop=0;}update();});
 nav.appendChild(btn);});
-h.appendChild(nav);
+var home=document.querySelector('[data-qpm-home-button="true"]');if(home){home.textContent='⌂ Home';home.title='กลับหน้า Learning Hub';home.setAttribute('aria-label','กลับหน้า Learning Hub');home.classList.add('qpm-copilot-home-top');nav.insertBefore(home,nav.firstChild);}h.appendChild(nav);
 function update(){var source=document.getElementById('count');count.textContent=source?source.textContent:'';
 var p=document.getElementById('prev'),n=document.getElementById('next');
 if(p)nav.children[1].disabled=p.disabled;
