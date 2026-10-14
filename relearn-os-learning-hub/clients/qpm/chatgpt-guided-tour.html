@@ -50,6 +50,10 @@ html,body{height:auto!important;min-height:100%!important;overflow-x:hidden!impo
 .shell>footer{display:none!important}
 [data-qpm-home-button="true"]{display:flex!important;position:static!important;margin:12px auto!important}
 }
+</style><style id="qpm-target-attached-highlight">
+.qpm-target-highlight{outline:4px solid #24a45a!important;outline-offset:3px!important;box-shadow:0 0 0 7px rgba(36,164,90,.13)!important;position:relative!important;z-index:52!important}
+.qpm-target-number{position:absolute!important;top:-15px!important;left:-12px!important;width:29px!important;height:29px!important;border-radius:50%!important;background:#0b5bd3!important;color:#fff!important;display:grid!important;place-items:center!important;font:bold 13px Arial,sans-serif!important;z-index:100!important;pointer-events:none!important}
+@media(max-width:900px){.qpm-target-highlight{outline-offset:1px!important}.qpm-target-number{left:0!important;top:-16px!important}}
 </style></head>
 <body>
 <div class="shell">
@@ -95,8 +99,19 @@ const steps=[
 {sim:"Prompt → Output",eye:"STEP 4 · TRY ONCE",title:"ลองใช้งานครั้งแรก",body:"พิมพ์งานที่ต้องการแบบธรรมชาติ แล้วดูว่า AI เข้าใจงานตรงกับที่เราต้องการหรือไม่",memory:"ตัวอย่าง: ช่วยสรุปข้อความนี้เป็น 3 ประเด็นสำคัญ และบอกสิ่งที่ต้องทำต่อ",human:"อ่านผลลัพธ์ก่อนใช้จริง โดยเฉพาะชื่อ ตัวเลข วันที่ แหล่งข้อมูล และบริบท",next:"ถ้าคำตอบยังไม่ตรง ไม่ต้องเริ่มใหม่ — คุยต่อเพื่อปรับได้",view:"prompt",target:"composer"},
 {sim:"ถาม → อ่าน → สั่งปรับ → ตรวจ → ใช้",eye:"STEP 5 · REFINE & CHECK",title:"คุยต่อ แล้ว Human Check",body:"ใช้ Follow-up เพื่อทำให้คำตอบสั้นลง เป็นตาราง เปลี่ยนภาษา หรือเพิ่มสิ่งที่ต้องทำต่อ ก่อนนำไปใช้จริง",memory:"Flow ที่อยากให้จำ: ถาม → อ่าน → สั่งปรับ → ตรวจ → ใช้",human:"ข้อมูลถูกไหม · บริบทถูกไหม · มีข้อมูลอ่อนไหวไหม · พร้อมใช้จริงไหม",next:"จบ Guided Tour → กดปุ่มจบ Tour เพื่อกลับ Learning Hub",view:"refine",target:"response"}];
 let i=0;const $=id=>document.getElementById(id);
-function hide(){ $("profileMenu").style.display="none";$("settingsModal").style.display="none";$("modes").style.display="none";$("welcome").style.display="block";$("suggestions").style.display="grid";$("composer").style.display="block";$("response").style.display="none";$("spot").style.display="none";$("spotnum").style.display="none";}
-function spotlight(id){const el=$(id),w=$("work").getBoundingClientRect(),r=el.getBoundingClientRect(),s=$("spot"),n=$("spotnum");if(!el)return;const root=$("chat").getBoundingClientRect();s.style.left=(r.left-root.left-6)+"px";s.style.top=(r.top-root.top-6)+"px";s.style.width=(r.width+12)+"px";s.style.height=(r.height+12)+"px";s.style.display="block";n.style.left=Math.max(6,r.left-root.left-15)+"px";n.style.top=Math.max(6,r.top-root.top-15)+"px";n.style.display="grid";n.textContent=i+1}
+function hide(){const old=document.querySelector(".qpm-target-highlight");if(old)old.classList.remove("qpm-target-highlight");document.querySelectorAll(".qpm-target-number").forEach(x=>x.remove()); $("profileMenu").style.display="none";$("settingsModal").style.display="none";$("modes").style.display="none";$("welcome").style.display="block";$("suggestions").style.display="grid";$("composer").style.display="block";$("response").style.display="none";$("spot").style.display="none";$("spotnum").style.display="none";}
+function spotlight(id){
+ const el=$(id),s=$("spot"),n=$("spotnum");if(!el)return;
+ // Anchor the frame to the actual target, not viewport coordinates.
+ // The frame and number move with the target when LINE scrolls or reflows.
+ if(s.parentNode!==el.parentNode){/* position each overlay inside its own target below */}
+ const old=document.querySelector(".qpm-target-highlight");if(old)old.classList.remove("qpm-target-highlight");
+ document.querySelectorAll(".qpm-target-number").forEach(x=>x.remove());
+ s.style.display="none";n.style.display="none";
+ el.classList.add("qpm-target-highlight");
+ const num=document.createElement("span");num.className="qpm-target-number";num.textContent=i+1;num.setAttribute("aria-hidden","true");el.appendChild(num);
+}
+
 function view(v){hide();if(v==="settings"){$("profileMenu").style.display="block";$("settingsModal").style.display="block"}else if(v==="modes"){$("welcome").style.display="none";$("suggestions").style.display="none";$("composer").style.display="none";$("modes").style.display="block"}else if(v==="prompt"){$("promptBox").value="ช่วยสรุปข้อความนี้เป็น 3 ประเด็นสำคัญ และบอกสิ่งที่ต้องทำต่อ";$("userBubble").textContent=$("promptBox").value;$("response").style.display="block"}else if(v==="refine"){$("promptBox").value="ทำให้สั้นลง และจัดเป็นตาราง พร้อมเพิ่มสิ่งที่ต้องทำต่อ";$("userBubble").textContent=$("promptBox").value;$("response").style.display="block"}else{$("promptBox").value=""}}
 function render(){const s=steps[i];$("topCount").textContent=(i+1)+" / "+steps.length;$("topPrev").disabled=i===0;$("topNext").textContent=i===steps.length-1?"จบ · Home":"ถัดไป ›";$("simTitle").textContent=s.sim;$("eyebrow").textContent=s.eye;$("tourTitle").textContent=s.title;$("tourBody").textContent=s.body;$("memory").textContent=s.memory;$("human").textContent=s.human;$("nextText").textContent=s.next;$("count").textContent=(i+1)+" / 5";$("fill").style.width=((i+1)*20)+"%";$("prev").disabled=i===0;$("next").textContent=i===4?"จบ Tour ✓":"ถัดไป →";view(s.view);setTimeout(()=>spotlight(s.target),100)}
 $("profileBtn").onclick=()=>{$("profileMenu").style.display=$("profileMenu").style.display==="block"?"none":"block"};$("settingsBtn").onclick=()=>{$("settingsModal").style.display="block";setTimeout(()=>spotlight("aboutField"),50)};$("closeSettings").onclick=()=>{$("settingsModal").style.display="none"};$("sendBtn").onclick=()=>{let v=$("promptBox").value.trim()||"ช่วยสรุปข้อความนี้เป็น 3 ประเด็นสำคัญ และบอกสิ่งที่ต้องทำต่อ";$("userBubble").textContent=v;$("response").style.display="block"};$("next").onclick=()=>{if(i<4){i++;render()}else{window.location.href="home.html"}};$("prev").onclick=()=>{if(i>0){i--;render()}};$("reset").onclick=()=>{i=0;render()};document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&i<4){i++;render()}if(e.key==="ArrowLeft"&&i>0){i--;render()}});window.addEventListener("resize",()=>setTimeout(()=>spotlight(steps[i].target),80));$("topPrev").onclick=()=>$("prev").click();$("topNext").onclick=()=>$("next").click();$("topReset").onclick=()=>$("reset").click();render();
