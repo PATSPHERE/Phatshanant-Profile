@@ -18,7 +18,7 @@ html,body{height:auto!important;min-height:100%!important;overflow-y:auto!import
 .field textarea{touch-action:auto;-webkit-user-select:text;user-select:text}
 @media(max-width:720px){.wrap{padding-bottom:calc(32px + env(safe-area-inset-bottom))}.top{flex-wrap:wrap}.hero h1{font-size:clamp(24px,7vw,32px)}}
 </style>
-</head><body>
+<style>#out{scroll-margin-top:16px;overflow-wrap:anywhere}.preview-actions{align-items:center;margin-bottom:32px}.preview-actions .btn{min-height:44px}#copy-status{font-size:12px;color:#1767d1}@media(max-width:720px){body{padding-bottom:env(safe-area-inset-bottom)}.preview-actions{padding-bottom:50px}}</style></head><body>
 <div class="wrap"><div class="top"><div class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></div><span class="badge">SECTION 3 · PROMPT</span></div>
 <section class="hero"><h1>Universal Prompt Builder — 7 ส่วน</h1><p>สำหรับงานที่ต้องการ Prompt ละเอียดขึ้น: Role • Goal • Context/Data • Task • Constraints • Output Format • Check ใช้ได้ข้าม ChatGPT, Gemini, Claude และ Copilot</p></section>
 <section class="grid">
@@ -39,13 +39,13 @@ html,body{height:auto!important;min-height:100%!important;overflow-y:auto!import
 <div class="field"><label>Output Format</label><textarea id="format" placeholder="เช่น ตาราง: Finding | Impact | Action | Owner"></textarea></div>
 <div class="field"><label>Check</label><textarea id="check" placeholder="เช่น ระบุข้อมูลที่ต้องตรวจเพิ่มก่อนนำไปใช้จริง"></textarea></div>
 <div class="actions"><button class="btn primary" onclick="build()">สร้าง Prompt</button><button class="btn secondary" onclick="copyOut()">Copy</button><button class="btn secondary" onclick="resetAll()">Reset</button></div>
-<div id="out" class="output">Prompt ที่ประกอบแล้วจะแสดงตรงนี้</div>
+<div id="out" class="output" tabindex="-1">Prompt ที่ประกอบแล้วจะแสดงตรงนี้</div><div class="actions preview-actions"><button type="button" class="btn primary" onclick="copyOut()">คัดลอก Prompt ที่สร้างแล้ว</button><span id="copy-status" role="status" aria-live="polite"></span></div>
 <div class="tip"><b>RELEARN TIP:</b> ถ้าข้อมูลไม่พอ ให้สั่ง AI ว่า “อย่าเดา ให้ระบุข้อมูลที่ต้องสอบถามเพิ่มเติม”</div>
 </section><div class="footer">RELEARN OS × QPM • PREPARE • TRANSFORM • PERFORM</div></div>
 <script>
 function v(id){return document.getElementById(id).value.trim()}
-function build(){const parts=[["Role",v("role")],["Goal",v("goal")],["Context / Data",v("context")],["Task",v("task")],["Constraints",v("constraints")],["Output Format",v("format")],["Check",v("check")]].filter(x=>x[1]);document.getElementById("out").textContent=parts.length?parts.map(x=>x[0]+":\n"+x[1]).join("\n\n"):"กรอกอย่างน้อย 1 ช่องก่อน"}
-function copyOut(){navigator.clipboard.writeText(document.getElementById("out").innerText)}
+function build(){const parts=[["Role",v("role")],["Goal",v("goal")],["Context / Data",v("context")],["Task",v("task")],["Constraints",v("constraints")],["Output Format",v("format")],["Check",v("check")]].filter(x=>x[1]);const out=document.getElementById("out");out.textContent=parts.length?parts.map(x=>x[0]+":\n"+x[1]).join("\n\n"):"กรอกอย่างน้อย 1 ช่องก่อน";document.activeElement?.blur?.();requestAnimationFrame(()=>{out.scrollIntoView({behavior:"auto",block:"start"});});}
+async function copyOut(){const out=document.getElementById("out"),text=out.textContent,status=document.getElementById("copy-status");if(!text||text==="Prompt ที่ประกอบแล้วจะแสดงตรงนี้"||text==="กรอกอย่างน้อย 1 ช่องก่อน"){status.textContent="กรุณาสร้าง Prompt ก่อน";return}try{if(!navigator.clipboard?.writeText)throw Error("clipboard unavailable");await navigator.clipboard.writeText(text);status.textContent="คัดลอกแล้ว"}catch(e){const area=document.createElement("textarea");area.value=text;area.setAttribute("readonly","");area.style.cssText="position:fixed;left:0;top:0;width:1px;height:1px;opacity:0";document.body.appendChild(area);area.focus();area.select();let ok=false;try{ok=document.execCommand("copy")}catch(_){}area.remove();status.textContent=ok?"คัดลอกแล้ว":"กรุณากดค้างที่ข้อความ Prompt เพื่อคัดลอก";if(!ok){out.focus();const range=document.createRange();range.selectNodeContents(out);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range)}}}
 function resetAll(){["role","goal","context","task","constraints","format","check"].forEach(id=>document.getElementById(id).value="");document.getElementById("out").textContent="Prompt ที่ประกอบแล้วจะแสดงตรงนี้"}
 </script><a data-qpm-home-button="true" href="home.html" aria-label="กลับหน้า Learning Hub" style="position:fixed;right:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,'Noto Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(23,103,209,.25)">⌂ Home · Learning Hub</a>
 </body></html>
