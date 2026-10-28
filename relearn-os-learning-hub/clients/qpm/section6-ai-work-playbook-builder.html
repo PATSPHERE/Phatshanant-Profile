@@ -44,7 +44,7 @@ html,body{overflow-x:hidden!important}
 <div class="field"><label><span class="num">9</span>Stop Condition — เมื่อไรต้องหยุด <span class="suggest">SUGGEST + CONFIRM</span></label><textarea id="stop" placeholder="ระบบจะเสนอเงื่อนไขที่ควรหยุดและให้คนตัดสินใจ"></textarea></div>
 <div class="field"><label><span class="num">10</span>Escalation — ส่งต่อให้ใคร <span class="suggest">SUGGEST + CONFIRM</span></label><textarea id="escalation" placeholder="ระบบจะเสนอประเภทผู้รับผิดชอบ แล้วคนยืนยันชื่อ/บทบาทจริง"></textarea></div>
 </div>
-<div class="actions"><button class="btn primary" onclick="suggestDraft()">สร้าง Suggested Draft</button><button class="btn secondary" onclick="build()">Preview Playbook</button><button class="btn secondary" onclick="loadExample()">ตัวอย่าง Email</button><button class="btn secondary" onclick="loadMeetingExample()">ตัวอย่าง Meeting Note</button><button class="btn secondary" onclick="copyPlaybook()">Copy</button><button class="btn secondary" onclick="clearAll()">Reset</button></div><div class="aihint"><b>วิธีใช้:</b> กรอกช่อง 1, 2, 3 และ 6 ก่อน → กด “สร้าง Suggested Draft” → ตรวจและแก้ช่อง 4, 5, 7, 8, 9, 10 → Preview → Approve ก่อนใช้งานจริง<br><b>หมายเหตุ:</b> Suggested Draft เป็นโครงร่างช่วยคิดจากข้อมูลที่กรอกในหน้านี้ ไม่ใช่การเชื่อมต่อ AI ภายนอกแบบสด</div>
+<div class="actions"><button class="btn primary" onclick="suggestDraft()">สร้าง Suggested Draft</button><button class="btn secondary" onclick="build()">Preview Playbook</button><button class="btn secondary" onclick="loadExample()">ตัวอย่าง Email</button><button class="btn secondary" onclick="loadMeetingExample()">ตัวอย่าง Meeting Note</button><button class="btn secondary" onclick="loadPowerPointExample()">ตัวอย่าง PowerPoint</button><button class="btn secondary" onclick="copyPlaybook()">Copy</button><button class="btn secondary" onclick="clearAll()">Reset</button></div><div class="aihint"><b>วิธีใช้:</b> กรอกช่อง 1, 2, 3 และ 6 ก่อน → กด “สร้าง Suggested Draft” → ตรวจและแก้ช่อง 4, 5, 7, 8, 9, 10 → Preview → Approve ก่อนใช้งานจริง<br><b>หมายเหตุ:</b> Suggested Draft เป็นโครงร่างช่วยคิดจากข้อมูลที่กรอกในหน้านี้ ไม่ใช่การเชื่อมต่อ AI ภายนอกแบบสด</div>
 <div class="tip"><b>Key Takeaway:</b> คนกำหนด “งานจริง + Input + Output” แล้วใช้ระบบช่วยร่าง Workflow / Prompt / Checkpoints จากนั้น Human Review ก่อนใช้งานจริงเสมอ</div>
 </section>
 <section class="panel"><h2 style="margin-top:0">Playbook Preview</h2><div class="preview" id="preview">กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”</div></section>
@@ -96,6 +96,34 @@ human:"ตรวจ Decision จริง / ชื่อผู้รับผิ
 risk:"AI อาจตีความข้อเสนอเป็น Decision, สร้าง Owner หรือ Deadline เอง, ตกหล่น Action Item",
 stop:"ข้อมูลประชุมไม่ครบ / มีข้อความขัดแย้ง / ไม่แน่ใจว่าเป็น Decision หรือ Suggestion / ไม่มีผู้ยืนยัน Owner",
 escalation:"ผู้จัดประชุม / Meeting Owner / หัวหน้าทีม หรือผู้รับผิดชอบ Action นั้น"};
+Object.entries(x).forEach(([k,v])=>document.getElementById(k).value=v);build();}
+function loadPowerPointExample(){const x={
+usecase:"อัปเดต PowerPoint รายงานผลการดำเนินงานประจำเดือน",
+trigger:"เมื่อได้รับข้อมูลผลการดำเนินงานของเดือนใหม่",
+input:"PowerPoint Template เดิม + Excel/CSV เดือนใหม่ + หมายเหตุจากทีมงาน",
+workflow:"ตรวจข้อมูล → ให้ AI วิเคราะห์และสรุป → จับคู่เนื้อหากับสไลด์เดิม → อัปเดตรายงาน → ตรวจสอบ → ส่งอนุมัติ",
+prompt:`คุณเป็นผู้ช่วยจัดทำรายงานผลการดำเนินงานประจำเดือน
+
+ฉันมี PowerPoint Template เดิมขององค์กรและข้อมูลผลการดำเนินงานเดือนใหม่
+
+กรุณาช่วย:
+1. ตรวจสอบและสรุปข้อมูลสำคัญจากไฟล์ที่ให้
+2. เปรียบเทียบผลการดำเนินงานกับเดือนก่อน หากมีข้อมูลรองรับ
+3. จัดเนื้อหาให้ตรงกับหัวข้อและลำดับสไลด์เดิม
+4. เสนอข้อความสรุปที่กระชับ เหมาะกับรายงานผู้บริหาร
+5. ระบุข้อมูลที่ขาดหรือจำเป็นต้องตรวจสอบเพิ่มเติม
+
+ข้อกำหนด:
+- ห้ามสร้างตัวเลขหรือข้อเท็จจริงที่ไม่มีในข้อมูลต้นทาง
+- ห้ามเปลี่ยนโครงสร้างและ Brand CI ของ PowerPoint Template
+- หากไม่สามารถแก้ไขไฟล์ PowerPoint ได้โดยตรง ให้จัดทำเนื้อหาแยกตามหมายเลขสไลด์สำหรับนำไปอัปเดต
+- ระบุจุดที่ต้องให้มนุษย์ตรวจสอบ
+- ห้ามส่งรายงานฉบับสุดท้ายโดยไม่ได้รับการอนุมัติ`,
+output:"รายงาน PowerPoint ฉบับอัปเดต พร้อมสรุปประเด็นสำคัญและรายการที่ต้องตรวจสอบ",
+human:"ตรวจความถูกต้องของตัวเลข ความสอดคล้องกับข้อมูลต้นทาง การจัดวางสไลด์ และความเหมาะสมก่อนเผยแพร่",
+risk:"ตัวเลขผิด สรุปคลาดเคลื่อน จับคู่สไลด์ผิด หรือเปิดเผยข้อมูลที่ไม่ควรใช้กับ AI",
+stop:"หยุดเมื่อข้อมูลไม่ครบ ตัวเลขขัดแย้งกัน ไม่สามารถยืนยันแหล่งที่มา หรือพบข้อมูลอ่อนไหวที่ยังไม่ได้รับอนุญาต",
+escalation:"ส่งให้เจ้าของข้อมูล หัวหน้างาน หรือผู้มีอำนาจอนุมัติตรวจสอบและตัดสินใจ"};
 Object.entries(x).forEach(([k,v])=>document.getElementById(k).value=v);build();}
 function clearAll(){ids.forEach(id=>document.getElementById(id).value="");document.getElementById("preview").textContent="กรอกข้อมูลทางซ้าย แล้วกด “สร้าง Playbook”";}
 async function copyPlaybook(){const t=document.getElementById("preview").innerText;if(t.startsWith("กรอกข้อมูล"))return;await navigator.clipboard.writeText(t);}
