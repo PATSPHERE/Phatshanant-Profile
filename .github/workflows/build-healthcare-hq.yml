@@ -1,0 +1,46 @@
+name: Build Healthcare HQ Image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-healthcare-hq.yml'
+      - '.image-update/healthcare.part01'
+      - '.image-update/healthcare.part02'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Decode healthcare image
+        shell: bash
+        run: |
+          set -e
+          OUT='ai-business-transformation-academy/assets/insights/hq'
+          mkdir -p "$OUT"
+          cat .image-update/healthcare.part01 .image-update/healthcare.part02 | tr -d '\r\n ' | base64 --decode > "$OUT/healthcare.avif"
+          echo "Built healthcare.avif ($(wc -c < "$OUT/healthcare.avif") bytes)"
+      - name: Update Insights page
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/insights/index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('../assets/insights/healthcare.webp','../assets/insights/hq/healthcare.avif')
+          p.write_text(s,encoding='utf-8')
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/assets/insights/hq/healthcare.avif ai-business-transformation-academy/insights/index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Use high-quality Healthcare Insights image'
+          git push

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Universal Prompt Builder — 7 ส่วน | RELEARN OS × QPM</title>
+<style>
+:root{--blue:#1767d1;--green:#31ae60;--ink:#17345b;--muted:#64748b;--line:#d9e8f1;--bg:#f5fbff;--soft:#eef7ff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:960px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-weight:900;font-size:22px}.brand .r{color:var(--blue)}.brand .o{color:var(--green)}
+.badge{font-size:11px;font-weight:900;color:var(--blue);background:#eaf3ff;padding:7px 10px;border-radius:999px}.hero{padding:34px 0 20px}.hero h1{font-size:38px;margin:6px 0 10px}.hero p{color:var(--muted);line-height:1.7;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}.num{width:34px;height:34px;border-radius:10px;background:#eaf3ff;color:var(--blue);font-weight:900;display:grid;place-items:center;margin-bottom:10px}.card h3{margin:0 0 6px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.builder{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}.field{margin:14px 0}.field label{display:block;font-weight:900;font-size:12px;margin-bottom:6px}.field textarea{width:100%;min-height:70px;border:1px solid #d8e1ea;border-radius:12px;padding:12px;font:inherit}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:900;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#edf3f7;color:#35516f}.output{white-space:pre-wrap;background:#f8fbfe;border:1px dashed #cbdbe7;border-radius:14px;padding:14px;margin-top:14px;min-height:120px;color:#31465d}
+.tip{margin-top:18px;padding:14px;border-radius:14px;background:#fff7dc;border:1px solid #efd88a;font-size:12px;line-height:1.6}.footer{text-align:center;color:#7b8c9d;font-size:11px;padding:28px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+</style><link rel="stylesheet" href="qpm-mobile.css"><style>
+/* Section 3: native vertical touch scrolling for LINE in-app browser */
+html,body{height:auto!important;min-height:100%!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:auto!important;-webkit-overflow-scrolling:touch;touch-action:pan-y pinch-zoom}
+.wrap,.hero,.grid,.builder,.field,.card{height:auto;overflow:visible;touch-action:pan-y pinch-zoom}
+.field textarea{touch-action:auto;-webkit-user-select:text;user-select:text}
+@media(max-width:720px){.wrap{padding-bottom:calc(32px + env(safe-area-inset-bottom))}.top{flex-wrap:wrap}.hero h1{font-size:clamp(24px,7vw,32px)}}
+</style>
+<style>#out{scroll-margin-top:16px;overflow-wrap:anywhere}.preview-actions{align-items:center;margin-bottom:32px}.preview-actions .btn{min-height:44px}#copy-status{font-size:12px;color:#1767d1}@media(max-width:720px){body{padding-bottom:env(safe-area-inset-bottom)}.preview-actions{padding-bottom:50px}}</style><style id="universal-home-mobile-header">.top{flex-wrap:wrap}.top #universal-home-top{display:inline-flex;align-items:center;justify-content:center;margin-left:auto;min-height:42px;padding:10px 12px;border-radius:10px;background:#1767d1;color:#fff;text-decoration:none;font:800 12px Arial,Tahoma,sans-serif;white-space:nowrap}@media(max-width:720px){.top{position:sticky!important;top:0!important;z-index:2147483000!important;display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;gap:6px!important;padding:10px 8px!important;margin:-24px -24px 10px!important;background:#fff!important;box-shadow:0 2px 12px rgba(0,0,0,.1)!important}.top .brand{font-size:18px!important;white-space:nowrap!important}.top .badge{display:none!important}.top #universal-home-top{display:inline-flex!important;visibility:visible!important;opacity:1!important;flex:0 0 auto!important;margin:0!important;min-height:44px!important;padding:10px!important}.wrap{padding-top:24px!important}}</style></head><body>
+<div class="wrap"><div class="top"><div class="brand"><span class="r">RELEARN</span> <span class="o">OS</span></div><span class="badge">SECTION 3 · PROMPT</span><a id="universal-home-top" href="https://thepatsphere.com/Phatshanant-Profile/relearn-os-learning-hub/clients/qpm/home.html" aria-label="กลับหน้า Learning Hub">⌂ กลับ Learning Hub</a></div>
+<section class="hero"><h1>Universal Prompt Builder — 7 ส่วน</h1><p>สำหรับงานที่ต้องการ Prompt ละเอียดขึ้น: Role • Goal • Context/Data • Task • Constraints • Output Format • Check ใช้ได้ข้าม ChatGPT, Gemini, Claude และ Copilot</p></section>
+<section class="grid">
+<div class="card"><div class="num">1</div><h3>Role</h3><p>อยากให้ AI ช่วยคิดในบทบาทอะไร เช่น ผู้ช่วยสรุปข้อมูล ผู้ช่วยวิเคราะห์ หรือผู้ช่วยเขียน</p></div>
+<div class="card"><div class="num">2</div><h3>Goal</h3><p>เป้าหมายปลายทางคืออะไร ต้องการให้ AI ช่วยให้สำเร็จเรื่องไหน</p></div>
+<div class="card"><div class="num">3</div><h3>Context / Data</h3><p>ข้อมูลพื้นฐาน เอกสาร ข้อเท็จจริง หรือบริบทที่ AI จำเป็นต้องรู้</p></div>
+<div class="card"><div class="num">4</div><h3>Task</h3><p>สิ่งที่ต้องการให้ AI ลงมือทำอย่างชัดเจน เช่น สรุป เปรียบเทียบ จัดลำดับ หรือร่าง</p></div>
+<div class="card"><div class="num">5</div><h3>Constraints</h3><p>ข้อจำกัด สิ่งที่ห้าม เวลา งบประมาณ หรือสิ่งที่ห้ามเดา</p></div>
+<div class="card"><div class="num">6</div><h3>Output Format</h3><p>กำหนดรูปแบบผลลัพธ์ เช่น ตาราง Bullet 1 หน้า หรือ Action List</p></div>
+<div class="card"><div class="num">7</div><h3>Check</h3><p>กำหนดให้ AI ระบุจุดที่ไม่แน่ใจ ข้อมูลที่ขาด หรือสิ่งที่มนุษย์ต้องตรวจต่อ</p></div>
+</section>
+<section class="builder"><h2>ประกอบ Prompt ของคุณ</h2>
+<div class="field"><label>Role</label><textarea id="role" placeholder="เช่น คุณคือผู้ช่วยวิเคราะห์ข้อมูลสำหรับทีม Property Management"></textarea></div>
+<div class="field"><label>Goal</label><textarea id="goal" placeholder="เช่น ต้องการเห็นประเด็นสำคัญและสิ่งที่ต้องดำเนินการต่อ"></textarea></div>
+<div class="field"><label>Context / Data</label><textarea id="context" placeholder="วางข้อมูลหรืออธิบายบริบท"></textarea></div>
+<div class="field"><label>Task</label><textarea id="task" placeholder="เช่น สรุป 5 ประเด็นและจัด Action Items"></textarea></div>
+<div class="field"><label>Constraints</label><textarea id="constraints" placeholder="เช่น ห้ามเดาข้อมูลที่ไม่มี และอย่าเปิดเผยข้อมูลส่วนบุคคล"></textarea></div>
+<div class="field"><label>Output Format</label><textarea id="format" placeholder="เช่น ตาราง: Finding | Impact | Action | Owner"></textarea></div>
+<div class="field"><label>Check</label><textarea id="check" placeholder="เช่น ระบุข้อมูลที่ต้องตรวจเพิ่มก่อนนำไปใช้จริง"></textarea></div>
+<div class="actions"><button class="btn primary" onclick="build()">สร้าง Prompt</button><button class="btn secondary" onclick="copyOut()">Copy</button><button class="btn secondary" onclick="resetAll()">Reset</button></div>
+<div id="out" class="output" tabindex="-1">Prompt ที่ประกอบแล้วจะแสดงตรงนี้</div><div class="actions preview-actions"><button type="button" class="btn primary" onclick="copyOut()">คัดลอก Prompt ที่สร้างแล้ว</button><span id="copy-status" role="status" aria-live="polite"></span></div>
+<div class="tip"><b>RELEARN TIP:</b> ถ้าข้อมูลไม่พอ ให้สั่ง AI ว่า “อย่าเดา ให้ระบุข้อมูลที่ต้องสอบถามเพิ่มเติม”</div>
+</section><div class="footer">RELEARN OS × QPM • PREPARE • TRANSFORM • PERFORM</div></div>
+<script>
+function v(id){return document.getElementById(id).value.trim()}
+function build(){const parts=[["Role",v("role")],["Goal",v("goal")],["Context / Data",v("context")],["Task",v("task")],["Constraints",v("constraints")],["Output Format",v("format")],["Check",v("check")]].filter(x=>x[1]);const out=document.getElementById("out");out.textContent=parts.length?parts.map(x=>x[0]+":\n"+x[1]).join("\n\n"):"กรอกอย่างน้อย 1 ช่องก่อน";document.activeElement?.blur?.();requestAnimationFrame(()=>{out.scrollIntoView({behavior:"auto",block:"start"});});}
+async function copyOut(){const out=document.getElementById("out"),text=out.textContent,status=document.getElementById("copy-status");if(!text||text==="Prompt ที่ประกอบแล้วจะแสดงตรงนี้"||text==="กรอกอย่างน้อย 1 ช่องก่อน"){status.textContent="กรุณาสร้าง Prompt ก่อน";return}try{if(!navigator.clipboard?.writeText)throw Error("clipboard unavailable");await navigator.clipboard.writeText(text);status.textContent="คัดลอกแล้ว"}catch(e){const area=document.createElement("textarea");area.value=text;area.setAttribute("readonly","");area.style.cssText="position:fixed;left:0;top:0;width:1px;height:1px;opacity:0";document.body.appendChild(area);area.focus();area.select();let ok=false;try{ok=document.execCommand("copy")}catch(_){}area.remove();status.textContent=ok?"คัดลอกแล้ว":"กรุณากดค้างที่ข้อความ Prompt เพื่อคัดลอก";if(!ok){out.focus();const range=document.createRange();range.selectNodeContents(out);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range)}}}
+function resetAll(){["role","goal","context","task","constraints","format","check"].forEach(id=>document.getElementById(id).value="");document.getElementById("out").textContent="Prompt ที่ประกอบแล้วจะแสดงตรงนี้"}
+</script>
+</body></html>

@@ -1,0 +1,44 @@
+name: Update Academy Contact
+on:
+  push:
+    paths:
+      - '.github/workflows/update-academy-contact.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update contact section
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text()
+          old_css=".contactgrid{display:grid;grid-template-columns:.86fr 1.14fr;gap:44px;align-items:start}.contactcard{border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.08);padding:30px}.discovery{padding:22px;border:1px solid rgba(181,138,60,.56);background:rgba(255,255,255,.04);margin-bottom:18px}.discovery h3{margin:0 0 8px;font-weight:600}.row{display:grid;grid-template-columns:116px 1fr;gap:18px;padding:18px 0;border-top:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.76)}.row strong{color:#fff;font-weight:600}.row a{color:#fff;text-decoration:underline;text-underline-offset:3px}"
+          new_css=".contactsection{background:var(--ivory);color:var(--ink)}.contactgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:start}.contactsection .display{color:var(--navy)}.contactlead{margin:18px 0 0;color:var(--muted);font-size:17px;max-width:600px}.contactcard{border:1px solid #d9cfbd;background:#fff;padding:30px;display:flex;flex-direction:column;align-items:flex-start}.contactcard h3{margin:0 0 16px;color:var(--navy);font-size:28px;font-weight:600}.contactlink{display:block;margin:5px 0;color:var(--navy);text-decoration:underline;text-underline-offset:4px}.contactline{display:inline-flex;align-items:center;justify-content:center;min-width:170px;margin:12px 0;padding:11px 20px;border:1px solid #d6b978;background:#e7c987;color:var(--navy);font-weight:800;letter-spacing:.04em}.contactoptions{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}.contactoption{padding:24px;border:1px solid var(--line);background:#fff}.contactoption>span{display:grid;place-items:center;width:34px;height:34px;margin-bottom:16px;border:1px solid #e4d6b8;background:#fffaf2;color:var(--gold);font-size:11px;font-weight:700}.contactoption h3{margin:0 0 8px;color:var(--navy);font-size:20px}.contactoption p{margin:0 0 14px;color:var(--muted);font-size:13px}.contactoption a{color:var(--gold);font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}"
+          if old_css not in s: raise SystemExit('old contact css not found')
+          s=s.replace(old_css,new_css,1)
+          old_sec="<section id='consultation' class='dark'><div class='wrap contactgrid'><div><p class='ey'>Next Step</p><h2 class='display' data-text='ctaTitle'></h2><p style='margin-top:18px' data-text='ctaBody'></p></div><div class='contactcard'><div class='discovery'><h3 data-text='sessionTitle'></h3><p data-text='sessionBody'></p></div><div class='row'><strong>LinkedIn</strong><span><a href='https://www.linkedin.com/in/phatsha-thana-831160328/' target='_blank'>linkedin.com/in/phatsha-thana-831160328</a><br><span data-text='linkedinBody'></span></span></div><div class='row'><strong>Email</strong><span><a href='mailto:Phatsha.thana@gmail.com?subject=AI%20Transformation%20Discovery%20Session'>Phatsha.thana@gmail.com</a><br><span data-text='emailBody'></span></span></div><div style='margin-top:22px'><a class='btn primary' href='mailto:Phatsha.thana@gmail.com?subject=AI%20Transformation%20Discovery%20Session' data-text='bookFull'></a></div></div></div></section>"
+          new_sec="<section id='consultation' class='contactsection'><div class='wrap'><div class='contactgrid'><div><p class='ey'>CONTACT</p><h2 class='display' data-text='contactTitle'></h2><p class='contactlead' data-text='contactLead'></p></div><div class='contactcard'><p class='ey'>DIRECT CONTACT</p><h3>Phatsha Thana</h3><a class='contactlink' href='mailto:phatsha.thana@gmail.com'>phatsha.thana@gmail.com</a><a class='contactline' href='https://line.me/R/ti/p/%40237sdgzu' target='_blank' rel='noopener'><span data-text='lineLabel'></span>&nbsp;↗</a><a class='contactlink' href='https://www.linkedin.com/in/phatsha-thana-831160328/' target='_blank' rel='noopener'>LinkedIn ↗</a></div></div><div class='contactoptions'><article class='contactoption'><span>01</span><h3 data-text='contactOpt1Title'></h3><p data-text='contactOpt1Body'></p><a href='https://line.me/R/ti/p/%40237sdgzu' target='_blank' rel='noopener' data-text='contactOpt1Link'></a></article><article class='contactoption'><span>02</span><h3 data-text='contactOpt2Title'></h3><p data-text='contactOpt2Body'></p><a href='https://thepatsphere.com/consulting.html' data-text='contactOpt2Link'></a></article><article class='contactoption'><span>03</span><h3 data-text='contactOpt3Title'></h3><p data-text='contactOpt3Body'></p><a href='mailto:phatsha.thana@gmail.com?subject=AI%20Business%20Transformation%20Project%20Enquiry' data-text='contactOpt3Link'></a></article></div></div></section>"
+          if old_sec not in s: raise SystemExit('old contact section not found')
+          s=s.replace(old_sec,new_sec,1)
+          th_anchor="bookFull:'คุยโจทย์ธุรกิจ',"
+          th_add="bookFull:'คุยโจทย์ธุรกิจ',contactTitle:'เริ่มจากโจทย์ที่มี แล้วค่อยหาขั้นตอนถัดไปที่เหมาะสม',contactLead:'สำหรับ AI advisory, business transformation, workshop และการพูดคุยโครงการที่ต้องการออกแบบให้เหมาะกับบริบทจริง',lineLabel:'ADD LINE OA',contactOpt1Title:'พูดคุยเบื้องต้น',contactOpt1Body:'พูดคุยสั้น ๆ เพื่อดูความเหมาะสมของโจทย์และระบุขั้นตอนถัดไปที่ควรเริ่ม',contactOpt1Link:'ติดต่อผ่าน LINE OA →',contactOpt2Title:'Strategic Consultation',contactOpt2Body:'สำหรับโจทย์ที่ต้องการการวิเคราะห์ ประสบการณ์ คำแนะนำ และ professional advisory',contactOpt2Link:'ดูตัวเลือก Consulting →',contactOpt3Title:'Project Enquiry',contactOpt3Body:'สำหรับ workshop, AI transformation หรือโครงการที่มี scope ชัดและต้องการหารือรายละเอียด',contactOpt3Link:'ส่งอีเมล →',"
+          if th_anchor not in s: raise SystemExit('TH anchor not found')
+          s=s.replace(th_anchor,th_add,1)
+          en_anchor="bookFull:'Discuss Your Business Need',"
+          en_add="bookFull:'Discuss Your Business Need',contactTitle:'Start with the situation. We’ll identify the right next step.',contactLead:'For AI advisory, business transformation, workshops and defined project discussions.',lineLabel:'ADD LINE OA',contactOpt1Title:'Discovery Conversation',contactOpt1Body:'A short conversation to explore fit and identify the appropriate next step.',contactOpt1Link:'Contact via LINE OA →',contactOpt2Title:'Strategic Consultation',contactOpt2Body:'For discussions that require analysis, experience, recommendations and professional advisory.',contactOpt2Link:'View consulting options →',contactOpt3Title:'Project Enquiry',contactOpt3Body:'For workshops, AI transformation or a defined project that needs scope and next-step discussion.',contactOpt3Link:'Send an email →',"
+          if en_anchor not in s: raise SystemExit('EN anchor not found')
+          s=s.replace(en_anchor,en_add,1)
+          s=s.replace(".heroin,.head,.grid3,.grid4,.timeline,.split,.quotecontent,.contactgrid,.quiz,.pathgrid{grid-template-columns:1fr}",".heroin,.head,.grid3,.grid4,.timeline,.split,.quotecontent,.contactgrid,.contactoptions,.quiz,.pathgrid{grid-template-columns:1fr}",1)
+          p.write_text(s)
+          PY
+      - name: Commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ai-business-transformation-academy/index.html
+          git commit -m 'Align Academy contact with PATSPHERE contact experience' || exit 0
+          git push

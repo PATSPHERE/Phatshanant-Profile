@@ -1,0 +1,32 @@
+name: Add insights back button
+on:
+  push:
+    paths:
+      - '.github/workflows/add-insights-back-button.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add back navigation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/insights/index.html')
+          s=p.read_text(encoding='utf-8')
+          old='<div class="navlinks"><a href="#applied">Experience</a><a href="#current">Current Application</a><a href="#partners">Partners</a></div>'
+          new='<div class="navlinks"><a href="../#clients">← กลับหน้า RELEARNOS</a><a href="#applied">Experience</a><a href="#current">Current Application</a><a href="#partners">Partners</a></div>'
+          if old not in s:
+              raise SystemExit('nav target not found')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add ai-business-transformation-academy/insights/index.html
+          git commit -m 'Add return link from insights to main RELEARNOS page'
+          git push

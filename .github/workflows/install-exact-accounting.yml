@@ -1,0 +1,40 @@
+name: Install exact Accounting image
+
+on:
+  push:
+    paths:
+      - '.github/workflows/install-exact-accounting.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Decode exact user-approved image
+        run: |
+          base64 -d ai-business-transformation-academy/assets/accounting-small-b64.txt > ai-business-transformation-academy/assets/accounting-workflow-final.webp
+          file ai-business-transformation-academy/assets/accounting-workflow-final.webp
+          test -s ai-business-transformation-academy/assets/accounting-workflow-final.webp
+      - name: Bump image cache and export latest HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('assets/accounting-workflow-final.webp?v=accounting-final','assets/accounting-workflow-final.webp?v=accounting-exact-1')
+          p.write_text(s,encoding='utf-8')
+          Path('RELEARNOS-latest.html').write_text(s,encoding='utf-8')
+          PY
+      - name: Commit exact image
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/assets/accounting-workflow-final.webp ai-business-transformation-academy/index.html RELEARNOS-latest.html
+          git rm ai-business-transformation-academy/assets/accounting-small-b64.txt
+          git commit -m 'Use exact Accounting Workflow image'
+          git push

@@ -1,0 +1,34 @@
+name: Bump Accounting cache
+
+on:
+  push:
+    paths:
+      - '.github/workflows/bump-accounting-cache.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Update Accounting image cache key
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('assets/accounting-workflow-final.webp?v=accounting-final','assets/accounting-workflow-final.webp?v=accounting-exact-2')
+          p.write_text(s,encoding='utf-8')
+          Path('RELEARNOS-latest.html').write_text(s,encoding='utf-8')
+          PY
+      - name: Commit cache bump
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/index.html RELEARNOS-latest.html
+          git commit -m 'Refresh Accounting Workflow image cache'
+          git push

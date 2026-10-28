@@ -1,0 +1,39 @@
+name: Fix Insights image cache
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-insights-image-cache.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Update image URLs and clean temporary files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('ai-business-transformation-academy/insights/index.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("../assets/insights/accounting.webp", "../assets/insights/accounting-v2.webp")
+          s = s.replace("../assets/insights/healthcare.webp", "../assets/insights/healthcare-v2.webp")
+          p.write_text(s, encoding='utf-8')
+          PY
+          rm -f ai-business-transformation-academy/assets/insights/accounting-v3.webp
+          rm -f ai-business-transformation-academy/assets/insights/.noop
+          rm -f ai-business-transformation-academy/assets/insights/cache-bust-note.txt
+      - name: Commit fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/insights/index.html ai-business-transformation-academy/assets/insights
+          if ! git diff --cached --quiet; then
+            git commit -m 'Fix Insights image cache paths'
+            git push
+          fi

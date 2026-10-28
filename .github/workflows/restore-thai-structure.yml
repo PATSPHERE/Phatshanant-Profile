@@ -1,0 +1,36 @@
+name: Restore Thai Structure
+
+on:
+  push:
+    paths:
+      - '.github/workflows/restore-thai-structure.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Attach locked Thai structure runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text(encoding='utf-8')
+          tag="<script src='relearnos-th-restore.js?v=th-final-1'></script>"
+          if tag not in s:
+              s=s.replace('</body>',tag+'\n</body>',1)
+          # remove obsolete wording if still present
+          s=s.replace('โดยไม่เผยรายละเอียดหลักสูตรทั้งหมดก่อนเห็นบริบท','')
+          s=s.replace('โดยไม่เปิดเผยรายละเอียดหลักสูตรทั้งหมดก่อนเห็นบริบท','')
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-business-transformation-academy/index.html
+          git commit -m 'Restore locked Thai programme and visual structure'
+          git push

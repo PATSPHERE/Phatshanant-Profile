@@ -1,0 +1,28 @@
+name: Attach Questions Guarantee
+on:
+  push:
+    paths:
+      - '.github/workflows/attach-questions-guarantee.yml'
+permissions:
+  contents: write
+jobs:
+  attach:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Attach questions runtime
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('ai-business-transformation-academy/index.html')
+          s=p.read_text()
+          tag="<script src='questions-guarantee.js?v=1'></script>"
+          if tag not in s:
+              s=s.replace('</body>',tag+'\n</body>',1)
+          p.write_text(s)
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add ai-business-transformation-academy/index.html
+          git commit -m 'Attach guaranteed Thai learning path questions'
+          git push
