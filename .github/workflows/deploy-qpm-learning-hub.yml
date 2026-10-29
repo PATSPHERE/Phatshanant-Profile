@@ -26,8 +26,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # Keep the existing public URL structure:
+      # /Phatshanant-Profile/relearn-os-learning-hub/clients/qpm/...
+      - name: Stage Learning Hub at its existing path
+        run: |
+          mkdir -p _site/relearn-os-learning-hub
+          cp -a relearn-os-learning-hub/. _site/relearn-os-learning-hub/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: relearn-os-learning-hub
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
