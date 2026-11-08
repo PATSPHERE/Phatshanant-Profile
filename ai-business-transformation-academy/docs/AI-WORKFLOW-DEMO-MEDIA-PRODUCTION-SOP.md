@@ -1,3 +1,17 @@
+# RELEARN OS — UNIVERSAL CONTENT-FIRST APPROVAL GATE
+Status: LOCKED (2026-11-08). Applies to ALL RELEARN OS topics and media, overriding any implicit permission to produce.
+
+**A topic request is NOT a production request.** The default sequence is:
+1. CONTENT FIRST: Discuss objective, audience, key facts, scope and proposed narrative. Draft a content outline or content summary only.
+2. CONTENT APPROVAL: Review, correct and explicitly approve the content before considering production.
+3. FORMAT DISCUSSION: Jointly choose whether the approved content should become a video/reel, document, slide deck, work card, infographic, or combination. Do not unilaterally choose or produce a format.
+4. FORMAT-SPECIFIC PLAN: Create storyboard for video, page outline for document, card layout for work cards, etc. Present for review and approval.
+5. PRODUCTION: Only after explicit approval, create the agreed media. Perform CI, accuracy, and usability QA.
+
+Do not infer approval from discussion or an earlier approval for a different deliverable. Respect locked content and decisions; seek explicit unlock to change them. This gate precedes the specialized AI workflow demo SOP below. If the user explicitly requests a particular finished artifact and authorizes production, follow that explicit instruction while still validating essential content.
+
+---
+
 # RELEARN OS — AI Workflow Demonstration Media SOP
 Status: LOCKED — Approved production approach (2026-11-08)
 Scope: Educational reels/videos demonstrating how to perform tasks with AI tools. Applies across tools, not only Claude Cowork.
