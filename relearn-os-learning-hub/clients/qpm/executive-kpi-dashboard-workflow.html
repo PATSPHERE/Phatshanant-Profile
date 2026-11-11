@@ -1,0 +1,146 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Executive KPI Dashboard | RELEARN OS × QPM</title><style>:root{--blue:#1767d1;--green:#31ae60;--ink:#183155;--muted:#64748b}*{box-sizing:border-box}body{margin:0;background:#f6fbff;color:var(--ink);font-family:Arial,"Noto Sans Thai",sans-serif;line-height:1.7}.wrap{max-width:1060px;margin:auto;padding:24px}.brand{font-weight:900;font-size:28px;letter-spacing:-1px}.brand b{color:var(--blue)}.brand em{color:var(--green);font-style:normal}.ey{font-size:12px;letter-spacing:.1em;color:var(--blue);font-weight:800}.hero{padding:28px 0}.hero h1{font-size:clamp(28px,5vw,42px);line-height:1.25;margin:12px 0}.hero p{color:var(--muted)}a{color:var(--blue)}.panel{background:#fff;border:1px solid #d9e8f1;border-radius:18px;padding:20px;margin:16px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.step{background:#fff;border:1px solid #d9e8f1;border-radius:14px;padding:15px}.step strong{color:var(--blue)}h2{font-size:22px;margin-top:32px}h3{font-size:17px}pre{white-space:pre-wrap;word-break:break-word;background:#f5f8fc;border:1px solid #d9e8f1;border-radius:12px;padding:16px;font-family:inherit;font-size:14px;max-height:420px;overflow:auto}button{border:0;border-radius:10px;background:var(--blue);color:white;font-weight:700;padding:10px 16px;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #f59e0b}details{background:white;border:1px solid #d9e8f1;border-radius:12px;margin:10px 0;padding:12px 16px}summary{cursor:pointer;font-weight:700}small,.muted{color:var(--muted)}.notice{border-left:4px solid #f59e0b;padding:10px 14px;background:#fffaf0}.back{font-size:13px;text-decoration:none;font-weight:700}@media(max-width:700px){.grid{grid-template-columns:1fr}.wrap{padding:16px}} </style></head><body><main class="wrap"><a class="back" href="home.html">← QPM Learning Hub</a><div class="hero"><div class="brand"><b>RELEARN</b> <em>OS</em></div><div class="ey">QPM • ADVANCED WORKFLOW • EXECUTIVE REPORTING</div><h1>สร้าง Executive KPI Dashboard จาก Excel และ PowerPoint</h1><p>คู่มือปฏิบัติจริงแบบ Step-by-Step พร้อม Master Prompt และคำสั่ง Slide-by-Slide ครบ 17 คู่ อ้างอิง PowerPoint 41 สไลด์ (ตุลาคม 2569)</p><div class="notice">ไฟล์ PowerPoint ตัวอย่างมีป้าย DEMO / SIMULATED DATA จึงใช้เป็นตัวอย่างโครงสร้างเท่านั้น การสร้างรายงานจริงต้องแนบ Excel เดือนเป้าหมายและตรวจสอบข้อมูลทุกครั้ง</div></div><h2>01 · ขั้นตอนการทำงาน</h2><div class="grid"><div class="step"><strong>STEP 01</strong><h3>เตรียมต้นฉบับ</h3><div>แนบ PowerPoint 41 สไลด์และ Excel เดือนเป้าหมาย ตรวจเดือน/เวอร์ชัน</div></div><div class="step"><strong>STEP 02</strong><h3>ระบุคู่สไลด์</h3><div>ตรวจ KEEP และ TRANSFORM ตาม Mapping ที่ล็อก</div></div><div class="step"><strong>STEP 03</strong><h3>ทำ Source Mapping</h3><div>ระบุชีต เซลล์ หน่วย ช่วงเวลา สูตร และนิยาม KPI</div></div><div class="step"><strong>STEP 04</strong><h3>ตรวจข้อมูล</h3><div>ตรวจรายการซ้ำ ค่าว่าง ผลรวม ความสอดคล้องของช่วงเวลา</div></div><div class="step"><strong>STEP 05</strong><h3>คำนวณ KPI</h3><div>คำนวณจากข้อมูลจริง ตรวจสูตรและฐานเทียบก่อนออกแบบ</div></div><div class="step"><strong>STEP 06</strong><h3>สร้าง Dashboard</h3><div>ใช้ CI ของ QPM และ PowerPoint ที่แก้ไขได้</div></div><div class="step"><strong>STEP 07</strong><h3>ตรวจ QA 4 ด่าน</h3><div>Source, Calculation, Editable PPT, Render</div></div><div class="step"><strong>STEP 08</strong><h3>อนุมัติและรวมไฟล์</h3><div>รวมเฉพาะหน้าที่ผ่าน QA โดยคงสไลด์ KEEP</div></div></div><h2>02 · Master Prompt</h2><div class="panel"><p>ใช้ครั้งแรกเพื่อกำหนดหลักการร่วม ก่อนใช้คำสั่งเฉพาะสไลด์</p><button onclick="copyPrompt('master')">คัดลอก Master Prompt</button><pre id="master">ทำหน้าที่เป็นนักวิเคราะห์ KPI ผู้พัฒนา PowerPoint และผู้ตรวจสอบคุณภาพ สำหรับรายงาน QPM โดยใช้ PowerPoint ต้นแบบ 41 สไลด์และ Excel เดือนเป้าหมายเป็นข้อมูลหลัก
+ขั้นตอน 1 ตรวจไฟล์/เดือน/เวอร์ชันและแยกข้อมูลจริงออกจาก DEMO • SIMULATED DATA
+ขั้นตอน 2 รักษาสไลด์ KEEP: 01,02,07,36,37,38,41; แปลงเฉพาะคู่ที่กำหนด 17 คู่ ห้ามเปลี่ยนลำดับ
+ขั้นตอน 3 สร้าง Source Mapping ราย KPI: ไฟล์ ชีต เซลล์ ตัวกรอง ช่วงเวลา หน่วย นิยาม ตัวตั้ง ตัวหาร สูตร เป้าหมาย และฐานเปรียบเทียบ ห้ามเดาข้อมูลที่ไม่มี
+ขั้นตอน 4 ทำ Source QA: ชนิดข้อมูล ค่าว่าง รายการซ้ำ เดือน/ปี หน่วย ยอดรวมและรายละเอียด หากขาดข้อมูลจำเป็นให้หยุดและรายงาน Missing Data
+ขั้นตอน 5 คำนวณซ้ำด้วยสูตรที่ตรวจสอบได้ แสดง intermediate; MTD/YTD เฉพาะที่รองรับ อัตราสะสมคำนวณจากตัวตั้ง/ตัวหารรวม Backlog ใช้ยอด ณ สิ้นเดือน ห้ามบวกยอดคงค้างข้ามเดือน เปลี่ยนแปลง (%)=((ปัจจุบัน−ฐาน)/ฐาน)×100 เมื่อฐานไม่เป็นศูนย์ แสดงฐานและปัจจุบัน
+ขั้นตอน 6 ออกแบบ 16:9 ตาม QPM CI: ส้ม=ปัจจุบัน เทา=เปรียบเทียบ เขียว=ดี แดง=วิกฤต อำพัน=เฝ้าระวัง ห้ามน้ำเงิน/ม่วง รักษาโลโก้และ Footer
+ขั้นตอน 7 สร้างกราฟ ตาราง ข้อความที่แก้ไขได้จริงใน .pptx ห้ามแทนด้วยภาพนิ่ง เขียน Insight ที่มีหลักฐานและแยกจากข้อเสนอ
+ขั้นตอน 8 ตรวจ 4 ด่าน Source / Calculation / Editable PPT / Render QA พร้อม PASS/FAIL หากไม่ผ่านให้ส่ง DRAFT NOT APPROVED และรายการแก้ ห้ามอ้างว่า Final
+ส่งออกไฟล์ .pptx ที่แก้ไขได้ พร้อม Source Mapping, QA log และ Missing Data; สถานะ PASS ทุกด่านเป็น Pending Human Approval</pre></div><h2>03 · Slide-by-Slide Prompts</h2><p class="muted">เลือกเฉพาะคู่ที่ต้องการผลิต แต่ละคำสั่งมี Source Mapping, Calculation, CI และ QA ของตัวเอง</p><details><summary>01 · Slide 03 → 04 · ข้อมูลภาพรวม</summary><p><button onclick="copyPrompt('p0')">คัดลอกคำสั่งสไลด์ 4</button></p><pre id="p0">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 03 → Dashboard Slide 04 หัวข้อ “ข้อมูลภาพรวม” เท่านั้น
+1. อ่าน Slide 3 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide04_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>02 · Slide 05 → 06 · หน่วยงานรับใหม่และยกเลิก</summary><p><button onclick="copyPrompt('p1')">คัดลอกคำสั่งสไลด์ 6</button></p><pre id="p1">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 05 → Dashboard Slide 06 หัวข้อ “หน่วยงานรับใหม่และยกเลิก” เท่านั้น
+1. อ่าน Slide 5 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide06_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>03 · Slide 08 → 09 · Control Plan</summary><p><button onclick="copyPrompt('p2')">คัดลอกคำสั่งสไลด์ 9</button></p><pre id="p2">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 08 → Dashboard Slide 09 หัวข้อ “Control Plan” เท่านั้น
+1. อ่าน Slide 8 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide09_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>04 · Slide 10 → 11 · PM Plan</summary><p><button onclick="copyPrompt('p3')">คัดลอกคำสั่งสไลด์ 11</button></p><pre id="p3">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 10 → Dashboard Slide 11 หัวข้อ “PM Plan” เท่านั้น
+1. อ่าน Slide 10 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide11_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>05 · Slide 12 → 13 · Action Plan</summary><p><button onclick="copyPrompt('p4')">คัดลอกคำสั่งสไลด์ 13</button></p><pre id="p4">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 12 → Dashboard Slide 13 หัวข้อ “Action Plan” เท่านั้น
+1. อ่าน Slide 12 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide13_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>06 · Slide 14 → 15 · การตรวจประเมินมาตรฐาน 5 ด้าน</summary><p><button onclick="copyPrompt('p5')">คัดลอกคำสั่งสไลด์ 15</button></p><pre id="p5">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 14 → Dashboard Slide 15 หัวข้อ “การตรวจประเมินมาตรฐาน 5 ด้าน” เท่านั้น
+1. อ่าน Slide 14 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide15_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>07 · Slide 16 → 17 · การควบคุมคู่สัญญาและบัญชีเงินฝาก</summary><p><button onclick="copyPrompt('p6')">คัดลอกคำสั่งสไลด์ 17</button></p><pre id="p6">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 16 → Dashboard Slide 17 หัวข้อ “การควบคุมคู่สัญญาและบัญชีเงินฝาก” เท่านั้น
+1. อ่าน Slide 16 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide17_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>08 · Slide 18 → 19 · ผู้รับเหมาและเงินประกันการตกแต่ง</summary><p><button onclick="copyPrompt('p7')">คัดลอกคำสั่งสไลด์ 19</button></p><pre id="p7">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 18 → Dashboard Slide 19 หัวข้อ “ผู้รับเหมาและเงินประกันการตกแต่ง” เท่านั้น
+1. อ่าน Slide 18 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide19_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>09 · Slide 20 → 21 · Cross bank / Payment Gateway</summary><p><button onclick="copyPrompt('p8')">คัดลอกคำสั่งสไลด์ 21</button></p><pre id="p8">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 20 → Dashboard Slide 21 หัวข้อ “Cross bank / Payment Gateway” เท่านั้น
+1. อ่าน Slide 20 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide21_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>10 · Slide 22 → 23 · JOY LIFE Application</summary><p><button onclick="copyPrompt('p9')">คัดลอกคำสั่งสไลด์ 23</button></p><pre id="p9">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 22 → Dashboard Slide 23 หัวข้อ “JOY LIFE Application” เท่านั้น
+1. อ่าน Slide 22 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide23_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>11 · Slide 24 → 25 · ระบบความปลอดภัยอาคาร</summary><p><button onclick="copyPrompt('p10')">คัดลอกคำสั่งสไลด์ 25</button></p><pre id="p10">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 24 → Dashboard Slide 25 หัวข้อ “ระบบความปลอดภัยอาคาร” เท่านั้น
+1. อ่าน Slide 24 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide25_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>12 · Slide 26 → 27 · การป้องกันน้ำท่วม</summary><p><button onclick="copyPrompt('p11')">คัดลอกคำสั่งสไลด์ 27</button></p><pre id="p11">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 26 → Dashboard Slide 27 หัวข้อ “การป้องกันน้ำท่วม” เท่านั้น
+1. อ่าน Slide 26 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide27_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>13 · Slide 28 → 29 · ใบ ธภ.7</summary><p><button onclick="copyPrompt('p12')">คัดลอกคำสั่งสไลด์ 29</button></p><pre id="p12">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 28 → Dashboard Slide 29 หัวข้อ “ใบ ธภ.7” เท่านั้น
+1. อ่าน Slide 28 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide29_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>14 · Slide 30 → 31 · การจัดเก็บค่าส่วนกลาง</summary><p><button onclick="copyPrompt('p13')">คัดลอกคำสั่งสไลด์ 31</button></p><pre id="p13">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 30 → Dashboard Slide 31 หัวข้อ “การจัดเก็บค่าส่วนกลาง” เท่านั้น
+1. อ่าน Slide 30 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide31_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>15 · Slide 32 → 33 · เร่งรัดจัดเก็บ — ทีมกุ๊ก</summary><p><button onclick="copyPrompt('p14')">คัดลอกคำสั่งสไลด์ 33</button></p><pre id="p14">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 32 → Dashboard Slide 33 หัวข้อ “เร่งรัดจัดเก็บ — ทีมกุ๊ก” เท่านั้น
+1. อ่าน Slide 32 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide33_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>16 · Slide 34 → 35 · เร่งรัดจัดเก็บ — ทีมเปิ้ล/จิ๊บ</summary><p><button onclick="copyPrompt('p15')">คัดลอกคำสั่งสไลด์ 35</button></p><pre id="p15">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 34 → Dashboard Slide 35 หัวข้อ “เร่งรัดจัดเก็บ — ทีมเปิ้ล/จิ๊บ” เท่านั้น
+1. อ่าน Slide 34 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide35_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><details><summary>17 · Slide 39 → 40 · ตรวจสอบยอดหนี้และเอกสารกรมบังคับคดี</summary><p><button onclick="copyPrompt('p16')">คัดลอกคำสั่งสไลด์ 40</button></p><pre id="p16">ทำงานตาม Master Prompt ของ RELEARN OS × QPM เฉพาะ Original Slide 39 → Dashboard Slide 40 หัวข้อ “ตรวจสอบยอดหนี้และเอกสารกรมบังคับคดี” เท่านั้น
+1. อ่าน Slide 39 เพื่อระบุหัวข้อ ขอบเขต KPI องค์ประกอบและ CI โดยไม่ใช้ตัวเลข DEMO เป็นข้อมูลจริง
+2. อ่าน Excel เดือนเป้าหมายจริง ระบุ Source Mapping ทุก KPI: ไฟล์/ชีต/เซลล์/ตัวกรอง/เดือน/หน่วย/นิยาม/สูตร/ฐานเทียบ/เป้าหมาย หากไม่ครบให้รายงาน Missing Data และหยุดก่อน Final
+3. ตรวจค่าว่าง แถวซ้ำ หน่วย เดือน และผลรวมย่อยกับยอดรวม บันทึก PASS/FAIL
+4. สร้าง KPI Dictionary และคำนวณใหม่ ตรวจตัวตั้ง ตัวหาร MTD/YTD เมื่อมีข้อมูลรองรับ อัตราเปลี่ยนแปลงเทียบฐานที่ไม่เป็นศูนย์ และการปัดเศษ ห้ามรวมอัตราหรือ Backlog ข้ามเดือนโดยตรง
+5. สร้าง Dashboard ภาษาไทย 16:9 ที่แก้ไขข้อความ ตาราง และกราฟได้จริง โดยใช้สีส้ม/เทา QPM และเกณฑ์สถานะที่ยืนยันแล้ว คงโลโก้/Footer
+6. เขียนข้อสังเกตจากข้อมูลที่ตรวจสอบย้อนกลับได้ แยกข้อเสนอเพื่อพิจารณา ห้ามสมมติสาเหตุ
+7. ส่งไฟล์ QPM_Dashboard_Slide40_YYYYMM_v01.pptx จำนวน 1 สไลด์ พร้อม Source Mapping, QA log, Missing Data
+8. ตรวจ Source / Calculation / Editable PPT / Render QA หาก FAIL ให้ระบุ NOT APPROVED และไม่ส่ง Final ห้ามแก้สไลด์อื่น</pre></details><h2>04 · เกณฑ์รับงาน</h2><div class="panel"><p><b>KEEP:</b> 01, 02, 07, 36, 37, 38, 41 — ห้ามเปลี่ยน</p><p><b>TRANSFORM:</b> 17 คู่ด้านบนเท่านั้น</p><p><b>QA:</b> Source → Calculation → Editable PowerPoint → Render ต้องผ่านทุกด่านก่อนส่งให้ผู้รับผิดชอบอนุมัติ</p><p><b>ผลลัพธ์:</b> PowerPoint 16:9 ที่แก้ไขได้จริง + Source Mapping + QA Log + Missing Data</p></div><p class="muted">RELEARN OS × QPM • PREPARE • TRANSFORM • PERFORM</p></main><script>function copyPrompt(id){let t=document.getElementById(id).textContent;navigator.clipboard.writeText(t).then(()=>alert('คัดลอกคำสั่งแล้ว')).catch(()=>{let a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();alert('คัดลอกคำสั่งแล้ว')})}</script></body></html>
